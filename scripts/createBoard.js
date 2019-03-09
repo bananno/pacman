@@ -5,31 +5,34 @@ $(document).ready(() => {
 });
 
 function createBoard() {
-  let newBoard = '<table>';
+  let $table = $('<table>');
 
   maps[0].forEach((row, r) => {
-    newBoard += '<tr>';
+    const $row = $('<tr>').appendTo($table);
 
     const tiles = row.split('');
 
-    newBoard += tiles.map((tile, c) => {
+    tiles.forEach((tile, c) => {
+      const $col = $('<td>').appendTo($table);
+
       if (tile == '|') {
-        return '<td class="board-wall"> </td>';
+        $col.addClass('board-wall');
+        return;
       }
+
+      $col.addClass('board-path');
 
       if (tile == 'P') {
+        $col.append($PACMAN);
         pacmanPosition = [r, c];
+        return;
       }
 
-      return '<td class="board-path">' + tile + '</td>';
-    }).join('');
-
-    newBoard += '</tr>';
+      $col.text(tile);
+    });
   });
 
-  newBoard += '</table>';
-
-  $('#board').html(newBoard);
+  $('#board').html($table);
 }
 
 function createTimer() {
