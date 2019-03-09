@@ -4,6 +4,8 @@ $(document).ready(() => {
   createTimer();
 });
 
+$(document).keydown(useKeyboard);
+
 function createBoard() {
   let $table = $('<table>');
   board = [];
@@ -88,4 +90,14 @@ function getNewPosition() {
   }
 
   return board[newR][newC];
+}
+
+function useKeyboard(e) {
+  if (e.key.match('Arrow')) {
+    let newDirection = e.key.toLowerCase().slice(5);
+
+    if (['up', 'down', 'left', 'right'].indexOf(newDirection) >= 0) {
+      pacmanDirection = newDirection;
+    }
+  }
 }
