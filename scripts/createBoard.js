@@ -57,9 +57,9 @@ function createTimer() {
 }
 
 function movePacman() {
-  const newTile = getNewPosition();
+  const newTile = getNewPosition(pacmanDirection);
 
-  if (newTile == null || newTile.wall) {
+  if (newTile == null) {
     return;
   }
 
@@ -72,17 +72,19 @@ function movePacman() {
   pacmanPosition = [newTile.row, newTile.col];
 }
 
-function getNewPosition() {
+function getNewPosition(direction) {
   let [newR, newC] = [...pacmanPosition];
 
-  if (pacmanDirection == 'left') {
+  if (direction == 'left') {
     newC -= 1;
-  } else if (pacmanDirection == 'right') {
+  } else if (direction == 'right') {
     newC += 1;
-  } else if (pacmanDirection == 'up') {
+  } else if (direction == 'up') {
     newR -= 1;
-  } else if (pacmanDirection == 'down') {
+  } else if (direction == 'down') {
     newR += 1;
+  } else {
+    return null;
   }
 
   if (board[newR] == null) {
@@ -101,14 +103,14 @@ function getNewPosition() {
     }
   }
 
-  return board[newR][newC];
+  return board[newR][newC].wall ? null : board[newR][newC];
 }
 
 function useKeyboard(e) {
   if (e.key.match('Arrow')) {
     let newDirection = e.key.toLowerCase().slice(5);
 
-    if (['up', 'down', 'left', 'right'].indexOf(newDirection) >= 0) {
+    if (getNewPosition(newDirection)) {
       pacmanDirection = newDirection;
     }
   }
