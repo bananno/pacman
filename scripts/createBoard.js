@@ -1,5 +1,8 @@
 
-$(document).ready(createBoard);
+$(document).ready(() => {
+  createBoard();
+  createTimer();
+});
 
 function createBoard() {
   let newBoard = '<table>';
@@ -13,10 +16,11 @@ function createBoard() {
       if (tile == '|') {
         return '<td class="board-wall"> </td>';
       }
+
       if (tile == 'P') {
-        pacmanPosition[0] = r;
-        pacmanPosition[1] = c;
+        pacmanPosition = [r, c];
       }
+
       return '<td class="board-path">' + tile + '</td>';
     }).join('');
 
@@ -26,4 +30,12 @@ function createBoard() {
   newBoard += '</table>';
 
   $('#board').html(newBoard);
+}
+
+function createTimer() {
+  pacmanInterval = setInterval(movePacman, 1000);
+}
+
+function movePacman() {
+  console.log('move')
 }

@@ -1,2 +1,3 @@
 
-const pacmanPosition = [0, 0];
+let pacmanPosition;
+let pacmanInterval;
