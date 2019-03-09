@@ -13,7 +13,9 @@ function createBoard() {
     const tiles = row.split('');
 
     tiles.forEach((tile, c) => {
-      const $col = $('<td>').appendTo($table);
+      const $col = $('<td>').appendTo($row);
+
+      $col.attr('row', r).attr('col', c);
 
       if (tile == '|') {
         $col.addClass('board-wall');
@@ -40,5 +42,22 @@ function createTimer() {
 }
 
 function movePacman() {
-  console.log('move')
+  const newPosition = [...pacmanPosition];
+
+  if (pacmanDirection == 'left') {
+    newPosition[1] -= 1;
+  } else if (pacmanDirection == 'right') {
+    newPosition[1] += 1;
+  } else if (pacmanDirection == 'up') {
+    newPosition[0] -= 1;
+  } else if (pacmanDirection == 'down') {
+    newPosition[0] += 1;
+  }
+
+  let $nextCol = $('.board-path[row="' + newPosition[0] + '"][col="' + newPosition[1] + '"]');
+
+  if ($nextCol.length) {
+    $nextCol.append($PACMAN);
+    pacmanPosition = [...newPosition];
+  }
 }
