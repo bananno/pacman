@@ -1,18 +1,18 @@
 
-class Creature() {
-    constructor() {
+class Creature {
+  constructor() {
 
-    }
+  }
 }
 
-class Pacman extends Creature() {
-    constructor () {
-        super();
-    }
+class Pacman extends Creature {
+  constructor () {
+    super();
+  }
 }
 
-class Ghost extends Creature() {
-    constructor () {
-        super();
-    }
+class Ghost extends Creature {
+  constructor () {
+    super();
+  }
 }
