@@ -6,19 +6,28 @@ $(document).ready(() => {
 
 function createBoard() {
   let $table = $('<table>');
+  board = [];
 
   maps[0].forEach((row, r) => {
     const $row = $('<tr>').appendTo($table);
+    board[r] = [];
 
     const tiles = row.split('');
 
     tiles.forEach((tile, c) => {
       const $col = $('<td>').appendTo($row);
 
-      $col.attr('row', r).attr('col', c);
+      board[r][c] = {
+        $: $col,
+        wall: false,
+        food: false,
+        row: r,
+        col: c,
+      };
 
       if (tile == '|') {
         $col.addClass('board-wall');
+        board[r][c].wall = true;
         return;
       }
 
@@ -28,6 +37,10 @@ function createBoard() {
         $col.append($PACMAN);
         pacmanPosition = [r, c];
         return;
+      }
+
+      if (tile == '.') {
+        board[r][c].food = true;
       }
 
       $col.text(tile);
@@ -42,22 +55,37 @@ function createTimer() {
 }
 
 function movePacman() {
-  const newPosition = [...pacmanPosition];
+  const newTile = getNewPosition();
+
+  if (newTile == null || newTile.wall) {
+    return;
+  }
+
+  if (newTile.food) {
+    newTile.food = false;
+    newTile.$.text('');
+  }
+
+  newTile.$.append($PACMAN);
+  pacmanPosition = [newTile.row, newTile.col];
+}
+
+function getNewPosition() {
+  let [newR, newC] = [...pacmanPosition];
 
   if (pacmanDirection == 'left') {
-    newPosition[1] -= 1;
+    newC -= 1;
   } else if (pacmanDirection == 'right') {
-    newPosition[1] += 1;
+    newC += 1;
   } else if (pacmanDirection == 'up') {
-    newPosition[0] -= 1;
+    newR -= 1;
   } else if (pacmanDirection == 'down') {
-    newPosition[0] += 1;
+    newR += 1;
   }
 
-  let $nextCol = $('.board-path[row="' + newPosition[0] + '"][col="' + newPosition[1] + '"]');
-
-  if ($nextCol.length) {
-    $nextCol.append($PACMAN);
-    pacmanPosition = [...newPosition];
+  if (board[newR] == null || board[newR][newC] == null) {
+    return null;
   }
+
+  return board[newR][newC];
 }
