@@ -53,7 +53,7 @@ function createBoard() {
 }
 
 function createTimer() {
-  pacmanInterval = setInterval(movePacman, 1000);
+  pacmanInterval = setInterval(movePacman, 250);
 }
 
 function movePacman() {
@@ -85,8 +85,20 @@ function getNewPosition() {
     newR += 1;
   }
 
-  if (board[newR] == null || board[newR][newC] == null) {
-    return null;
+  if (board[newR] == null) {
+    if (newR == -1) {
+      newR = board.length - 1;
+    } else {
+      newR = 0;
+    }
+  }
+
+  if (board[newR][newC] == null) {
+    if (newC == -1) {
+      newC = board.length[0] - 1;
+    } else {
+      newC = 0;
+    }
   }
 
   return board[newR][newC];
