@@ -9,13 +9,12 @@ function createBoard() {
 
     const tiles = row.split('');
 
-    tiles.forEach(tile => {
+    newBoard += tiles.map(tile => {
       if (tile == '|') {
-        newBoard += '<td class="board-wall"> </td>';
-      } else if (tile == '.') {
-        newBoard += '<td class="board-path"> * </td>';
+        return '<td class="board-wall"> </td>';
       }
-    });
+      return '<td class="board-path">' + tile + '</td>';
+    }).join('');
 
     newBoard += '</tr>';
   });

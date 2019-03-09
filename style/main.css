@@ -4,6 +4,10 @@
   border-collapse: collapse;
 }
 
+*::selection {
+  background-color: transparent;
+}
+
 body {
   background-color: black;
 }
@@ -17,6 +21,8 @@ td {
   width: 20px;
   color: white;
   text-align: center;
+  font-weight: bold;
+  cursor: default;
 }
 
 #board {
