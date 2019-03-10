@@ -5,7 +5,7 @@ class Creature {
   constructor() {
     this.$ = $('<span class="creature">');
     this.speed = 250;
-    this.movementInterval = setInterval(moveCreature.bind(this), this.speed);
+    this.movementInterval = setInterval(this.move.bind(this), this.speed);
   }
 
   set position([r, c]) {
@@ -61,7 +61,7 @@ class Ghost extends Creature {
   }
 }
 
-function moveCreature() {
+Creature.prototype.move = function() {
   if (this.position.length == 0) {
     return;
   }

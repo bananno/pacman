@@ -18,6 +18,7 @@ function eatToken() {
 function loseGame() {
   [pacman, ...ghosts].forEach(creature => {
     clearInterval(creature.movementInterval);
+    clearInterval(creature.blueInterval);
   });
 
   alert('You lose!');
