@@ -15,7 +15,7 @@ function newGame() {
 
   createBoard();
 
-  fastestPath();
+  fastestPath([5, 3], [5, 10]);
 
   $('#board').append('<button onClick="TEST_movePacman()">move pacman</button>');
 }

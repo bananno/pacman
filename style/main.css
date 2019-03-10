@@ -34,6 +34,6 @@ td.board-wall {
   background-color: blue;
 }
 
-td.board-trail-temp {
+td.board-path.PATH-TEMP {
   background-color: red;
 }
