@@ -15,9 +15,11 @@ function newGame() {
 
   createBoard();
 
-  fastestPath([5, 3], [5, 10]);
+  // $('#board').append('<button onClick="TEST_movePacman()">move pacman</button>');
 
-  $('#board').append('<button onClick="TEST_movePacman()">move pacman</button>');
+  $('#board').append('<button onClick="fastestPath([5, 3], [5, 10])">path1</button>');
+  $('#board').append('<button onClick="fastestPath([3, 6], [12, 6])">path2</button>');
+  $('#board').append('<button onClick="fastestPath([5, 3], [12, 6])">path3</button>');
 }
 
 function TEST_movePacman() {
