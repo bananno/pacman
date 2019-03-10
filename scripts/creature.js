@@ -38,10 +38,11 @@ class Pacman extends Creature {
 }
 
 class Ghost extends Creature {
-  constructor () {
+  constructor (number) {
     super();
+    this.number = number;
     this.$.addClass('ghost');
-    this.$.addClass('ghost1');
+    this.$.addClass('ghost' + (number + 1));
   }
 }
 

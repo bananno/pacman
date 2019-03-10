@@ -5,7 +5,7 @@ const pacman = new Pacman();
 const ghosts = [];
 
 for (let i = 0; i < 4; i++) {
-  ghosts.push(new Ghost());
+  ghosts.push(new Ghost(i));
 }
 
 $(document).ready(createBoard);
