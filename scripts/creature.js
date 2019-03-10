@@ -87,30 +87,3 @@ function moveCreature() {
 
   this.position = [newTile.row, newTile.col];
 };
-
-function getRandomDirection() {
-  return ['up', 'down', 'left', 'right'][Math.floor(Math.random() * 4)];
-}
-
-function getRandomValidDirection(position, oldDirection, directions) {
-  directions = directions || ['up', 'down', 'left', 'right'];
-
-  if (oldDirection) {
-    directions = directions.filter(dir => dir != oldDirection);
-  }
-
-  if (directions.length == 0) {
-    return null;
-  }
-
-
-  let index = Math.floor(Math.random() * directions.length);
-
-  let newTile = getNewPosition(directions[index], position);
-
-  if (newTile) {
-    return directions[index];
-  }
-
-  return getRandomDirection(position, directions[index], directions)
-}
