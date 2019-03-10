@@ -43,6 +43,8 @@ function createBoard() {
 
       if (tile == '.') {
         board[r][c].food = true;
+      } else if (tile == '+') {
+        board[r][c].token = true;
       }
 
       $col.text(tile);

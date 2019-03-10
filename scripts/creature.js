@@ -80,9 +80,17 @@ function moveCreature() {
     }
   }
 
-  if (newTile.food && this.pacman) {
-    newTile.food = false;
-    newTile.$.text('');
+  if (this.pacman) {
+    if (newTile.food) {
+      newTile.food = false;
+      newTile.$.text('');
+    }
+
+    if (newTile.token) {
+      newTile.token = false;
+      newTile.$.text('');
+      eatToken();
+    }
   }
 
   this.position = [newTile.row, newTile.col];
