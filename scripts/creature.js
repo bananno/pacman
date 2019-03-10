@@ -1,11 +1,11 @@
 
-const GHOST_BLUE_TIME = 2000;
+const GHOST_BLUE_TIME = 5000;
 
 class Creature {
   constructor() {
     this.$ = $('<span class="creature">');
     this.speed = 250;
-    this.interval = setInterval(moveCreature.bind(this), this.speed);
+    this.movementInterval = setInterval(moveCreature.bind(this), this.speed);
   }
 
   set position([r, c]) {
@@ -49,9 +49,15 @@ class Ghost extends Creature {
 
   turnBlue() {
     this.$.addClass('ghost-blue');
-    setTimeout(() => {
-      this.$.removeClass('ghost-blue');
-    }, GHOST_BLUE_TIME);
+    if (this.blueInterval) {
+      clearInterval(this.blueInterval);
+    }
+    this.blueInterval = setInterval(this.revertBlue.bind(this), GHOST_BLUE_TIME);
+  }
+
+  revertBlue() {
+    this.$.removeClass('ghost-blue');
+    clearInterval(this.blueInterval);
   }
 }
 
