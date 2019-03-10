@@ -29,7 +29,8 @@ function createBoard() {
       $col.addClass('board-path');
 
       if (tile == 'P') {
-        $col.append($PACMAN);
+        $col.append(pacman.$);
+        pacman.position = [r, c];
         pacmanPosition = [r, c];
         return;
       }
