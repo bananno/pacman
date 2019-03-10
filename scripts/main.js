@@ -45,6 +45,6 @@ function useKeyboard(e) {
 
 function eatToken() {
   ghosts.forEach(ghost => {
-    ghost.$.addClass('ghost-blue');
+    ghost.turnBlue();
   });
 }

@@ -44,6 +44,10 @@ class Ghost extends Creature {
     this.$.addClass('ghost');
     this.$.addClass('ghost' + (number + 1));
   }
+
+  turnBlue() {
+    this.$.addClass('ghost-blue');
+  }
 }
 
 function moveCreature() {
