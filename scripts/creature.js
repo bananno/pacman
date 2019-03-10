@@ -22,7 +22,6 @@ class Pacman extends Creature {
   constructor () {
     super();
     this.direction = 'right';
-    this.$.text('P');
     this.$.addClass('pacman');
     this.pacman = true;
   }
@@ -31,8 +30,8 @@ class Pacman extends Creature {
 class Ghost extends Creature {
   constructor () {
     super();
-    this.$.text('G');
     this.$.addClass('ghost');
+    this.$.addClass('ghost1');
   }
 }
 
