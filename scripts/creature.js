@@ -1,4 +1,6 @@
 
+const GHOST_BLUE_TIME = 2000;
+
 class Creature {
   constructor() {
     this.$ = $('<span class="creature">');
@@ -47,6 +49,9 @@ class Ghost extends Creature {
 
   turnBlue() {
     this.$.addClass('ghost-blue');
+    setTimeout(() => {
+      this.$.removeClass('ghost-blue');
+    }, GHOST_BLUE_TIME);
   }
 }
 
