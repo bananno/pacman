@@ -62,6 +62,18 @@ class Ghost extends Creature {
     this.$.removeClass('ghost-blue');
     clearInterval(this.blueInterval);
   }
+
+  catchBlue() {
+    this.blue = false;
+    this.eyes = true;
+    this.$.addClass('ghost-eyes');
+    this.$.removeClass('ghost-blue');
+    clearInterval(this.blueInterval);
+  }
+
+  revertEyes() {
+    this.eyes = false;
+  }
 }
 
 Creature.prototype.move = function() {
@@ -98,7 +110,11 @@ Creature.prototype.move = function() {
 
   this.position = [newTile.row, newTile.col];
 
+  if (this.blue && newTile.$.html().match('pacman')) {
+    return this.catchBlue();
+  }
+
   if (tileContainsBoth(newTile)) {
-    loseGame();
+    return loseGame();
   }
 };
