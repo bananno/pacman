@@ -14,4 +14,10 @@ function newGame() {
   }
 
   createBoard();
+
+  $('#board').append('<button onClick="TEST_movePacman()">move pacman</button>');
+}
+
+function TEST_movePacman() {
+  pacman.position = [11, 10];
 }
