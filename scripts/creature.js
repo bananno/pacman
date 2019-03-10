@@ -94,4 +94,8 @@ Creature.prototype.move = function() {
   }
 
   this.position = [newTile.row, newTile.col];
+
+  if (tileContainsBoth(newTile)) {
+    loseGame();
+  }
 };

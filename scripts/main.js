@@ -15,6 +15,10 @@ function eatToken() {
   });
 }
 
+function tileContainsBoth(tile) {
+  return tile.$.html().match('ghost') && tile.$.html().match('pacman');
+}
+
 function loseGame() {
   [pacman, ...ghosts].forEach(creature => {
     clearInterval(creature.movementInterval);
