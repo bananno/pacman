@@ -1,7 +1,7 @@
 
 class Creature {
   constructor() {
-    this.$ = $('<span>');
+    this.$ = $('<span class="creature">');
     this.speed = 250;
     this.interval = setInterval(moveCreature.bind(this), this.speed);
   }
@@ -23,6 +23,7 @@ class Pacman extends Creature {
     super();
     this.direction = 'right';
     this.$.text('P');
+    this.$.addClass('pacman');
     this.pacman = true;
   }
 }
@@ -31,6 +32,7 @@ class Ghost extends Creature {
   constructor () {
     super();
     this.$.text('G');
+    this.$.addClass('ghost');
   }
 }
 
