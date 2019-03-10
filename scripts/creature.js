@@ -2,6 +2,7 @@
 class Creature {
   constructor() {
     this.$ = $('<span></span>');
+    this.speed = 250;
   }
 }
 

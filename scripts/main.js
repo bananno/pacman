@@ -1,13 +1,6 @@
 
-$(document).ready(() => {
-  createBoard();
-  createTimer();
-});
-
-$(document).keydown(useKeyboard);
-
 function createTimer() {
-  pacmanInterval = setInterval(movePacman, 250);
+  pacman.interval = setInterval(movePacman, 250);
 }
 
 function movePacman() {
