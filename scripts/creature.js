@@ -9,6 +9,8 @@ class Creature {
   set position([r, c]) {
     this._position = [r, c];
     board[r][c].$.append(this.$);
+
+    this.direction = this.direction || getRandomDirection();
   }
 
   get position() {
@@ -19,7 +21,6 @@ class Creature {
 class Pacman extends Creature {
   constructor () {
     super();
-
     this.direction = 'right';
     this.$.text('P');
     this.pacman = true;
@@ -34,10 +35,22 @@ class Ghost extends Creature {
 }
 
 function moveCreature() {
-  const newTile = getNewPosition(this.direction, this.position);
+  if (this.position.length == 0) {
+    return;
+  }
+
+  let newTile = getNewPosition(this.direction, this.position);
 
   if (newTile == null) {
-    return;
+    if (this.pacman) {
+      return;
+    }
+
+    this.direction = getRandomValidDirection(this.position, this.direction);
+    newTile = getNewPosition(this.direction, this.position);
+    if (newTile == null) {
+      return;
+    }
   }
 
   if (newTile.food && this.pacman) {
@@ -47,3 +60,30 @@ function moveCreature() {
 
   this.position = [newTile.row, newTile.col];
 };
+
+function getRandomDirection() {
+  return ['up', 'down', 'left', 'right'][Math.floor(Math.random() * 4)];
+}
+
+function getRandomValidDirection(position, oldDirection, directions) {
+  directions = directions || ['up', 'down', 'left', 'right'];
+
+  if (oldDirection) {
+    directions = directions.filter(dir => dir != oldDirection);
+  }
+
+  if (directions.length == 0) {
+    return null;
+  }
+
+
+  let index = Math.floor(Math.random() * directions.length);
+
+  let newTile = getNewPosition(directions[index], position);
+
+  if (newTile) {
+    return directions[index];
+  }
+
+  return getRandomDirection(position, directions[index], directions)
+}
