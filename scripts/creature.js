@@ -40,23 +40,24 @@ class Pacman extends Creature {
 }
 
 class Ghost extends Creature {
-  constructor (number) {
+  constructor(number) {
     super();
     this.number = number;
     this.$.addClass('ghost');
+    this.$.addClass('ghost-dangerous');
     this.$.addClass('ghost' + (number + 1));
   }
 
   turnBlue() {
+    this.blue = true;
     this.$.addClass('ghost-blue');
     this.$.removeClass('ghost-dangerous');
-    if (this.blueInterval) {
-      clearInterval(this.blueInterval);
-    }
+    clearInterval(this.blueInterval);
     this.blueInterval = setInterval(this.revertBlue.bind(this), GHOST_BLUE_TIME);
   }
 
   revertBlue() {
+    this.blue = false;
     this.$.addClass('ghost-dangerous');
     this.$.removeClass('ghost-blue');
     clearInterval(this.blueInterval);
