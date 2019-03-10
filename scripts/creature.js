@@ -16,6 +16,16 @@ class Creature {
   get position() {
     return this._position || [];
   }
+
+  set direction(newDirection) {
+    this.$.removeClass('direction-' + this._direction);
+    this.$.addClass('direction-' + newDirection);
+    this._direction = newDirection;
+  }
+
+  get direction() {
+    return this._direction;
+  }
 }
 
 class Pacman extends Creature {

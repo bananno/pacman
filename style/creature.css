@@ -13,6 +13,21 @@
   background-image: url(../images/pacman.gif);
 }
 
+.creature.pacman.direction-right {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.creature.pacman.direction-up {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.creature.pacman.direction-down {
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
 .creature.ghost.ghost1 {
   background-image: url(../images/ghost1.gif);
 }
