@@ -1,6 +1,7 @@
 
 class Creature {
   constructor() {
+    this.$ = $('<span></span>');
   }
 
   set $(element) {
@@ -33,12 +34,13 @@ class Pacman extends Creature {
     super();
 
     this._direction = 'right';
-    this.$ = $('<span id="packman">P</span>');
+    this.$.text('P');
   }
 }
 
 class Ghost extends Creature {
   constructor () {
     super();
+    this.$.text('G');
   }
 }

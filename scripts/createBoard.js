@@ -3,6 +3,8 @@ function createBoard() {
   let $table = $('<table>');
   board = [];
 
+  let countGhost = 0;
+
   maps[0].forEach((row, r) => {
     const $row = $('<tr>').appendTo($table);
     board[r] = [];
@@ -32,6 +34,12 @@ function createBoard() {
         $col.append(pacman.$);
         pacman.position = [r, c];
         pacmanPosition = [r, c];
+        return;
+      }
+
+      if (tile == 'G') {
+        $col.append(ghosts[countGhost].$);
+        countGhost += 1;
         return;
       }
 
