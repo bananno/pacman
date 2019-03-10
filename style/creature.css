@@ -5,6 +5,8 @@
   background-size: 18px;
   background-position: center;
   position: absolute;
+  margin-top: -8px;
+  margin-left: -8px;
 }
 
 .creature.pacman {
