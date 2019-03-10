@@ -13,6 +13,7 @@ body {
 }
 
 table {
+  margin: auto;
   margin-top: 30px;
 }
 
@@ -23,11 +24,6 @@ td {
   text-align: center;
   font-weight: bold;
   cursor: default;
-}
-
-#board {
-  width: 80%;
-  margin: auto;
 }
 
 td.board-path {
