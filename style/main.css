@@ -37,3 +37,7 @@ td.board-wall {
 td.board-path.PATH-TEMP {
   background-color: red;
 }
+
+td.board-path.PATH-TEMP-END {
+  background-color: yellow;
+}
