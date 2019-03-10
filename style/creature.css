@@ -43,3 +43,7 @@
 .creature.ghost.ghost4 {
   background-image: url(../images/ghost3.gif);
 }
+
+.creature.ghost.ghost-blue {
+  background-image: url(../images/ghost-blue.gif);
+}
