@@ -25,7 +25,8 @@ function loseGame() {
     clearInterval(creature.blueInterval);
   });
 
-  alert('You lose!');
-
-  newGame();
+  setTimeout(() => {
+    alert('You lose!');
+    newGame();
+  }, 250);
 }
