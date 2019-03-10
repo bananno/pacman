@@ -16,7 +16,7 @@ function eatToken() {
 }
 
 function tileContainsBoth(tile) {
-  return tile.$.html().match('ghost') && tile.$.html().match('pacman');
+  return tile.$.html().match('ghost-dangerous') && tile.$.html().match('pacman');
 }
 
 function loseGame() {

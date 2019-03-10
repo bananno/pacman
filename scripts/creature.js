@@ -49,6 +49,7 @@ class Ghost extends Creature {
 
   turnBlue() {
     this.$.addClass('ghost-blue');
+    this.$.removeClass('ghost-dangerous');
     if (this.blueInterval) {
       clearInterval(this.blueInterval);
     }
@@ -56,6 +57,7 @@ class Ghost extends Creature {
   }
 
   revertBlue() {
+    this.$.addClass('ghost-dangerous');
     this.$.removeClass('ghost-blue');
     clearInterval(this.blueInterval);
   }
