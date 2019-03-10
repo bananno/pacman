@@ -11,7 +11,7 @@ function createTimer() {
 }
 
 function movePacman() {
-  const newTile = getNewPosition(pacmanDirection);
+  const newTile = getNewPosition(pacman.direction);
 
   if (newTile == null) {
     return;
@@ -22,12 +22,12 @@ function movePacman() {
     newTile.$.text('');
   }
 
-  newTile.$.append($PACMAN);
-  pacmanPosition = [newTile.row, newTile.col];
+  newTile.$.append(pacman.$);
+  pacman.position = [newTile.row, newTile.col];
 }
 
 function getNewPosition(direction) {
-  let [newR, newC] = [...pacmanPosition];
+  let [newR, newC] = [...pacman.position];
 
   if (direction == 'left') {
     newC -= 1;
@@ -65,7 +65,7 @@ function useKeyboard(e) {
     let newDirection = e.key.toLowerCase().slice(5);
 
     if (getNewPosition(newDirection)) {
-      pacmanDirection = newDirection;
+      pacman.direction = newDirection;
     }
   }
 }

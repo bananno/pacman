@@ -1,8 +1,10 @@
 
-let pacmanPosition;
 let pacmanInterval;
-const $PACMAN = $('<span id="packman">P</span>');
-let pacmanDirection = 'right';
 let board;
 
 const pacman = new Pacman();
+const ghosts = [];
+
+for (let i = 0; i < 4; i++) {
+  ghosts.push(new Ghost());
+}
