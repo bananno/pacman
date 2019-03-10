@@ -1,26 +1,6 @@
 
-function createTimer() {
-  pacman.interval = setInterval(movePacman, 250);
-}
-
-function movePacman() {
-  const newTile = getNewPosition(pacman.direction);
-
-  if (newTile == null) {
-    return;
-  }
-
-  if (newTile.food) {
-    newTile.food = false;
-    newTile.$.text('');
-  }
-
-  newTile.$.append(pacman.$);
-  pacman.position = [newTile.row, newTile.col];
-}
-
-function getNewPosition(direction) {
-  let [newR, newC] = [...pacman.position];
+function getNewPosition(direction, oldPosition) {
+  let [newR, newC] = [...oldPosition];
 
   if (direction == 'left') {
     newC -= 1;
@@ -57,7 +37,7 @@ function useKeyboard(e) {
   if (e.key.match('Arrow')) {
     let newDirection = e.key.toLowerCase().slice(5);
 
-    if (getNewPosition(newDirection)) {
+    if (getNewPosition(newDirection, pacman.position)) {
       pacman.direction = newDirection;
     }
   }

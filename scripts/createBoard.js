@@ -31,14 +31,12 @@ function createBoard() {
       $col.addClass('board-path');
 
       if (tile == 'P') {
-        $col.append(pacman.$);
         pacman.position = [r, c];
-        pacmanPosition = [r, c];
         return;
       }
 
       if (tile == 'G') {
-        $col.append(ghosts[countGhost].$);
+        ghosts[countGhost].position = [r, c];
         countGhost += 1;
         return;
       }
