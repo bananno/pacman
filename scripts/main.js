@@ -14,3 +14,13 @@ function eatToken() {
     ghost.turnBlue();
   });
 }
+
+function loseGame() {
+  [pacman, ...ghosts].forEach(creature => {
+    clearInterval(creature.movementInterval);
+  });
+
+  alert('You lose!');
+
+  newGame();
+}
