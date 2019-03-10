@@ -29,23 +29,27 @@
   transform: rotate(-90deg);
 }
 
-.creature.ghost.ghost1 {
+.creature.ghost-dangerous.ghost1 {
   background-image: url(../images/ghost1.gif);
 }
 
-.creature.ghost.ghost2 {
+.creature.ghost-dangerous.ghost2 {
   background-image: url(../images/ghost2.gif);
   background-size: 16px;
 }
 
-.creature.ghost.ghost3 {
+.creature.ghost-dangerous.ghost3 {
   background-image: url(../images/ghost3.gif);
 }
 
-.creature.ghost.ghost4 {
+.creature.ghost-dangerous.ghost4 {
   background-image: url(../images/ghost3.gif);
 }
 
-.creature.ghost.ghost-blue {
+.creature.ghost-blue {
   background-image: url(../images/ghost-blue.gif);
+}
+
+.creature.ghost-eyes {
+  background-image: url(../images/ghost-eyes.png);
 }
