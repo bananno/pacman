@@ -47,7 +47,7 @@ function getWrappedCoordinates(row, col) {
 }
 
 function getRandomDirection() {
-  return ['up', 'down', 'left', 'right'][Math.floor(Math.random() * 4)];
+  return chooseRandom(['up', 'down', 'left', 'right']);
 }
 
 function getRandomValidDirection(position, removeDirection, directionList) {

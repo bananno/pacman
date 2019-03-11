@@ -30,3 +30,7 @@ function loseGame() {
     newGame();
   }, 250);
 }
+
+function chooseRandom(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
