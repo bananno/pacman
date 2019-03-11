@@ -50,26 +50,6 @@ function getRandomDirection() {
   return chooseRandom(['up', 'down', 'left', 'right']);
 }
 
-function getRandomValidDirection(position, removeDirection, directionList) {
-  directionList = directionList || ['up', 'down', 'left', 'right'];
-
-  directionList = directionList.filter(dir => dir != removeDirection);
-
-  if (directionList.length == 0) {
-    return null;
-  }
-
-  let index = Math.floor(Math.random() * directionList.length);
-  let newDirection = directionList[index];
-  let newTile = getNewPosition(newDirection, position);
-
-  if (newTile) {
-    return newDirection;
-  }
-
-  return getRandomValidDirection(position, newDirection, directionList)
-}
-
 function getDirectionOptions(creature, removeDirection, [row, col]) {
   const options = [];
 
