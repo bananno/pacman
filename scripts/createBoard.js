@@ -47,7 +47,13 @@ function createBoard() {
 
       if (tile == 'G') {
         ghosts[countGhost].position = [r, c];
+        board[r][c].house = true;
         countGhost += 1;
+        return;
+      }
+
+      if (tile == 'g') {
+        board[r][c].house = true;
         return;
       }
 
