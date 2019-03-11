@@ -13,7 +13,7 @@ const positionAdjustment = {
   down: [1, 0]
 };
 
-function getNewPosition(direction, oldPosition) {
+Game.prototype.getNewPosition = function(direction, oldPosition) {
   if (direction == null || oldPosition.length == 0) {
     return null;
   }
@@ -24,9 +24,9 @@ function getNewPosition(direction, oldPosition) {
   [newR, newC] = getWrappedCoordinates(newR, newC);
 
   return game.board[newR][newC].wall ? null : game.board[newR][newC];
-}
+};
 
-function getWrappedCoordinates(row, col) {
+Game.prototype.getWrappedCoordinates = function(row, col) {
   if (game.board[row] == null) {
     if (row == -1) {
       row = game.board.length - 1;
@@ -44,13 +44,13 @@ function getWrappedCoordinates(row, col) {
   }
 
   return [row, col];
-}
+};
 
 function getRandomDirection() {
   return chooseRandom(['up', 'down', 'left', 'right']);
 }
 
-function getDirectionOptions(creature, removeDirection, [row, col]) {
+Game.prototype.getDirectionOptions = function(creature, removeDirection, [row, col]) {
   const options = [];
 
   if (tileIsPassable(creature, row, col - 1)) {
@@ -70,18 +70,18 @@ function getDirectionOptions(creature, removeDirection, [row, col]) {
   }
 
   return options.filter(dir => dir != removeDirection);
-}
+};
 
-function isDeadEnd(creature, direction, position) {
+Game.prototype.isDeadEnd = function(creature, direction, position) {
   let row = position[0] + positionAdjustment[direction][0];
   let col = position[1] + positionAdjustment[direction][1];
 
   [row, col] = getWrappedCoordinates(row, col);
 
   return !tileIsPassable(creature, row, col);
-}
+};
 
-function isIntersection(currentDirection, [row, col]) {
+Game.prototype.isIntersection = function(currentDirection, [row, col]) {
   if (currentDirection == 'left' || currentDirection == 'right') {
     return ((game.board[row][col - 1] && !game.board[row][col - 1].wall)
       || (game.board[row][col + 1] && !game.board[row][col + 1].wall));
@@ -89,9 +89,9 @@ function isIntersection(currentDirection, [row, col]) {
 
   return ((game.board[row - 1] && game.board[row - 1][col] && !game.board[row - 1][col].wall)
     || (game.board[row + 1] && game.board[row + 1][col] && !game.board[row + 1][col].wall));
-}
+};
 
-function tileIsPassable(creature, row, col) {
+Game.prototype.tileIsPassable = function(creature, row, col) {
   if (game.board[row] == null || game.board[row][col] == null || game.board[row][col].wall) {
     return false;
   }
@@ -101,4 +101,4 @@ function tileIsPassable(creature, row, col) {
   }
 
   return true;
-}
+};
