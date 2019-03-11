@@ -21,18 +21,6 @@ function tileContainsBoth(tile) {
   return tile.$.html().match('ghost-dangerous') && tile.$.html().match('pacman');
 }
 
-function loseGame() {
-  [pacman, ...ghosts].forEach(creature => {
-    clearInterval(creature.movementInterval);
-    clearInterval(creature.blueInterval);
-  });
-
-  setTimeout(() => {
-    alert('You lose!');
-    newGame();
-  }, 250);
-}
-
 function chooseRandom(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
