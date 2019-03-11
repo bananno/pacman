@@ -24,20 +24,6 @@ td {
   text-align: center;
   font-weight: bold;
   cursor: default;
-  border: 1px solid red;
-}
-
-#board.normal td {
-  border: none;
-}
-
-td.test-coordinates {
-  font-weight: normal;
-  color: red;
-}
-
-#board.normal td.test-coordinates {
-  display: none;
 }
 
 td.board-path {
@@ -46,16 +32,4 @@ td.board-path {
 
 td.board-wall {
   background-color: blue;
-}
-
-td.board-path.PATH-TEMP {
-  background-color: yellow;
-}
-
-td.board-path.PATH-TEMP.PATH-TEMP-CHOICE {
-  background-color: green;
-}
-
-td.board-path.PATH-TEMP.PATH-TEMP-END {
-  border: 2px solid red;
 }
