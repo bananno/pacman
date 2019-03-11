@@ -12,15 +12,15 @@ function addTestButtons() {
 }
 
 function TEST_movePacman() {
-  pacman.position = [11, 10];
+  game.pacman.position = [11, 10];
 }
 
 function TEST_moveGhostLeft() {
-  ghosts[0].position = [14, 3];
+  game.ghosts[0].position = [14, 3];
 }
 
 function TEST_moveGhostRight() {
-  ghosts[1].position = [14, 25];
+  game.ghosts[1].position = [14, 25];
 }
 
 function TEST_toggleGrid() {

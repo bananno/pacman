@@ -5,7 +5,7 @@ function useKeyboard(e) {
 
     game.start();
 
-    if (getNewPosition(newDirection, pacman.position)) {
+    if (getNewPosition(newDirection, game.pacman.position)) {
       game.pacman.direction = newDirection;
     }
   }

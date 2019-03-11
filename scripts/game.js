@@ -30,8 +30,7 @@ class Game {
 
   lose() {
     this.creatures.forEach(creature => {
-      clearInterval(creature.movementInterval);
-      clearInterval(creature.blueInterval);
+      creature.clearAllIntervals();
     });
 
     setTimeout(() => {

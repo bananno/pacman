@@ -23,21 +23,21 @@ function getNewPosition(direction, oldPosition) {
 
   [newR, newC] = getWrappedCoordinates(newR, newC);
 
-  return board[newR][newC].wall ? null : board[newR][newC];
+  return game.board[newR][newC].wall ? null : game.board[newR][newC];
 }
 
 function getWrappedCoordinates(row, col) {
-  if (board[row] == null) {
+  if (game.board[row] == null) {
     if (row == -1) {
-      row = board.length - 1;
+      row = game.board.length - 1;
     } else {
       row = 0;
     }
   }
 
-  if (board[row][col] == null) {
+  if (game.board[row][col] == null) {
     if (col == -1) {
-      col = board.length[0] - 1;
+      col = game.board.length[0] - 1;
     } else {
       col = 0;
     }
@@ -83,20 +83,20 @@ function isDeadEnd(creature, direction, position) {
 
 function isIntersection(currentDirection, [row, col]) {
   if (currentDirection == 'left' || currentDirection == 'right') {
-    return ((board[row][col - 1] && !board[row][col - 1].wall)
-      || (board[row][col + 1] && !board[row][col + 1].wall));
+    return ((game.board[row][col - 1] && !game.board[row][col - 1].wall)
+      || (game.board[row][col + 1] && !game.board[row][col + 1].wall));
   }
 
-  return ((board[row - 1] && board[row - 1][col] && !board[row - 1][col].wall)
-    || (board[row + 1] && board[row + 1][col] && !board[row + 1][col].wall));
+  return ((game.board[row - 1] && game.board[row - 1][col] && !game.board[row - 1][col].wall)
+    || (game.board[row + 1] && game.board[row + 1][col] && !game.board[row + 1][col].wall));
 }
 
 function tileIsPassable(creature, row, col) {
-  if (board[row] == null || board[row][col] == null || board[row][col].wall) {
+  if (game.board[row] == null || game.board[row][col] == null || game.board[row][col].wall) {
     return false;
   }
 
-  if (board[row][col].house && !creature.inHouse) {
+  if (game.board[row][col].house && !creature.inHouse) {
     return false;
   }
 

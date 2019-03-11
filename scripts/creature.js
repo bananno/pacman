@@ -31,6 +31,11 @@ class Creature {
   get direction() {
     return this._direction;
   }
+
+  clearAllIntervals() {
+    clearInterval(this.movementInterval);
+    clearInterval(this.blueInterval);
+  }
 }
 
 class Pacman extends Creature {
@@ -107,7 +112,7 @@ Creature.prototype.move = function() {
   }
 
   if (tileContainsBoth(newTile)) {
-    return loseGame();
+    return this.game.lose();
   }
 };
 
