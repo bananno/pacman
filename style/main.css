@@ -35,9 +35,13 @@ td.board-wall {
 }
 
 td.board-path.PATH-TEMP {
-  background-color: red;
+  background-color: yellow;
 }
 
-td.board-path.PATH-TEMP-END {
-  background-color: yellow;
+td.board-path.PATH-TEMP.PATH-TEMP-CHOICE {
+  background-color: green;
+}
+
+td.board-path.PATH-TEMP.PATH-TEMP-END {
+  border: 2px solid red;
 }
