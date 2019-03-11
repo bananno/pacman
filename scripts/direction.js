@@ -73,3 +73,13 @@ function getRandomValidDirection(position, removeDirection, directionList) {
 function isDeadEnd(direction, position) {
   return getNewPosition(direction, position) == null;
 }
+
+function isIntersection(currentDirection, [row, col]) {
+  if (currentDirection == 'left' || currentDirection == 'right') {
+    return ((board[row][col - 1] && !board[row][col - 1].wall)
+      || (board[row][col + 1] && !board[row][col + 1].wall));
+  }
+
+  return ((board[row - 1] && board[row - 1][col] && !board[row - 1][col].wall)
+    || (board[row + 1] && board[row + 1][col] && !board[row + 1][col].wall));
+}
