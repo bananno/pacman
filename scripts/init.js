@@ -26,6 +26,18 @@ function newGame() {
   $('#board').append('<button onClick="fastestPath([5, 3], [12, 6])">path3</button>');
 }
 
+function startGame() {
+  if (pacman.movementInterval) {
+    return;
+  }
+
+  pacman.start();
+
+  ghosts.forEach(ghost => {
+    ghost.start();
+  });
+}
+
 function TEST_movePacman() {
   pacman.position = [11, 10];
 }

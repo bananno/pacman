@@ -5,6 +5,9 @@ class Creature {
   constructor() {
     this.$ = $('<span class="creature">');
     this.speed = 250;
+  }
+
+  start() {
     this.movementInterval = setInterval(this.move.bind(this), this.speed);
   }
 
