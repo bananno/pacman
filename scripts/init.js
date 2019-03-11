@@ -17,7 +17,7 @@ function newGame() {
 
   // $('#board').append('<button onClick="TEST_movePacman()">move pacman</button>');
 
-  $('#board').append('<button onClick="TEST_toggleGrid()">toggle coordinates</button>');
+  $('#board').append('<button onClick="TEST_toggleGrid()">toggle grid</button>');
 
   $('#board').append('<button onClick="fastestPath([5, 3], [5, 10])">path1</button>');
   $('#board').append('<button onClick="fastestPath([3, 6], [12, 6])">path2</button>');
@@ -29,11 +29,9 @@ function TEST_movePacman() {
 }
 
 function TEST_toggleGrid() {
-  if ($('#board').hasClass('show-grid')) {
-    $('#board').removeClass('show-grid');
-    $('.test-coordinates').hide();
+  if ($('#board').hasClass('normal')) {
+    $('#board').removeClass('normal');
   } else {
-    $('#board').addClass('show-grid');
-    $('.test-coordinates').show();
+    $('#board').addClass('normal');
   }
 }

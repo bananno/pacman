@@ -7,11 +7,11 @@ function createBoard() {
 
   const numColumns = maps[0][0].split('').length;
   const $numberedRow = $('<tr>').appendTo($table);
-  $numberedRow.append('<td>');
+  $numberedRow.append('<td class="test-coordinates">');
   for (let c = 0; c < numColumns; c++) {
     $numberedRow.append($('<td class="test-coordinates">' + c + '</td>'));
   }
-  $numberedRow.append('<td>');
+  $numberedRow.append('<td class="test-coordinates">');
 
   maps[0].forEach((row, r) => {
     const $row = $('<tr>').appendTo($table);

@@ -24,16 +24,20 @@ td {
   text-align: center;
   font-weight: bold;
   cursor: default;
-}
-
-#board.show-grid td {
   border: 1px solid red;
 }
 
+#board.normal td {
+  border: none;
+}
+
 td.test-coordinates {
-  display: none;
   font-weight: normal;
   color: red;
+}
+
+#board.normal td.test-coordinates {
+  display: none;
 }
 
 td.board-path {
