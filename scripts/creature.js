@@ -33,15 +33,16 @@ class Creature {
 class Pacman extends Creature {
   constructor () {
     super();
+    this.pacman = true;
     this.direction = 'right';
     this.$.addClass('pacman');
-    this.pacman = true;
   }
 }
 
 class Ghost extends Creature {
   constructor(number) {
     super();
+    this.ghost = true;
     this.number = number;
     this.$.addClass('ghost');
     this.$.addClass('ghost-dangerous');
@@ -81,19 +82,15 @@ Creature.prototype.move = function() {
     return;
   }
 
-  let newTile = getNewPosition(this.direction, this.position);
-
-  if (newTile == null) {
+  if (isDeadEnd(this.direction, this.position)) {
     if (this.pacman) {
       return;
     }
 
     this.direction = getRandomValidDirection(this.position, this.direction);
-    newTile = getNewPosition(this.direction, this.position);
-    if (newTile == null) {
-      return;
-    }
   }
+
+  const newTile = getNewPosition(this.direction, this.position);
 
   if (this.pacman) {
     if (newTile.food) {
