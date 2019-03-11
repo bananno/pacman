@@ -1,7 +1,6 @@
 
-function createBoard(gameMap) {
+function createBoard(game, gameMap, board) {
   let $table = $('<table>');
-  const board = [];
 
   let countGhost = 0;
 
@@ -41,12 +40,12 @@ function createBoard(gameMap) {
       $col.addClass('board-path');
 
       if (tile == 'P') {
-        pacman.position = [r, c];
+        game.pacman.position = [r, c];
         return;
       }
 
       if (tile == 'G') {
-        ghosts[countGhost].position = [r, c];
+        game.ghosts[countGhost].position = [r, c];
         board[r][c].house = true;
         countGhost += 1;
         return;
@@ -72,6 +71,4 @@ function createBoard(gameMap) {
   $table.append($numberedRow.clone());
 
   $('#board').html($table);
-
-  return board;
 }

@@ -2,9 +2,10 @@
 const GHOST_BLUE_TIME = 5000;
 
 class Creature {
-  constructor() {
+  constructor(game) {
     this.$ = $('<span class="creature">');
     this.speed = 250;
+    this.game = game;
   }
 
   start() {
@@ -13,8 +14,7 @@ class Creature {
 
   set position([r, c]) {
     this._position = [r, c];
-    board[r][c].$.append(this.$);
-
+    this.game.board[r][c].$.append(this.$);
     this.direction = this.direction || getRandomDirection();
   }
 
@@ -34,8 +34,8 @@ class Creature {
 }
 
 class Pacman extends Creature {
-  constructor () {
-    super();
+  constructor (game) {
+    super(game);
     this.pacman = true;
     this.direction = 'right';
     this.$.addClass('pacman');
@@ -43,8 +43,8 @@ class Pacman extends Creature {
 }
 
 class Ghost extends Creature {
-  constructor(number) {
-    super();
+  constructor(game, number) {
+    super(game);
     this.ghost = true;
     this.number = number;
     this.$.addClass('ghost');

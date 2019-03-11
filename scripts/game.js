@@ -2,13 +2,16 @@
 class Game {
   constructor(mapNumber) {
     this.map = maps[mapNumber || 0];
-    this.board = createBoard(this.map);
-    this.pacman = new Pacman();
+    this.pacman = new Pacman(this);
     this.ghosts = [];
 
     for (let i = 0; i < 4; i++) {
-      this.ghosts.push(new Ghost(i));
+      this.ghosts.push(new Ghost(this, i));
     }
+
+    this.board = [];
+
+    createBoard(this, this.map, this.board);
   }
 
   get creatures() {
