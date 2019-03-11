@@ -1,12 +1,8 @@
 
 let game;
 
-$(document).ready(newGame);
+$(document).ready(() => {
+  game = new Game();
+});
 
 $(document).keydown(useKeyboard);
-
-function newGame() {
-  game = new Game();
-
-  addTestButtons();
-}

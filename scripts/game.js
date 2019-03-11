@@ -2,6 +2,10 @@
 class Game {
   constructor(mapNumber) {
     this.map = maps[mapNumber || 0];
+    this.newGame();
+  }
+
+  newGame() {
     this.pacman = new Pacman(this);
     this.ghosts = [];
 
@@ -12,6 +16,8 @@ class Game {
     this.board = [];
 
     createBoard(this, this.map, this.board);
+
+    addTestButtons();
   }
 
   get creatures() {
@@ -35,7 +41,7 @@ class Game {
 
     setTimeout(() => {
       alert('You lose!');
-      newGame();
+      this.newGame();
     }, 250);
   }
 
