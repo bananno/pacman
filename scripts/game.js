@@ -1,8 +1,27 @@
 
 class Game {
-  constructor(mapNumber) {
-    this.map = maps[mapNumber || 0];
+  constructor(map, useKeyboard) {
+    this.map = map || maps[0];
+
     this.newGame();
+
+    if (useKeyboard || useKeyboard === undefined) {
+      $(document).keydown((event) => {
+        this.pressKey(event);
+      });
+    }
+  }
+
+  pressKey(event) {
+    if (event.key.match('Arrow')) {
+      let newDirection = event.key.toLowerCase().slice(5);
+
+      this.start();
+
+      if (getNewPosition(newDirection, this.pacman.position)) {
+        this.pacman.direction = newDirection;
+      }
+    }
   }
 
   newGame() {

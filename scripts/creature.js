@@ -145,6 +145,6 @@ Pacman.prototype.eat = function(tile) {
   if (tile.token) {
     tile.token = false;
     tile.$.text('');
-    eatToken();
+    this.game.eatToken();
   }
 };

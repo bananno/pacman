@@ -1,8 +1,4 @@
 
-let game;
-
 $(document).ready(() => {
-  game = new Game();
+  new Game();
 });
-
-$(document).keydown(useKeyboard);
