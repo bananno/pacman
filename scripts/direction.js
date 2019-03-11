@@ -72,8 +72,13 @@ function getDirectionOptions(creature, removeDirection, [row, col]) {
   return options.filter(dir => dir != removeDirection);
 }
 
-function isDeadEnd(direction, position) {
-  return getNewPosition(direction, position) == null;
+function isDeadEnd(creature, direction, position) {
+  let row = position[0] + positionAdjustment[direction][0];
+  let col = position[1] + positionAdjustment[direction][1];
+
+  [row, col] = getWrappedCoordinates(row, col);
+
+  return !tileIsPassable(creature, row, col);
 }
 
 function isIntersection(currentDirection, [row, col]) {

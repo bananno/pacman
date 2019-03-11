@@ -85,7 +85,7 @@ Creature.prototype.move = function() {
 
   if (this.ghost) {
     this.chooseDirection();
-  } else if (isDeadEnd(this.direction, this.position)) {
+  } else if (this.isAtDeadEnd()) {
     return;
   }
 
@@ -108,8 +108,12 @@ Creature.prototype.move = function() {
   }
 };
 
+Creature.prototype.isAtDeadEnd = function() {
+  return isDeadEnd(this, this.direction, this.position);
+};
+
 Ghost.prototype.chooseDirection = function() {
-  if (isDeadEnd(this.direction, this.position)) {
+  if (this.isAtDeadEnd()) {
     const directionOptions = getDirectionOptions(this, this.direction, this.position);
     this.direction = chooseRandom(directionOptions);
     return;
