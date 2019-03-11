@@ -53,19 +53,19 @@ function getRandomDirection() {
 Game.prototype.getDirectionOptions = function(creature, removeDirection, [row, col]) {
   const options = [];
 
-  if (tileIsPassable(creature, row, col - 1)) {
+  if (isTilePassable(row, col - 1, creature)) {
     options.push('left');
   }
 
-  if (tileIsPassable(creature, row, col + 1)) {
+  if (isTilePassable(row, col + 1, creature)) {
     options.push('right');
   }
 
-  if (tileIsPassable(creature, row - 1, col)) {
+  if (isTilePassable(row - 1, col, creature)) {
     options.push('up');
   }
 
-  if (tileIsPassable(creature, row + 1, col)) {
+  if (isTilePassable(row + 1, col, creature)) {
     options.push('down');
   }
 
@@ -78,7 +78,7 @@ Game.prototype.isDeadEnd = function(creature, direction, position) {
 
   [row, col] = getWrappedCoordinates(row, col);
 
-  return !tileIsPassable(creature, row, col);
+  return !isTilePassable(row, col, creature);
 };
 
 Game.prototype.isIntersection = function(currentDirection, [row, col]) {
@@ -91,12 +91,12 @@ Game.prototype.isIntersection = function(currentDirection, [row, col]) {
     || (game.board[row + 1] && game.board[row + 1][col] && !game.board[row + 1][col].wall));
 };
 
-Game.prototype.tileIsPassable = function(creature, row, col) {
-  if (game.board[row] == null || game.board[row][col] == null || game.board[row][col].wall) {
+Game.prototype.isTilePassable = function(row, col, creature) {
+  if (this.board[row] == null || this.board[row][col] == null || this.board[row][col].wall) {
     return false;
   }
 
-  if (game.board[row][col].house && !creature.inHouse) {
+  if (creature && !creature.inHouse && this.board[row][col].house) {
     return false;
   }
 
