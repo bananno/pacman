@@ -1,6 +1,6 @@
 
-new Test(() => {
-  const testMap = [
+new Test(test => {
+  test.map = [
     '||||',
     '|  |',
     '|P |',
@@ -8,19 +8,23 @@ new Test(() => {
     '||||',
   ];
 
-  const testGame = new Game(testMap, true);
+  test.check(
+    'Wall is not passable for any creature', false,
+    test.game.isTilePassable(2, 0, null)
+  );
 
-  console.log(testGame);
+  test.check(
+    'Wall is not passable for pacman', false,
+    test.game.isTilePassable(2, 0, test.game.pacman)
+  );
 
-  console.log('Wall is not passable for any creature');
-  console.log(testGame.isTilePassable(2, 0, null));
+  test.check(
+    'Empty space is passable for any creature', true,
+    test.game.isTilePassable(2, 1, null)
+  );
 
-  console.log('Wall is not passable for Pacman');
-  console.log(testGame.isTilePassable(2, 0, testGame.pacman));
-
-  console.log('Empty space is passable for any creature');
-  console.log(testGame.isTilePassable(2, 1, null));
-
-  console.log('Empty space is passable for Pacman');
-  console.log(testGame.isTilePassable(2, 1, testGame.pacman));
+  test.check(
+    'Empty space is passable for Pacman', true,
+    test.game.isTilePassable(2, 1, test.game.pacman)
+  );
 });
