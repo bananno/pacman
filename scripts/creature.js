@@ -93,6 +93,8 @@ Creature.prototype.move = function() {
 
   if (this.pacman) {
     this.eat(newTile);
+  } else if (this.inHouse && !newTile.house) {
+    this.inHouse = false;
   }
 
   this.position = [newTile.row, newTile.col];

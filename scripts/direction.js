@@ -111,5 +111,9 @@ function tileIsPassable(creature, row, col) {
     return false;
   }
 
+  if (board[row][col].house && !creature.inHouse) {
+    return false;
+  }
+
   return true;
 }
