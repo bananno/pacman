@@ -47,6 +47,7 @@ class Ghost extends Creature {
     this.$.addClass('ghost');
     this.$.addClass('ghost-dangerous');
     this.$.addClass('ghost' + (number + 1));
+    this.inHouse = true;
   }
 
   turnBlue() {
@@ -107,14 +108,14 @@ Creature.prototype.move = function() {
 
 Ghost.prototype.chooseDirection = function() {
   if (isDeadEnd(this.direction, this.position)) {
-    const directionOptions = getDirectionOptions(this.direction, this.position);
+    const directionOptions = getDirectionOptions(this, this.direction, this.position);
     this.direction = chooseRandom(directionOptions);
     return;
   }
 
   if (isIntersection(this.direction, this.position)) {
     const ignoreOpposite = oppositeDirection[this.direction];
-    const directionOptions = getDirectionOptions(ignoreOpposite, this.position);
+    const directionOptions = getDirectionOptions(this, ignoreOpposite, this.position);
     this.direction = chooseRandom(directionOptions);
     return;
   }

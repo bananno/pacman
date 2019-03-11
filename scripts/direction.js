@@ -70,22 +70,22 @@ function getRandomValidDirection(position, removeDirection, directionList) {
   return getRandomValidDirection(position, newDirection, directionList)
 }
 
-function getDirectionOptions(removeDirection, [row, col]) {
+function getDirectionOptions(creature, removeDirection, [row, col]) {
   const options = [];
 
-  if (board[row][col - 1] && !board[row][col - 1].wall) {
+  if (tileIsPassable(creature, row, col - 1)) {
     options.push('left');
   }
 
-  if (board[row][col + 1] && !board[row][col + 1].wall) {
+  if (tileIsPassable(creature, row, col + 1)) {
     options.push('right');
   }
 
-  if (board[row - 1] && board[row - 1][col] && !board[row - 1][col].wall) {
+  if (tileIsPassable(creature, row - 1, col)) {
     options.push('up');
   }
 
-  if (board[row + 1] && board[row + 1][col] && !board[row + 1][col].wall) {
+  if (tileIsPassable(creature, row + 1, col)) {
     options.push('down');
   }
 
@@ -104,4 +104,12 @@ function isIntersection(currentDirection, [row, col]) {
 
   return ((board[row - 1] && board[row - 1][col] && !board[row - 1][col].wall)
     || (board[row + 1] && board[row + 1][col] && !board[row + 1][col].wall));
+}
+
+function tileIsPassable(creature, row, col) {
+  if (board[row] == null || board[row][col] == null || board[row][col].wall) {
+    return false;
+  }
+
+  return true;
 }
