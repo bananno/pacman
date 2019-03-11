@@ -26,6 +26,16 @@ td {
   cursor: default;
 }
 
+#board.show-grid td {
+  border: 1px solid red;
+}
+
+td.test-coordinates {
+  display: none;
+  font-weight: normal;
+  color: red;
+}
+
 td.board-path {
 
 }

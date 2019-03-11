@@ -5,11 +5,21 @@ function createBoard() {
 
   let countGhost = 0;
 
+  const numColumns = maps[0][0].split('').length;
+  const $numberedRow = $('<tr>').appendTo($table);
+  $numberedRow.append('<td>');
+  for (let c = 0; c < numColumns; c++) {
+    $numberedRow.append($('<td class="test-coordinates">' + c + '</td>'));
+  }
+  $numberedRow.append('<td>');
+
   maps[0].forEach((row, r) => {
     const $row = $('<tr>').appendTo($table);
     board[r] = [];
 
     const tiles = row.split('');
+
+    $row.append($('<td class="test-coordinates">' + r + '</td>'));
 
     tiles.forEach((tile, c) => {
       const $col = $('<td>').appendTo($row);
@@ -49,7 +59,11 @@ function createBoard() {
 
       $col.text(tile);
     });
+
+    $row.append($('<td class="test-coordinates">' + r + '</td>'));
   });
+
+  $table.append($numberedRow.clone());
 
   $('#board').html($table);
 }
