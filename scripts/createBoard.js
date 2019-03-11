@@ -1,11 +1,11 @@
 
-function createBoard() {
+function createBoard(gameMap) {
   let $table = $('<table>');
-  board = [];
+  const board = [];
 
   let countGhost = 0;
 
-  const numColumns = maps[0][0].split('').length;
+  const numColumns = gameMap[0].split('').length;
   const $numberedRow = $('<tr>').appendTo($table);
   $numberedRow.append('<td class="test-coordinates">');
   for (let c = 0; c < numColumns; c++) {
@@ -13,7 +13,7 @@ function createBoard() {
   }
   $numberedRow.append('<td class="test-coordinates">');
 
-  maps[0].forEach((row, r) => {
+  gameMap.forEach((row, r) => {
     const $row = $('<tr>').appendTo($table);
     board[r] = [];
 
@@ -72,4 +72,6 @@ function createBoard() {
   $table.append($numberedRow.clone());
 
   $('#board').html($table);
+
+  return board;
 }
