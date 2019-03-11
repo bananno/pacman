@@ -1,5 +1,5 @@
 
-let board, pacman, ghosts;
+let game, board, pacman, ghosts;
 
 $(document).ready(newGame);
 

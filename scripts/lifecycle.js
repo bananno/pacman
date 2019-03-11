@@ -1,5 +1,6 @@
 
 function newGame() {
+  game = new Game();
   pacman = new Pacman();
   ghosts = [];
 
