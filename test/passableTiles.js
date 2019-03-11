@@ -1,5 +1,5 @@
 
-new Test(test => {
+addTest(test => {
   test.map = [
     '||||',
     '|  |',
