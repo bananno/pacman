@@ -82,32 +82,16 @@ Creature.prototype.move = function() {
     return;
   }
 
-  if (isDeadEnd(this.direction, this.position)) {
-    if (this.pacman) {
-      return;
-    }
-
-    const directionOptions = getDirectionOptions(this.direction, this.position);
-    this.direction = chooseRandom(directionOptions);
-  } else if (this.ghost && isIntersection(this.direction, this.position)) {
-    const ignoreOpposite = oppositeDirection[this.direction];
-    const directionOptions = getDirectionOptions(ignoreOpposite, this.position);
-    this.direction = chooseRandom(directionOptions);
+  if (this.ghost) {
+    this.chooseDirection();
+  } else if (isDeadEnd(this.direction, this.position)) {
+    return;
   }
 
   const newTile = getNewPosition(this.direction, this.position);
 
   if (this.pacman) {
-    if (newTile.food) {
-      newTile.food = false;
-      newTile.$.text('');
-    }
-
-    if (newTile.token) {
-      newTile.token = false;
-      newTile.$.text('');
-      eatToken();
-    }
+    this.eat(newTile);
   }
 
   this.position = [newTile.row, newTile.col];
@@ -118,5 +102,34 @@ Creature.prototype.move = function() {
 
   if (tileContainsBoth(newTile)) {
     return loseGame();
+  }
+};
+
+Ghost.prototype.chooseDirection = function() {
+  if (isDeadEnd(this.direction, this.position)) {
+    const directionOptions = getDirectionOptions(this.direction, this.position);
+    this.direction = chooseRandom(directionOptions);
+    return;
+  }
+
+  if (isIntersection(this.direction, this.position)) {
+    const ignoreOpposite = oppositeDirection[this.direction];
+    const directionOptions = getDirectionOptions(ignoreOpposite, this.position);
+    this.direction = chooseRandom(directionOptions);
+    return;
+  }
+};
+
+Pacman.prototype.eat = function(tile) {
+  if (tile.food) {
+    tile.food = false;
+    tile.$.text('');
+    return;
+  }
+
+  if (tile.token) {
+    tile.token = false;
+    tile.$.text('');
+    eatToken();
   }
 };
