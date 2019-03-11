@@ -1,10 +1,10 @@
 
-function createBoard(game, gameMap, board) {
+Game.prototype.createBoard = function() {
   let $table = $('<table>');
 
   let countGhost = 0;
 
-  const numColumns = gameMap[0].split('').length;
+  const numColumns = this.map[0].split('').length;
   const $numberedRow = $('<tr>').appendTo($table);
   $numberedRow.append('<td class="test-coordinates">');
   for (let c = 0; c < numColumns; c++) {
@@ -12,9 +12,9 @@ function createBoard(game, gameMap, board) {
   }
   $numberedRow.append('<td class="test-coordinates">');
 
-  gameMap.forEach((row, r) => {
+  this.map.forEach((row, r) => {
     const $row = $('<tr>').appendTo($table);
-    board[r] = [];
+    this.board[r] = [];
 
     const tiles = row.split('');
 
@@ -23,7 +23,7 @@ function createBoard(game, gameMap, board) {
     tiles.forEach((tile, c) => {
       const $col = $('<td>').appendTo($row);
 
-      board[r][c] = {
+      this.board[r][c] = {
         $: $col,
         wall: false,
         food: false,
@@ -33,33 +33,33 @@ function createBoard(game, gameMap, board) {
 
       if (tile == '|') {
         $col.addClass('board-wall');
-        board[r][c].wall = true;
+        this.board[r][c].wall = true;
         return;
       }
 
       $col.addClass('board-path');
 
       if (tile == 'P') {
-        game.pacman.position = [r, c];
+        this.pacman.position = [r, c];
         return;
       }
 
       if (tile == 'G') {
-        game.ghosts[countGhost].position = [r, c];
-        board[r][c].house = true;
+        this.ghosts[countGhost].position = [r, c];
+        this.board[r][c].house = true;
         countGhost += 1;
         return;
       }
 
       if (tile == 'g') {
-        board[r][c].house = true;
+        this.board[r][c].house = true;
         return;
       }
 
       if (tile == '.') {
-        board[r][c].food = true;
+        this.board[r][c].food = true;
       } else if (tile == '+') {
-        board[r][c].token = true;
+        this.board[r][c].token = true;
       }
 
       $col.text(tile);
@@ -70,5 +70,7 @@ function createBoard(game, gameMap, board) {
 
   $table.append($numberedRow.clone());
 
-  $('#board').html($table);
-}
+  if (!this.isTest) {
+    $('#board').html($table);
+  }
+};

@@ -1,11 +1,12 @@
 
 class Game {
-  constructor(map, useKeyboard) {
+  constructor(map, isTest) {
+    this.isTest = isTest || false;
     this.map = map || maps[0];
 
     this.newGame();
 
-    if (useKeyboard || useKeyboard === undefined) {
+    if (!this.isTest) {
       $(document).keydown((event) => {
         this.pressKey(event);
       });
@@ -34,7 +35,7 @@ class Game {
 
     this.board = [];
 
-    createBoard(this, this.map, this.board);
+    this.createBoard();
 
     addTestButtons();
   }
