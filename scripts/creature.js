@@ -87,7 +87,8 @@ Creature.prototype.move = function() {
       return;
     }
 
-    this.direction = getRandomValidDirection(this.position, this.direction);
+    const directionOptions = getDirectionOptions(this.direction, this.position);
+    this.direction = chooseRandom(directionOptions);
   } else if (this.ghost && isIntersection(this.direction, this.position)) {
     this.direction = getRandomValidDirection(this.position, null);
   }

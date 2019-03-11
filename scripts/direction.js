@@ -70,6 +70,28 @@ function getRandomValidDirection(position, removeDirection, directionList) {
   return getRandomValidDirection(position, newDirection, directionList)
 }
 
+function getDirectionOptions(removeDirection, [row, col]) {
+  const options = [];
+
+  if (board[row][col - 1] && !board[row][col - 1].wall) {
+    options.push('left');
+  }
+
+  if (board[row][col + 1] && !board[row][col + 1].wall) {
+    options.push('right');
+  }
+
+  if (board[row - 1] && board[row - 1][col] && !board[row - 1][col].wall) {
+    options.push('up');
+  }
+
+  if (board[row + 1] && board[row + 1][col] && !board[row + 1][col].wall) {
+    options.push('down');
+  }
+
+  return options.filter(dir => dir != removeDirection);
+}
+
 function isDeadEnd(direction, position) {
   return getNewPosition(direction, position) == null;
 }
