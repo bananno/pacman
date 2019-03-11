@@ -89,6 +89,7 @@ Creature.prototype.move = function() {
 
     this.direction = getRandomValidDirection(this.position, this.direction);
   } else if (this.ghost && isIntersection(this.direction, this.position)) {
+    this.direction = getRandomValidDirection(this.position, null);
   }
 
   const newTile = getNewPosition(this.direction, this.position);
