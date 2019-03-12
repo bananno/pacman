@@ -3,6 +3,7 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
   $('td').removeClass('PATH-TEMP');
   $('td').removeClass('PATH-TEMP-END');
   $('td').removeClass('PATH-TEMP-CHOICE');
+  $('td').removeClass('PATH-TEMP-REMOVED');
 
   const directions = ['right', 'down', 'left', 'up'];
   let d = 0;
@@ -19,15 +20,14 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
 
   function canMove(row, col) {
     const tile = game.tile(row, col);
-    return tile && tile.isPassable() && !tile.$.hasClass('PATH-TEMP');
+    return tile && tile.isPassable() && (!tile.$.hasClass('PATH-TEMP')
+      || tile.$.hasClass('PATH-TEMP-END'));
   }
 
   let [i, j] = [r1, c1];
   let safety = 0;
 
   const intersections = [];
-
-  let justReset = false;
 
   function newTrail(i, j) {
     return {
@@ -38,19 +38,20 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
   }
 
   let currentTrail = newTrail(i, j);
+  let testInterval;
 
-  while (true) {
+  testInterval = setInterval(() => {
     safety += 1;
     if (safety > 200) {
       console.log('safety');
-      break;
+      return clearInterval(testInterval);
     }
 
     game.tile(i, j).$.addClass('PATH-TEMP');
 
     if (i == r2 && j == c2) {
       console.log('success');
-      break;
+      return clearInterval(testInterval);
     }
 
     let up = canMove(i - 1, j);
@@ -63,11 +64,9 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
     if (numOptions == 0) {
       console.log('dead end');
 
-      justReset = true;
-
       if (intersections.length == 0) {
         console.log('no more options');
-        break;
+        return clearInterval(testInterval);
       }
 
       [i, j] = currentTrail.start;
@@ -80,11 +79,8 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
       currentTrail = intersections[intersections.length - 1];
       intersections[intersections.length - 1] = null;
 
-      break;
-      continue;
+      return clearInterval(testInterval);
     }
-
-    justReset = false;
 
     const isIntersection = numOptions > 1;
 
@@ -108,5 +104,5 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
 
     i += diff[nextDirection][0];
     j += diff[nextDirection][1];
-  }
+  }, 100);
 }
