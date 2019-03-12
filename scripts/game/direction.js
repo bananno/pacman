@@ -44,10 +44,6 @@ Game.prototype.getWrappedCoordinates = function(row, col) {
   return [row, col];
 };
 
-function getRandomDirection() {
-  return chooseRandom(['up', 'down', 'left', 'right']);
-}
-
 Game.prototype.getDirectionOptions = function(creature, removeDirection, [row, col]) {
   const options = [];
 
