@@ -29,6 +29,8 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
 
   const intersections = [];
 
+  let justReset = false;
+
   function newTrail(i, j) {
     return {
       start: [i, j],
@@ -59,6 +61,13 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
     let left = canMove(i, j - 1);
     let right = canMove(i, j + 1);
 
+    if (justReset) {
+      up = up && currentTrail.tried.indexOf('up') == -1;
+      down = down && currentTrail.tried.indexOf('down') == -1;
+      left = left && currentTrail.tried.indexOf('left') == -1;
+      right = right && currentTrail.tried.indexOf('right') == -1;
+    }
+
     let numOptions = up + down + left + right;
 
     if (numOptions == 0) {
@@ -69,33 +78,35 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
         return clearInterval(testInterval);
       }
 
-      [i, j] = currentTrail.start;
-
       [...currentTrail.path, [i, j]].forEach(([i1, j1]) => {
         game.tile(i1, j1).$.removeClass('PATH-TEMP');
         game.tile(i1, j1).$.addClass('PATH-TEMP-REMOVED');
       });
 
+      [i, j] = currentTrail.start;
+
       currentTrail = intersections[intersections.length - 1];
       intersections[intersections.length - 1] = null;
 
-      return clearInterval(testInterval);
+      justReset = true;
+
+      return;
     }
+
+    justReset = false;
 
     const isIntersection = numOptions > 1;
-
-    if (isIntersection) {
-      game.tile(i, j).$.addClass('PATH-TEMP-CHOICE');
-
-      intersections.push(currentTrail);
-
-      currentTrail = newTrail(i, j);
-    }
 
     let nextDirection = up ? 'up' : down ? 'down' : left ? 'left' : 'right';
 
     if (isIntersection) {
+      game.tile(i, j).$.addClass('PATH-TEMP-CHOICE');
+
       currentTrail.tried.push(nextDirection);
+
+      intersections.push(currentTrail);
+
+      currentTrail = newTrail(i, j);
     } else {
       currentTrail.path.push([i, j]);
     }
