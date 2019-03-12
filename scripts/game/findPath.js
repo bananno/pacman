@@ -48,6 +48,8 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
 
   let intersectionCount = 0;
 
+  const coords = [];
+
   testInterval = setInterval(() => {
     safety += 1;
     if (safety > 500) {
@@ -58,6 +60,7 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
     this.tile(i, j).$.addClass('PATH-TEMP PATH-TEMP-TRIED');
 
     if (i == r2 && j == c2) {
+      coords.push([i, j]);
       console.log('success');
       return breakInterval();
     }
@@ -79,6 +82,8 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
       can.down = can.down && currentTrail.tried.indexOf('down') == -1;
       can.left = can.left && currentTrail.tried.indexOf('left') == -1;
       can.right = can.right && currentTrail.tried.indexOf('right') == -1;
+    } else {
+      coords.push([i, j]);
     }
 
     let numOptions = can.up + can.down + can.left + can.right;
@@ -93,6 +98,7 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
 
       [...currentTrail.path, [i, j]].forEach(([i1, j1]) => {
         this.tile(i1, j1).$.removeClass('PATH-TEMP');
+        coords.length -= 1;
       });
 
       [i, j] = currentTrail.start;
