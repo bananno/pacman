@@ -28,7 +28,8 @@ Game.prototype.findPath = function([startRow, startCol], [targetRow, targetCol])
   const canEnterTile = (row, col) => {
     const tile = this.tile(row, col);
     return tile && tile.isPassable() && !isPathCovered(row, col)
-      && (!tile.house || this.tile(targetRow, targetCol).house);
+      && (!tile.house || this.tile(currentRow, currentCol).house
+        || this.tile(targetRow, targetCol).house);
   };
 
   function getNewTrail(row, col) {
