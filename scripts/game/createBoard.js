@@ -8,7 +8,7 @@ Game.prototype.createBoard = function() {
   const $numberedRow = $('<tr>').appendTo($table);
   $numberedRow.append('<td class="test-coordinates">');
   for (let c = 0; c < numColumns; c++) {
-    $numberedRow.append($('<td class="test-coordinates">' + c + '</td>'));
+    $numberedRow.append($('<td class="test-coordinates">').text(c));
   }
   $numberedRow.append('<td class="test-coordinates">');
 
@@ -18,7 +18,7 @@ Game.prototype.createBoard = function() {
 
     const tiles = row.split('');
 
-    $row.append($('<td class="test-coordinates">' + r + '</td>'));
+    $row.append($('<td class="test-coordinates">').text(r));
 
     tiles.forEach((tileChar, c) => {
       const tile = new Tile(r, c, tileChar);
@@ -37,7 +37,7 @@ Game.prototype.createBoard = function() {
       }
     });
 
-    $row.append($('<td class="test-coordinates">' + r + '</td>'));
+    $row.append($('<td class="test-coordinates">').text(r));
   });
 
   $table.append($numberedRow.clone());
