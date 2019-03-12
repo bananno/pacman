@@ -40,6 +40,12 @@ Creature.prototype.canMove = function(tryDirection) {
   return this.game.isTilePassable(newRow, newCol, this);
 };
 
+Creature.prototype.getDirectionOptions = function(removeDirection) {
+  return ['up', 'left', 'right', 'down'].filter(direction => {
+    return direction != removeDirection && this.canMove(direction);
+  });
+};
+
 Ghost.prototype.chooseDirection = function() {
   if (!this.canMove()) {
     const directionOptions = getDirectionOptions(this, this.direction, this.position);

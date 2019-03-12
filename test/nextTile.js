@@ -143,3 +143,19 @@ addTest(test => {
     test.game.pacman.canMove('down')
   );
 });
+
+// LIST OF DIRECTION OPTIONS FOR CREATURES
+
+addTest(test => {
+  test.map = [
+    '   ',
+    ' P ',
+    '   ',
+  ];
+
+  test.check(
+    'direction options includes all directions when all tiles are passable',
+    ['up', 'left', 'right', 'down'],
+    test.game.pacman.getDirectionOptions()
+  );
+});
