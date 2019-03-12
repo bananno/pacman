@@ -27,3 +27,7 @@ td.board-path.PATH-TEMP.PATH-TEMP-END {
   border: 2px solid red;
   color: red;
 }
+
+td.board-path.PATH-TEMP-REMOVED {
+  color: orange;
+}

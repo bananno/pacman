@@ -65,18 +65,22 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
 
       justReset = true;
 
-      const lastIntersection = intersections[intersections.length - 1];
-
-      if (lastIntersection == null) {
+      if (intersections.length == 0) {
         console.log('no more options');
         break;
       }
 
-      [i, j] = lastIntersection.start;
+      [i, j] = currentTrail.start;
 
+      [...currentTrail.path, [i, j]].forEach(([i1, j1]) => {
+        game.tile(i1, j1).$.removeClass('PATH-TEMP');
+        game.tile(i1, j1).$.addClass('PATH-TEMP-REMOVED');
+      });
+
+      currentTrail = intersections[intersections.length - 1];
       intersections[intersections.length - 1] = null;
 
-
+      break;
       continue;
     }
 
