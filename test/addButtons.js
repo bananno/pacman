@@ -10,12 +10,12 @@ function addTestButtons(game) {
 
   $('#board').append('<br>');
 
-  $('<button>').appendTo('#board').text('path1').click(findPath([3, 6], [5, 8]));
-  $('<button>').appendTo('#board').text('path2').click(findPath([5, 3], [5, 10]));
-  $('<button>').appendTo('#board').text('path3').click(findPath([3, 6], [12, 6]));
-  $('<button>').appendTo('#board').text('path4').click(findPath([5, 3], [12, 6]));
-  $('<button>').appendTo('#board').text('path5').click(findPath([8, 5], [20, 19]));
-  $('<button>').appendTo('#board').text('path6').click(findPath([5, 13], [20, 19]));
+  $('<button>').appendTo('#board').text('path1').click(showPath([3, 6], [5, 8]));
+  $('<button>').appendTo('#board').text('path2').click(showPath([5, 3], [5, 10]));
+  $('<button>').appendTo('#board').text('path3').click(showPath([3, 6], [12, 6]));
+  $('<button>').appendTo('#board').text('path4').click(showPath([5, 3], [12, 6]));
+  $('<button>').appendTo('#board').text('path5').click(showPath([8, 5], [20, 19]));
+  $('<button>').appendTo('#board').text('path6').click(showPath([5, 13], [20, 19]));
 
   function movePacman() {
     game.pacman.position = [11, 10];
@@ -29,10 +29,20 @@ function addTestButtons(game) {
     game.ghosts[1].position = [14, 25];
   }
 
-  function findPath(arr1, arr2) {
-    return function() {
-      game.findPath(arr1, arr2);
-    };
+  function showPath(arr1, arr2) {
+    return (function() {
+      $('td').removeClass('show-path');
+      $('td').removeClass('show-path-end');
+
+      const coords = game.findPath(arr1, arr2);
+
+      this.tile(arr1[0], arr1[1]).$.addClass('show-path-end');
+      this.tile(arr2[0], arr2[1]).$.addClass('show-path-end');
+
+      coords.forEach(([row, col]) => {
+        this.tile(row, col).$.addClass('show-path');
+      });
+    }).bind(game);
   }
 }
 

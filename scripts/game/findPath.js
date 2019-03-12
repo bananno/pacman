@@ -1,13 +1,8 @@
 
 Game.prototype.findPath = function([startRow, startCol], [targetRow, targetCol]) {
-  const game = this;
-
   const coords = [];
   const pathAlreadyCovered = [];
   const intersections = [];
-
-  $('td').removeClass('show-path');
-  $('td').removeClass('show-path-end');
 
   let [currentRow, currentCol] = [startRow, startCol];
   let safety = 0;
@@ -43,18 +38,18 @@ Game.prototype.findPath = function([startRow, startCol], [targetRow, targetCol])
     };
   }
 
-  testInterval = setInterval(() => {
+  while (true) {
     safety += 1;
     if (safety > 500) {
       console.error('Path finder exceeded iteration limit.');
-      return breakInterval();
+      break;
     }
 
     coverPath(currentRow, currentCol);
 
     if (currentRow == targetRow && currentCol == targetCol) {
       coords.push([currentRow, currentCol]);
-      return breakInterval();
+      break;
     }
 
     const can = {
@@ -78,7 +73,7 @@ Game.prototype.findPath = function([startRow, startCol], [targetRow, targetCol])
     if (numOptions == 0) {
       if (intersections.length == 0) {
         console.error('No path options.');
-        return breakInterval();
+        break;
       }
 
       [...currentTrail.path, [currentRow, currentCol]].forEach(([tempRow, tempCol]) => {
@@ -93,7 +88,7 @@ Game.prototype.findPath = function([startRow, startCol], [targetRow, targetCol])
 
       justReset = true;
 
-      return;
+      continue;
     }
 
     const isIntersection = numOptions > 1;
@@ -113,18 +108,9 @@ Game.prototype.findPath = function([startRow, startCol], [targetRow, targetCol])
 
     currentRow += positionAdjustment[nextDirection][0];
     currentCol += positionAdjustment[nextDirection][1];
-  }, 1);
+  }
 
-  const breakInterval = () => {
-    clearInterval(testInterval);
-
-    this.tile(startRow, startCol).$.addClass('show-path-end');
-    this.tile(targetRow, targetCol).$.addClass('show-path-end');
-
-    coords.forEach(([r, c]) => {
-      this.tile(r, c).$.addClass('show-path');
-    });
-  };
+  return coords;
 };
 
 function getNextDirection(currentRow, currentCol, targetRow, targetCol, validDirections) {
