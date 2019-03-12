@@ -45,6 +45,20 @@ class Pacman extends Creature {
     this.direction = 'right';
     this.$.addClass('pacman');
   }
+
+  eat(tile) {
+    if (tile.food) {
+      tile.food = false;
+      tile.$.text('');
+      return;
+    }
+
+    if (tile.token) {
+      tile.token = false;
+      tile.$.text('');
+      this.game.eatToken();
+    }
+  }
 }
 
 class Ghost extends Creature {
@@ -85,17 +99,3 @@ class Ghost extends Creature {
     this.eyes = false;
   }
 }
-
-Pacman.prototype.eat = function(tile) {
-  if (tile.food) {
-    tile.food = false;
-    tile.$.text('');
-    return;
-  }
-
-  if (tile.token) {
-    tile.token = false;
-    tile.$.text('');
-    this.game.eatToken();
-  }
-};
