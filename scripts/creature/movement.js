@@ -11,7 +11,7 @@ Creature.prototype.move = function() {
   }
 
   const [newRow, newCol] = this.getNextPosition();
-  const newTile = this.game.board[newRow][newCol];
+  const newTile = this.game.tile(newRow, newCol);
 
   if (this.pacman) {
     this.eat(newTile);

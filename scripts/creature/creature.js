@@ -14,7 +14,7 @@ class Creature {
 
   set position([r, c]) {
     this._position = [r, c];
-    this.game.board[r][c].$.append(this.$);
+    this.game.tile(r, c).$.append(this.$);
     this.direction = this.direction || getRandomDirection();
   }
 
