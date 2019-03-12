@@ -37,7 +37,7 @@ addTest(test => {
   test.game.tile(1, 1).house = true;
   test.check(
     'path will not enter ghost house tile if destination is not in house',
-    [[1, 0], [0, 0], [0, 1], [0, 2], [1, 2]],
+    [[1, 0], WILD, WILD, WILD, [1, 2]],
     test.game.findPath([1, 0], [1, 2])
   );
 

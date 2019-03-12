@@ -7,6 +7,8 @@ const countTests = {
 
 const allTests = [];
 
+const WILD = 'WILD';
+
 $(document).ready(() => {
   allTests.forEach(nextTest => {
     new Test(nextTest);
@@ -42,7 +44,7 @@ class Test {
 }
 
 function valuesMatch(value1, value2) {
-  if (value1 == value2) {
+  if (value1 == value2 || value1 === WILD) {
     return true;
   }
 
