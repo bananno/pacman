@@ -2,17 +2,10 @@
 Game.prototype.findPath = function([r1, c1], [r2, c2]) {
   const game = this;
 
-  $('td').removeClass('PATH-TEMP');
+  const pathAlreadyCovered = [];
+
   $('td').removeClass('show-path');
   $('td').removeClass('show-path-end');
-
-  this.tile(r1, c1).$.addClass('show-path-end');
-  this.tile(r2, c2).$.addClass('show-path-end');
-
-  function canMove(row, col) {
-    const tile = game.tile(row, col);
-    return tile && tile.isPassable() && !tile.house && !tile.$.hasClass('PATH-TEMP');
-  }
 
   let [i, j] = [r1, c1];
   let safety = 0;
@@ -21,7 +14,33 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
 
   let justReset = false;
 
-  function newTrail(i, j) {
+  let currentTrail = getNewTrail(i, j);
+  let testInterval;
+
+  let intersectionCount = 0;
+
+  const coords = [];
+
+  function coverPath(row, col) {
+    pathAlreadyCovered[row] = pathAlreadyCovered[row] || [];
+    pathAlreadyCovered[row][col] = true;
+  }
+
+  function uncoverPath(row, col) {
+    pathAlreadyCovered[row] = pathAlreadyCovered[row] || [];
+    pathAlreadyCovered[row][col] = false;
+  }
+
+  function isPathCovered(row, col) {
+    return pathAlreadyCovered[row] && pathAlreadyCovered[row][col];
+  }
+
+  function canMove(row, col) {
+    const tile = game.tile(row, col);
+    return tile && tile.isPassable() && !tile.house && !isPathCovered(row, col);
+  }
+
+  function getNewTrail(i, j) {
     return {
       i: i,
       j: j,
@@ -31,13 +50,6 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
     };
   }
 
-  let currentTrail = newTrail(i, j);
-  let testInterval;
-
-  let intersectionCount = 0;
-
-  const coords = [];
-
   testInterval = setInterval(() => {
     safety += 1;
     if (safety > 500) {
@@ -45,7 +57,7 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
       return breakInterval();
     }
 
-    this.tile(i, j).$.addClass('PATH-TEMP');
+    coverPath(i, j);
 
     if (i == r2 && j == c2) {
       coords.push([i, j]);
@@ -60,11 +72,10 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
     };
 
     if (justReset) {
-      can.up = can.up && currentTrail.tried.indexOf('up') == -1;
-      can.down = can.down && currentTrail.tried.indexOf('down') == -1;
-      can.left = can.left && currentTrail.tried.indexOf('left') == -1;
-      can.right = can.right && currentTrail.tried.indexOf('right') == -1;
       justReset = false;
+      currentTrail.tried.forEach(triedDirection => {
+        can[triedDirection] = false;
+      });
     } else {
       coords.push([i, j]);
     }
@@ -78,7 +89,7 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
       }
 
       [...currentTrail.path, [i, j]].forEach(([i1, j1]) => {
-        this.tile(i1, j1).$.removeClass('PATH-TEMP');
+        uncoverPath(i1, j1);
         coords.length -= 1;
       });
 
@@ -102,7 +113,7 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
       intersections[intersectionCount] = currentTrail;
       intersectionCount += 1;
 
-      currentTrail = newTrail(i, j);
+      currentTrail = getNewTrail(i, j);
     } else {
       currentTrail.path.push([i, j]);
     }
@@ -113,6 +124,9 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
 
   function breakInterval() {
     clearInterval(testInterval);
+
+    game.tile(r1, c1).$.addClass('show-path-end');
+    game.tile(r2, c2).$.addClass('show-path-end');
 
     coords.forEach(([r, c]) => {
       game.tile(r, c).$.addClass('show-path');
