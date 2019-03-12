@@ -56,7 +56,7 @@ function valuesMatch(value1, value2) {
     }
 
     for (let i = 0; i < value1.length; i++) {
-      if (value1[i] != value2[i]) {
+      if (!valuesMatch(value1[i], value2[i])) {
         return false;
       }
     }
