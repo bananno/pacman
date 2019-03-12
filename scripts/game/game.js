@@ -37,7 +37,9 @@ class Game {
 
     this.createBoard();
 
-    addTestButtons();
+    if (!this.isTest) {
+      addTestButtons(this);
+    }
   }
 
   get creatures() {
