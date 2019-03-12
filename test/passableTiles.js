@@ -4,40 +4,63 @@ addTest(test => {
     '||||||',
     '|    |',
     '|P   |',
-    '|    |',
+    '|g   |',
     '|G   |',
     '|    |',
     '|    |',
     '||||||',
   ];
 
-  test.check(
-    'Wall is not passable for any creature', false,
-    test.game.isTilePassable(1, 0, null)
-  );
+  // EMPTY SPACES
 
   test.check(
-    'Empty space is passable for any creature', true,
+    'empty space is passable for any creature', true,
     test.game.isTilePassable(1, 3, null)
   );
 
   test.check(
-    'Wall is not passable for pacman', false,
-    test.game.isTilePassable(2, 0, test.game.pacman)
-  );
-
-  test.check(
-    'Empty space is passable for pacman', true,
+    'empty space is passable for pacman', true,
     test.game.isTilePassable(2, 2, test.game.pacman)
   );
 
   test.check(
-    'Wall is not passable for ghost', false,
-    test.game.isTilePassable(4, 0, test.game.ghosts[0])
+    'empty space is passable for ghost', true,
+    test.game.isTilePassable(4, 2, test.game.ghosts[0])
+  );
+
+  // WALLS
+
+  test.check(
+    'wall is not passable for any creature', false,
+    test.game.isTilePassable(1, 0, null)
   );
 
   test.check(
-    'Empty space is passable for ghost', true,
-    test.game.isTilePassable(4, 2, test.game.ghosts[0])
+    'wall is not passable for pacman', false,
+    test.game.isTilePassable(2, 0, test.game.pacman)
+  );
+
+  test.check(
+    'wall is not passable for ghost', false,
+    test.game.isTilePassable(4, 0, test.game.ghosts[0])
+  );
+
+  // GHOST HOUSE
+
+  test.check(
+    'pacman cannot enter ghost house', false,
+    test.game.isTilePassable(3, 1, test.game.pacman)
+  );
+
+  test.game.ghosts[0].inHouse = true;
+  test.check(
+    'ghost that is in house can enter another house tile', true,
+    test.game.isTilePassable(3, 1, test.game.ghosts[0])
+  );
+
+  test.game.ghosts[0].inHouse = false;
+  test.check(
+    'ghost that is not in house cannot enter a house tile', false,
+    test.game.isTilePassable(3, 1, test.game.ghosts[0])
   );
 });
