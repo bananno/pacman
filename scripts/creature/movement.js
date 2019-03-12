@@ -29,6 +29,10 @@ Creature.prototype.move = function() {
   }
 };
 
+Creature.prototype.getNextPosition = function() {
+  return this.game.getNextPosition(this.direction, this.position);
+};
+
 Creature.prototype.isAtDeadEnd = function() {
   return isDeadEnd(this, this.direction, this.position);
 };
