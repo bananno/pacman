@@ -35,7 +35,7 @@ Game.prototype.getWrappedCoordinates = function(row, col) {
 
   if (this.board[row][col] == null) {
     if (col == -1) {
-      col = this.board.length[0] - 1;
+      col = this.board[0].length - 1;
     } else {
       col = 0;
     }

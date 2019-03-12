@@ -26,6 +26,6 @@ addTest(test => {
   test.check(
     'right side of board wraps around to left side of board',
     [0, 0],
-    test.game.getWrappedCoordinates(0, 5)
+    test.game.getWrappedCoordinates(0, 6)
   );
 });
