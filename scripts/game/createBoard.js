@@ -20,49 +20,21 @@ Game.prototype.createBoard = function() {
 
     $row.append($('<td class="test-coordinates">' + r + '</td>'));
 
-    tiles.forEach((tile, c) => {
-      const $col = $('<td>').appendTo($row);
+    tiles.forEach((tileChar, c) => {
+      const tile = new Tile(r, c, tileChar);
 
-      this.board[r][c] = {
-        $: $col,
-        wall: false,
-        food: false,
-        row: r,
-        col: c,
-      };
+      $row.append(tile.$);
 
-      if (tile == '|') {
-        $col.addClass('board-wall');
-        this.board[r][c].wall = true;
-        return;
-      }
+      this.board[r][c] = tile;
 
-      $col.addClass('board-path');
-
-      if (tile == 'P') {
+      if (tile.pacman) {
         this.pacman.position = [r, c];
         return;
-      }
-
-      if (tile == 'G') {
+      } else if (tile.ghost) {
         this.ghosts[countGhost].position = [r, c];
-        this.board[r][c].house = true;
         countGhost += 1;
         return;
       }
-
-      if (tile == 'g') {
-        this.board[r][c].house = true;
-        return;
-      }
-
-      if (tile == '.') {
-        this.board[r][c].food = true;
-      } else if (tile == '+') {
-        this.board[r][c].token = true;
-      }
-
-      $col.text(tile);
     });
 
     $row.append($('<td class="test-coordinates">' + r + '</td>'));
