@@ -10,6 +10,8 @@ Creature.prototype.move = function() {
     return;
   }
 
+  const [newRow, newCol] = this.getNextPosition();
+
   const newTile = getNewPosition(this.direction, this.position);
 
   if (this.pacman) {
@@ -35,6 +37,12 @@ Creature.prototype.getNextPosition = function() {
 
 Creature.prototype.isAtDeadEnd = function() {
   return isDeadEnd(this, this.direction, this.position);
+};
+
+Creature.prototype.canMove = function(tryDirection) {
+  tryDirection = tryDirection || this.direction;
+  const [newRow, newCol] = this.game.getNextPosition(tryDirection, this.position);
+  return this.game.isTilePassable(newRow, newCol, this);
 };
 
 Ghost.prototype.chooseDirection = function() {

@@ -32,7 +32,7 @@ addTest(test => {
   );
 });
 
-// GET COORDINATES FOR NEXT TILE ON COURSE
+// GET COORDINATES FOR NEXT TILE ON COURSE (PASSABLE OR NOT)
 
 addTest(test => {
   test.map = [
@@ -67,5 +67,79 @@ addTest(test => {
     'next tile when moving down',
     [2, 1],
     test.game.pacman.getNextPosition()
+  );
+});
+
+// WHETHER CREATURE CAN MOVE GIVEN DIRECTION
+
+addTest(test => {
+  test.map = [
+    '   ',
+    ' P ',
+    '   ',
+  ];
+
+  // UP
+
+  test.game.board[0][1].wall = false;
+  test.check(
+    'creature can move up when tile is passable',
+    true,
+    test.game.pacman.canMove('up')
+  );
+
+  test.game.board[0][1].wall = true;
+  test.check(
+    'creature cannot move up when tile is passable',
+    false,
+    test.game.pacman.canMove('up')
+  );
+
+  // LEFT
+
+  test.game.board[1][0].wall = false;
+  test.check(
+    'creature can move left when tile is passable',
+    true,
+    test.game.pacman.canMove('left')
+  );
+
+  test.game.board[1][0].wall = true;
+  test.check(
+    'creature cannot move left when tile is passable',
+    false,
+    test.game.pacman.canMove('left')
+  );
+
+  // RIGHT
+
+  test.game.board[1][2].wall = false;
+  test.check(
+    'creature can move right when tile is passable',
+    true,
+    test.game.pacman.canMove('right')
+  );
+
+  test.game.board[1][2].wall = true;
+  test.check(
+    'creature cannot move right when tile is passable',
+    false,
+    test.game.pacman.canMove('right')
+  );
+
+  // DOWN
+
+  test.game.board[2][1].wall = false;
+  test.check(
+    'creature can move down when tile is passable',
+    true,
+    test.game.pacman.canMove('down')
+  );
+
+  test.game.board[2][1].wall = true;
+  test.check(
+    'creature cannot move down when tile is passable',
+    false,
+    test.game.pacman.canMove('down')
   );
 });
