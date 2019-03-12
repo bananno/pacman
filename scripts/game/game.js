@@ -19,9 +19,7 @@ class Game {
 
       this.start();
 
-      const [newRow, newCol] = this.getNextPosition(newDirection, this.pacman.position);
-
-      if (this.isTilePassable(newRow, newCol, this.pacman)) {
+      if (this.pacman.canMove(newDirection)) {
         this.pacman.direction = newDirection;
       }
     }
