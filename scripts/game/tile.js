@@ -37,4 +37,16 @@ class Tile {
       }
     }
   }
+
+  isPassable(creature) {
+    if (this.wall) {
+      return false;
+    }
+
+    if (creature && !creature.inHouse && this.house) {
+      return false;
+    }
+
+    return true;
+  }
 }

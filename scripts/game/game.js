@@ -72,4 +72,8 @@ class Game {
       ghost.turnBlue();
     });
   }
+
+  tile(row, col) {
+    return this.board[row] ? this.board[row][col] : null;
+  }
 }

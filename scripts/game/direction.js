@@ -31,13 +31,5 @@ Game.prototype.getWrappedCoordinates = function(row, col) {
 };
 
 Game.prototype.isTilePassable = function(row, col, creature) {
-  if (this.board[row] == null || this.board[row][col] == null || this.board[row][col].wall) {
-    return false;
-  }
-
-  if (creature && !creature.inHouse && this.board[row][col].house) {
-    return false;
-  }
-
-  return true;
+  return this.tile(row, col).isPassable(creature);
 };
