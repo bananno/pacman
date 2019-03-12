@@ -90,7 +90,7 @@ addTest(test => {
 
   test.game.board[0][1].wall = true;
   test.check(
-    'creature cannot move up when tile is passable',
+    'creature cannot move up when tile is not passable',
     false,
     test.game.pacman.canMove('up')
   );
@@ -106,7 +106,7 @@ addTest(test => {
 
   test.game.board[1][0].wall = true;
   test.check(
-    'creature cannot move left when tile is passable',
+    'creature cannot move left when tile is not passable',
     false,
     test.game.pacman.canMove('left')
   );
@@ -122,7 +122,7 @@ addTest(test => {
 
   test.game.board[1][2].wall = true;
   test.check(
-    'creature cannot move right when tile is passable',
+    'creature cannot move right when tile is not passable',
     false,
     test.game.pacman.canMove('right')
   );
@@ -138,7 +138,7 @@ addTest(test => {
 
   test.game.board[2][1].wall = true;
   test.check(
-    'creature cannot move down when tile is passable',
+    'creature cannot move down when tile is not passable',
     false,
     test.game.pacman.canMove('down')
   );
