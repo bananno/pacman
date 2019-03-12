@@ -31,12 +31,38 @@ class Test {
 
   check(message, expectedResult, actualResult) {
     countTests.total += 1;
-    if (expectedResult != actualResult) {
+    if (valuesMatch(expectedResult, actualResult)) {
+      countTests.pass += 1;
+    } else {
       console.warn('TEST FAILED: ' + message);
       console.log('  > expected: ' + expectedResult + '\n  > result:   ' + actualResult);
       countTests.fail += 1;
-    } else {
-      countTests.pass += 1;
     }
   }
+}
+
+function valuesMatch(value1, value2) {
+  if (value1 == value2) {
+    return true;
+  }
+
+  if (value1 == null || value2 == null) {
+    return false;
+  }
+
+  if (value1.constructor == Array) {
+    if (value2.constructor != Array || value1.length != value2.length) {
+      return false;
+    }
+
+    for (let i = 0; i < value1.length; i++) {
+      if (value1[i] != value2[i]) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  return false;
 }
