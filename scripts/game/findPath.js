@@ -1,25 +1,20 @@
 
-Game.prototype.findPath = function([r1, c1], [r2, c2]) {
+Game.prototype.findPath = function([startRow, startCol], [targetRow, targetCol]) {
   const game = this;
 
+  const coords = [];
   const pathAlreadyCovered = [];
+  const intersections = [];
 
   $('td').removeClass('show-path');
   $('td').removeClass('show-path-end');
 
-  let [i, j] = [r1, c1];
+  let [currentRow, currentCol] = [startRow, startCol];
   let safety = 0;
-
-  const intersections = [];
-
   let justReset = false;
-
-  let currentTrail = getNewTrail(i, j);
+  let currentTrail = getNewTrail(currentRow, currentCol);
   let testInterval;
-
   let intersectionCount = 0;
-
-  const coords = [];
 
   function coverPath(row, col) {
     pathAlreadyCovered[row] = pathAlreadyCovered[row] || [];
@@ -35,16 +30,14 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
     return pathAlreadyCovered[row] && pathAlreadyCovered[row][col];
   }
 
-  function canMove(row, col) {
-    const tile = game.tile(row, col);
+  const canMove = (row, col) => {
+    const tile = this.tile(row, col);
     return tile && tile.isPassable() && !tile.house && !isPathCovered(row, col);
-  }
+  };
 
-  function getNewTrail(i, j) {
+  function getNewTrail(row, col) {
     return {
-      i: i,
-      j: j,
-      start: [i, j],
+      start: [row, col],
       tried: [],
       path: [],
     };
@@ -57,18 +50,18 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
       return breakInterval();
     }
 
-    coverPath(i, j);
+    coverPath(currentRow, currentCol);
 
-    if (i == r2 && j == c2) {
-      coords.push([i, j]);
+    if (currentRow == targetRow && currentCol == targetCol) {
+      coords.push([currentRow, currentCol]);
       return breakInterval();
     }
 
     const can = {
-      up: canMove(i - 1, j),
-      down: canMove(i + 1, j),
-      left: canMove(i, j - 1),
-      right: canMove(i, j + 1),
+      up: canMove(currentRow - 1, currentCol),
+      down: canMove(currentRow + 1, currentCol),
+      left: canMove(currentRow, currentCol - 1),
+      right: canMove(currentRow, currentCol + 1),
     };
 
     if (justReset) {
@@ -77,7 +70,7 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
         can[triedDirection] = false;
       });
     } else {
-      coords.push([i, j]);
+      coords.push([currentRow, currentCol]);
     }
 
     let numOptions = can.up + can.down + can.left + can.right;
@@ -88,12 +81,12 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
         return breakInterval();
       }
 
-      [...currentTrail.path, [i, j]].forEach(([i1, j1]) => {
-        uncoverPath(i1, j1);
+      [...currentTrail.path, [currentRow, currentCol]].forEach(([tempRow, tempCol]) => {
+        uncoverPath(tempRow, tempCol);
         coords.length -= 1;
       });
 
-      [i, j] = currentTrail.start;
+      [currentRow, currentCol] = currentTrail.start;
 
       currentTrail = intersections[intersectionCount - 1];
       intersectionCount -= 1;
@@ -105,7 +98,7 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
 
     const isIntersection = numOptions > 1;
 
-    let nextDirection = getNextDirection(i, j, r2, c2, can);
+    let nextDirection = getNextDirection(currentRow, currentCol, targetRow, targetCol, can);
 
     if (isIntersection) {
       currentTrail.tried.push(nextDirection);
@@ -113,25 +106,25 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
       intersections[intersectionCount] = currentTrail;
       intersectionCount += 1;
 
-      currentTrail = getNewTrail(i, j);
+      currentTrail = getNewTrail(currentRow, currentCol);
     } else {
-      currentTrail.path.push([i, j]);
+      currentTrail.path.push([currentRow, currentCol]);
     }
 
-    i += positionAdjustment[nextDirection][0];
-    j += positionAdjustment[nextDirection][1];
+    currentRow += positionAdjustment[nextDirection][0];
+    currentCol += positionAdjustment[nextDirection][1];
   }, 1);
 
-  function breakInterval() {
+  const breakInterval = () => {
     clearInterval(testInterval);
 
-    game.tile(r1, c1).$.addClass('show-path-end');
-    game.tile(r2, c2).$.addClass('show-path-end');
+    this.tile(startRow, startCol).$.addClass('show-path-end');
+    this.tile(targetRow, targetCol).$.addClass('show-path-end');
 
     coords.forEach(([r, c]) => {
-      game.tile(r, c).$.addClass('show-path');
+      this.tile(r, c).$.addClass('show-path');
     });
-  }
+  };
 };
 
 function getNextDirection(currentRow, currentCol, targetRow, targetCol, validDirections) {
