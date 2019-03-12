@@ -154,40 +154,21 @@ addTest(test => {
   ];
 
   test.check(
-    'direction options includes all directions when all tiles are passable',
+    'direction option list includes all directions when all tiles are passable',
     ['up', 'left', 'right', 'down'],
     test.game.pacman.getDirectionOptions()
   );
 
+  test.check(
+    'direction option list does not include direction given as parameter',
+    ['up', 'right', 'down'],
+    test.game.pacman.getDirectionOptions('left')
+  );
+
   test.game.board[0][1].wall = true;
   test.check(
-    'direction options does not include up tile when not passable',
+    'direction option list does not include tiles that are not passable',
     ['left', 'right', 'down'],
     test.game.pacman.getDirectionOptions()
   );
-  test.game.board[0][1].wall = false;
-
-  test.game.board[1][0].wall = true;
-  test.check(
-    'direction options does not include left tile when not passable',
-    ['up', 'right', 'down'],
-    test.game.pacman.getDirectionOptions()
-  );
-  test.game.board[1][0].wall = false;
-
-  test.game.board[1][2].wall = true;
-  test.check(
-    'direction options does not include right tile when not passable',
-    ['up', 'left', 'down'],
-    test.game.pacman.getDirectionOptions()
-  );
-  test.game.board[1][2].wall = false;
-
-  test.game.board[2][1].wall = true;
-  test.check(
-    'direction options does not include down tile when not passable',
-    ['up', 'left', 'right'],
-    test.game.pacman.getDirectionOptions()
-  );
-  test.game.board[2][1].wall = false;
 });
