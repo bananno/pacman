@@ -94,29 +94,7 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
 
     const isIntersection = numOptions > 1;
 
-    let nextDirection = (() => {
-      let order = ['up', 'down', 'left', 'right'];
-
-      if (j < c2) {
-        if (i < r2) {
-          order = ['right', 'down', 'left', 'up'];
-        } else {
-          order = ['right', 'up', 'left', 'down'];
-        }
-      } else {
-        if (i < r2) {
-          order = ['down', 'left', 'right', 'up'];
-        } else {
-          order = ['left', 'up', 'right', 'down'];
-        }
-      }
-
-      for (let x = 0; x < 4; x++) {
-        if (can[order[x]]) {
-          return order[x];
-        }
-      }
-    })();
+    let nextDirection = getNextDirection(i, j, r2, c2, can);
 
     if (isIntersection) {
       currentTrail.tried.push(nextDirection);
@@ -141,3 +119,31 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
     });
   }
 };
+
+function getNextDirection(currentRow, currentCol, targetRow, targetCol, validDirections) {
+  const order = getDirectionTryOrder(currentRow, currentCol, targetRow, targetCol);
+
+  for (let i = 0; i < 4; i++) {
+    if (validDirections[order[i]]) {
+      return order[i];
+    }
+  }
+
+  console.error('No valid path directions.');
+}
+
+function getDirectionTryOrder(currentRow, currentCol, targetRow, targetCol) {
+  if (currentCol < targetCol) {
+    if (currentRow < targetRow) {
+      return ['right', 'down', 'left', 'up'];
+    }
+
+    return ['right', 'up', 'left', 'down'];
+  }
+
+  if (currentRow < targetRow) {
+    return ['down', 'left', 'right', 'up'];
+  }
+
+  return ['left', 'up', 'right', 'down'];
+}
