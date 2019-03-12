@@ -15,19 +15,10 @@ td.test-coordinates {
   display: none;
 }
 
-td.board-path.PATH-TEMP {
+td.board-path.show-path {
   background-color: yellow;
 }
 
-td.board-path.PATH-TEMP.PATH-TEMP-CHOICE {
-  background-color: green;
-}
-
-td.board-path.PATH-TEMP.PATH-TEMP-END {
-  border: 2px solid red;
-  color: red;
-}
-
-td.board-path.PATH-TEMP-TRIED {
-  color: orange;
+td.board-path.show-path-end {
+  background-color: red;
 }
