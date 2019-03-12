@@ -30,47 +30,6 @@ Game.prototype.getWrappedCoordinates = function(row, col) {
   return [row, col];
 };
 
-Game.prototype.getDirectionOptions = function(creature, removeDirection, [row, col]) {
-  const options = [];
-
-  if (isTilePassable(row, col - 1, creature)) {
-    options.push('left');
-  }
-
-  if (isTilePassable(row, col + 1, creature)) {
-    options.push('right');
-  }
-
-  if (isTilePassable(row - 1, col, creature)) {
-    options.push('up');
-  }
-
-  if (isTilePassable(row + 1, col, creature)) {
-    options.push('down');
-  }
-
-  return options.filter(dir => dir != removeDirection);
-};
-
-Game.prototype.isDeadEnd = function(creature, direction, position) {
-  let row = position[0] + positionAdjustment[direction][0];
-  let col = position[1] + positionAdjustment[direction][1];
-
-  [row, col] = getWrappedCoordinates(row, col);
-
-  return !isTilePassable(row, col, creature);
-};
-
-Game.prototype.isIntersection = function(currentDirection, [row, col]) {
-  if (currentDirection == 'left' || currentDirection == 'right') {
-    return ((game.board[row][col - 1] && !game.board[row][col - 1].wall)
-      || (game.board[row][col + 1] && !game.board[row][col + 1].wall));
-  }
-
-  return ((game.board[row - 1] && game.board[row - 1][col] && !game.board[row - 1][col].wall)
-    || (game.board[row + 1] && game.board[row + 1][col] && !game.board[row + 1][col].wall));
-};
-
 Game.prototype.isTilePassable = function(row, col, creature) {
   if (this.board[row] == null || this.board[row][col] == null || this.board[row][col].wall) {
     return false;
