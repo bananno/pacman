@@ -28,6 +28,6 @@ td.board-path.PATH-TEMP.PATH-TEMP-END {
   color: red;
 }
 
-td.board-path.PATH-TEMP-REMOVED {
+td.board-path.PATH-TEMP-TRIED {
   color: orange;
 }

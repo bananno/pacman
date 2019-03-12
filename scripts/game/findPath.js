@@ -55,17 +55,19 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
       return breakInterval();
     }
 
-    this.tile(i, j).$.addClass('PATH-TEMP');
+    this.tile(i, j).$.addClass('PATH-TEMP PATH-TEMP-TRIED');
 
     if (i == r2 && j == c2) {
       console.log('success');
       return breakInterval();
     }
 
-    let up = canMove(i - 1, j);
-    let down = canMove(i + 1, j);
-    let left = canMove(i, j - 1);
-    let right = canMove(i, j + 1);
+    const can = {
+      up: canMove(i - 1, j),
+      down: canMove(i + 1, j),
+      left: canMove(i, j - 1),
+      right: canMove(i, j + 1),
+    };
 
     if (justReset) {
       if (currentTrail == null) {
@@ -73,13 +75,13 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
         return breakInterval();
       }
 
-      up = up && currentTrail.tried.indexOf('up') == -1;
-      down = down && currentTrail.tried.indexOf('down') == -1;
-      left = left && currentTrail.tried.indexOf('left') == -1;
-      right = right && currentTrail.tried.indexOf('right') == -1;
+      can.up = can.up && currentTrail.tried.indexOf('up') == -1;
+      can.down = can.down && currentTrail.tried.indexOf('down') == -1;
+      can.left = can.left && currentTrail.tried.indexOf('left') == -1;
+      can.right = can.right && currentTrail.tried.indexOf('right') == -1;
     }
 
-    let numOptions = up + down + left + right;
+    let numOptions = can.up + can.down + can.left + can.right;
 
     if (numOptions == 0) {
       console.log('dead end');
@@ -91,7 +93,6 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
 
       [...currentTrail.path, [i, j]].forEach(([i1, j1]) => {
         this.tile(i1, j1).$.removeClass('PATH-TEMP');
-        this.tile(i1, j1).$.addClass('PATH-TEMP-REMOVED');
       });
 
       [i, j] = currentTrail.start;
@@ -108,7 +109,29 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
 
     const isIntersection = numOptions > 1;
 
-    let nextDirection = up ? 'up' : down ? 'down' : left ? 'left' : 'right';
+    let nextDirection = (() => {
+      let order = ['up', 'down', 'left', 'right'];
+
+      if (j < c2) {
+        if (i < r2) {
+          order = ['right', 'down', 'left', 'up'];
+        } else {
+          order = ['right', 'up', 'left', 'down'];
+        }
+      } else {
+        if (i < r2) {
+          order = ['down', 'left', 'right', 'up'];
+        } else {
+          order = ['left', 'up', 'right', 'down'];
+        }
+      }
+
+      for (let x = 0; x < 4; x++) {
+        if (can[order[x]]) {
+          return order[x];
+        }
+      }
+    })();
 
     if (isIntersection) {
       this.tile(i, j).$.addClass('PATH-TEMP-CHOICE');
@@ -123,15 +146,11 @@ Game.prototype.findPath = function([r1, c1], [r2, c2]) {
       currentTrail.path.push([i, j]);
     }
 
-    console.log(nextDirection);
-
     i += diff[nextDirection][0];
     j += diff[nextDirection][1];
   }, 100);
 
   function breakInterval() {
     clearInterval(testInterval);
-
-    console.log(intersections);
   }
 };
