@@ -27,9 +27,11 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
 
   const intersections = [];
 
+  let justReset = false;
+
   while (true) {
     safety += 1;
-    if (safety > 100) {
+    if (safety > 200) {
       console.log('safety');
       break;
     }
@@ -50,8 +52,21 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
 
     if (numOptions == 0) {
       console.log('dead end');
-      break;
+
+      justReset = true;
+
+      const lastIntersection = intersections[intersections.length - 1];
+
+      i = lastIntersection.i;
+      j = lastIntersection.j;
+
+      intersections[intersections.length - 1] = null;
+
+
+      continue;
     }
+
+    justReset = false;
 
     const isIntersection = numOptions > 1;
 
@@ -76,6 +91,4 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
     i += diff[nextDirection][0];
     j += diff[nextDirection][1];
   }
-
-  console.log(intersections);
 }
