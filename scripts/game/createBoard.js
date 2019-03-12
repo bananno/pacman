@@ -1,18 +1,14 @@
 
 Game.prototype.createBoard = function() {
-  let $table = $('<table>');
+  const $table = $('<table>');
 
   let countGhost = 0;
 
-  const numColumns = this.map[0].split('').length;
-  const $numberedRow = $('<tr>').appendTo($table);
-  $numberedRow.append('<td class="test-coordinates">');
-  for (let c = 0; c < numColumns; c++) {
-    $numberedRow.append($('<td class="test-coordinates">').text(c));
-  }
-  $numberedRow.append('<td class="test-coordinates">');
+  const $numberedRow = createNumberedRow(this.mapTemplate);
 
-  this.map.forEach((row, r) => {
+  $table.append($numberedRow);
+
+  this.mapTemplate.forEach((row, r) => {
     const $row = $('<tr>').appendTo($table);
     this.board[r] = [];
 
@@ -46,3 +42,19 @@ Game.prototype.createBoard = function() {
     $('#board').html($table);
   }
 };
+
+function createNumberedRow(mapTemplate) {
+  const numColumns = mapTemplate[0].split('').length;
+
+  const $row = $('<tr>');
+
+  $row.append('<td class="test-coordinates">');
+
+  for (let c = 0; c < numColumns; c++) {
+    $row.append($('<td class="test-coordinates">').text(c));
+  }
+
+  $row.append('<td class="test-coordinates">');
+
+  return $row;
+}

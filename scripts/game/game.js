@@ -1,8 +1,8 @@
 
 class Game {
-  constructor(map, isTest) {
+  constructor(mapTemplate, isTest) {
     this.isTest = isTest || false;
-    this.map = map || maps[0];
+    this.mapTemplate = mapTemplate || maps[0];
 
     this.newGame();
 
