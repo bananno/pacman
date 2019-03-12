@@ -25,9 +25,10 @@ Game.prototype.findPath = function([startRow, startCol], [targetRow, targetCol])
     return pathAlreadyCovered[row] && pathAlreadyCovered[row][col];
   }
 
-  const canMove = (row, col) => {
+  const canEnterTile = (row, col) => {
     const tile = this.tile(row, col);
-    return tile && tile.isPassable() && !tile.house && !isPathCovered(row, col);
+    return tile && tile.isPassable() && !isPathCovered(row, col)
+      && (!tile.house || this.tile(targetRow, targetCol).house);
   };
 
   function getNewTrail(row, col) {
@@ -53,10 +54,10 @@ Game.prototype.findPath = function([startRow, startCol], [targetRow, targetCol])
     }
 
     const can = {
-      up: canMove(currentRow - 1, currentCol),
-      down: canMove(currentRow + 1, currentCol),
-      left: canMove(currentRow, currentCol - 1),
-      right: canMove(currentRow, currentCol + 1),
+      up: canEnterTile(currentRow - 1, currentCol),
+      down: canEnterTile(currentRow + 1, currentCol),
+      left: canEnterTile(currentRow, currentCol - 1),
+      right: canEnterTile(currentRow, currentCol + 1),
     };
 
     if (justReset) {
@@ -95,6 +96,11 @@ Game.prototype.findPath = function([startRow, startCol], [targetRow, targetCol])
 
     let nextDirection = getNextDirection(currentRow, currentCol, targetRow, targetCol, can);
 
+    if (nextDirection == null) {
+      console.error('No valid path directions.');
+      break;
+    }
+
     if (isIntersection) {
       currentTrail.tried.push(nextDirection);
 
@@ -121,8 +127,6 @@ function getNextDirection(currentRow, currentCol, targetRow, targetCol, validDir
       return order[i];
     }
   }
-
-  console.error('No valid path directions.');
 }
 
 function getDirectionTryOrder(currentRow, currentCol, targetRow, targetCol) {
