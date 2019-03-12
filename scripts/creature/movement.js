@@ -53,10 +53,10 @@ Ghost.prototype.chooseDirection = function() {
     return;
   }
 
-  const directionOptions = this.getDirectionOptions(this.direction);
+  const directionToIgnore = oppositeDirection[this.direction];
+  const directionOptions = this.getDirectionOptions(directionToIgnore);
 
-  if (directionOptions > 1) {
+  if (directionOptions.length > 1) {
     this.direction = chooseRandom(directionOptions);
-    return;
   }
 };
