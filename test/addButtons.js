@@ -27,7 +27,7 @@ function addTestButtons(game) {
   }
 
   function callFastestPath(arr1, arr2) {
-    fastestPath(arr1, arr2);
+    fastestPath(game, arr1, arr2);
   }
 }
 

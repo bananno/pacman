@@ -1,5 +1,5 @@
 
-function fastestPath([r1, c1], [r2, c2]) {
+function fastestPath(game, [r1, c1], [r2, c2]) {
   $('td').removeClass('PATH-TEMP');
   $('td').removeClass('PATH-TEMP-END');
   $('td').removeClass('PATH-TEMP-CHOICE');
@@ -14,23 +14,24 @@ function fastestPath([r1, c1], [r2, c2]) {
     down: [1, 0],
   };
 
-  board[r1][c1].$.addClass('PATH-TEMP PATH-TEMP-END');
-  board[r2][c2].$.addClass('PATH-TEMP PATH-TEMP-END');
+  game.tile(r1, c1).$.addClass('PATH-TEMP PATH-TEMP-END');
+  game.tile(r2, c2).$.addClass('PATH-TEMP PATH-TEMP-END');
 
   function getTile(row, col) {
-    if (board[row] == null || board[row][col] == null || board[row][col].wall
-        || board[row][col].$.hasClass('PATH-TEMP')) {
-      return null;
+    const tile = game.tile(row, col);
+
+    if (tile && tile.isPassable()) {
+      return tile;
     }
 
-    return board[row][col];
+    return null;
   }
 
   let [i, j] = [r1, c1];
   let safety = 0;
 
   while (true) {
-    board[i][j].$.addClass('PATH-TEMP');
+    game.tile(i, j).$.addClass('PATH-TEMP');
 
     if (i == r2 && j == c2) {
       console.log('success');
@@ -50,7 +51,7 @@ function fastestPath([r1, c1], [r2, c2]) {
     }
 
     if (numOptions > 1) {
-      board[i][j].$.addClass('PATH-TEMP-CHOICE');
+      game.tile(i, j).$.addClass('PATH-TEMP-CHOICE');
     }
 
     let direction = up ? 'up' : down ? 'down' : left ? 'left' : 'right';
