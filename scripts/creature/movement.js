@@ -6,13 +6,12 @@ Creature.prototype.move = function() {
 
   if (this.ghost) {
     this.chooseDirection();
-  } else if (this.isAtDeadEnd()) {
+  } else if (!this.canMove()) {
     return;
   }
 
   const [newRow, newCol] = this.getNextPosition();
-
-  const newTile = getNewPosition(this.direction, this.position);
+  const newTile = this.game.board[newRow][newCol];
 
   if (this.pacman) {
     this.eat(newTile);
@@ -35,10 +34,6 @@ Creature.prototype.getNextPosition = function() {
   return this.game.getNextPosition(this.direction, this.position);
 };
 
-Creature.prototype.isAtDeadEnd = function() {
-  return isDeadEnd(this, this.direction, this.position);
-};
-
 Creature.prototype.canMove = function(tryDirection) {
   tryDirection = tryDirection || this.direction;
   const [newRow, newCol] = this.game.getNextPosition(tryDirection, this.position);
@@ -46,7 +41,7 @@ Creature.prototype.canMove = function(tryDirection) {
 };
 
 Ghost.prototype.chooseDirection = function() {
-  if (this.isAtDeadEnd()) {
+  if (!this.canMove()) {
     const directionOptions = getDirectionOptions(this, this.direction, this.position);
     this.direction = chooseRandom(directionOptions);
     return;
