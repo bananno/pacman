@@ -17,14 +17,9 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
   game.tile(r1, c1).$.addClass('PATH-TEMP PATH-TEMP-END');
   game.tile(r2, c2).$.addClass('PATH-TEMP PATH-TEMP-END');
 
-  function getTile(row, col) {
+  function canMove(row, col) {
     const tile = game.tile(row, col);
-
-    if (tile && tile.isPassable()) {
-      return tile;
-    }
-
-    return null;
+    return tile && tile.isPassable() && !tile.$.hasClass('PATH-TEMP');
   }
 
   let [i, j] = [r1, c1];
@@ -38,10 +33,10 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
       break;
     }
 
-    let up = getTile(i - 1, j);
-    let down = getTile(i + 1, j);
-    let left = getTile(i, j - 1);
-    let right = getTile(i, j + 1);
+    let up = canMove(i - 1, j);
+    let down = canMove(i + 1, j);
+    let left = canMove(i, j - 1);
+    let right = canMove(i, j + 1);
 
     let numOptions = (up != null) + (down != null) + (left != null) + (right != null);
 
@@ -55,6 +50,8 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
     }
 
     let direction = up ? 'up' : down ? 'down' : left ? 'left' : 'right';
+
+    console.log(direction);
 
     i += diff[direction][0];
     j += diff[direction][1];
