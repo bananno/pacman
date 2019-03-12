@@ -138,9 +138,17 @@ function getDirectionTryOrder(currentRow, currentCol, targetRow, targetCol) {
     return ['right', 'up', 'left', 'down'];
   }
 
+  if (currentCol > targetCol) {
+    if (currentRow < targetRow) {
+      return ['left', 'down', 'right', 'up'];
+    }
+
+    return ['left', 'up', 'right', 'down'];
+  }
+
   if (currentRow < targetRow) {
     return ['down', 'left', 'right', 'up'];
   }
 
-  return ['left', 'up', 'right', 'down'];
+  return ['up', 'left', 'right', 'down'];
 }
