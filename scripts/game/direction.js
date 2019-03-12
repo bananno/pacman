@@ -13,7 +13,7 @@ const positionAdjustment = {
   down: [1, 0]
 };
 
-Game.prototype.getNewPosition = function(direction, oldPosition) {
+Game.prototype.getNextPosition = function(direction, oldPosition) {
   if (direction == null || oldPosition.length == 0) {
     return null;
   }
@@ -21,23 +21,21 @@ Game.prototype.getNewPosition = function(direction, oldPosition) {
   let newR = oldPosition[0] + positionAdjustment[direction][0];
   let newC = oldPosition[1] + positionAdjustment[direction][1];
 
-  [newR, newC] = getWrappedCoordinates(newR, newC);
-
-  return game.board[newR][newC].wall ? null : game.board[newR][newC];
+  return this.getWrappedCoordinates(newR, newC);
 };
 
 Game.prototype.getWrappedCoordinates = function(row, col) {
-  if (game.board[row] == null) {
+  if (this.board[row] == null) {
     if (row == -1) {
-      row = game.board.length - 1;
+      row = this.board.length - 1;
     } else {
       row = 0;
     }
   }
 
-  if (game.board[row][col] == null) {
+  if (this.board[row][col] == null) {
     if (col == -1) {
-      col = game.board.length[0] - 1;
+      col = this.board.length[0] - 1;
     } else {
       col = 0;
     }
