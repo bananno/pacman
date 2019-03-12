@@ -25,7 +25,15 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
   let [i, j] = [r1, c1];
   let safety = 0;
 
+  const intersections = [];
+
   while (true) {
+    safety += 1;
+    if (safety > 100) {
+      console.log('safety');
+      break;
+    }
+
     game.tile(i, j).$.addClass('PATH-TEMP');
 
     if (i == r2 && j == c2) {
@@ -38,28 +46,36 @@ function fastestPath(game, [r1, c1], [r2, c2]) {
     let left = canMove(i, j - 1);
     let right = canMove(i, j + 1);
 
-    let numOptions = (up != null) + (down != null) + (left != null) + (right != null);
+    let numOptions = up + down + left + right;
 
     if (numOptions == 0) {
       console.log('dead end');
       break;
     }
 
-    if (numOptions > 1) {
+    const isIntersection = numOptions > 1;
+
+    if (isIntersection) {
       game.tile(i, j).$.addClass('PATH-TEMP-CHOICE');
+
+      intersections.push({
+        i: i,
+        j: j,
+        tried: [],
+      });
     }
 
-    let direction = up ? 'up' : down ? 'down' : left ? 'left' : 'right';
+    let nextDirection = up ? 'up' : down ? 'down' : left ? 'left' : 'right';
 
-    console.log(direction);
-
-    i += diff[direction][0];
-    j += diff[direction][1];
-
-    safety += 1;
-    if (safety > 100) {
-      console.log('safety');
-      break;
+    if (isIntersection) {
+      intersections[intersections.length - 1].tried.push(nextDirection);
     }
+
+    console.log(nextDirection);
+
+    i += diff[nextDirection][0];
+    j += diff[nextDirection][1];
   }
+
+  console.log(intersections);
 }
