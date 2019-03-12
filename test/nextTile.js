@@ -81,14 +81,14 @@ addTest(test => {
 
   // UP
 
-  test.game.board[0][1].wall = false;
+  test.game.tile(0, 1).wall = false;
   test.check(
     'creature can move up when tile is passable',
     true,
     test.game.pacman.canMove('up')
   );
 
-  test.game.board[0][1].wall = true;
+  test.game.tile(0, 1).wall = true;
   test.check(
     'creature cannot move up when tile is not passable',
     false,
@@ -97,14 +97,14 @@ addTest(test => {
 
   // LEFT
 
-  test.game.board[1][0].wall = false;
+  test.game.tile(1, 0).wall = false;
   test.check(
     'creature can move left when tile is passable',
     true,
     test.game.pacman.canMove('left')
   );
 
-  test.game.board[1][0].wall = true;
+  test.game.tile(1, 0).wall = true;
   test.check(
     'creature cannot move left when tile is not passable',
     false,
@@ -113,14 +113,14 @@ addTest(test => {
 
   // RIGHT
 
-  test.game.board[1][2].wall = false;
+  test.game.tile(1, 2).wall = false;
   test.check(
     'creature can move right when tile is passable',
     true,
     test.game.pacman.canMove('right')
   );
 
-  test.game.board[1][2].wall = true;
+  test.game.tile(1, 2).wall = true;
   test.check(
     'creature cannot move right when tile is not passable',
     false,
@@ -129,14 +129,14 @@ addTest(test => {
 
   // DOWN
 
-  test.game.board[2][1].wall = false;
+  test.game.tile(2, 1).wall = false;
   test.check(
     'creature can move down when tile is passable',
     true,
     test.game.pacman.canMove('down')
   );
 
-  test.game.board[2][1].wall = true;
+  test.game.tile(2, 1).wall = true;
   test.check(
     'creature cannot move down when tile is not passable',
     false,
@@ -165,7 +165,7 @@ addTest(test => {
     test.game.pacman.getDirectionOptions('left')
   );
 
-  test.game.board[0][1].wall = true;
+  test.game.tile(0, 1).wall = true;
   test.check(
     'direction option list does not include tiles that are not passable',
     ['left', 'right', 'down'],
