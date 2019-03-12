@@ -48,14 +48,14 @@ Creature.prototype.getDirectionOptions = function(removeDirection) {
 
 Ghost.prototype.chooseDirection = function() {
   if (!this.canMove()) {
-    const directionOptions = getDirectionOptions(this, this.direction, this.position);
+    const directionOptions = this.getDirectionOptions();
     this.direction = chooseRandom(directionOptions);
     return;
   }
 
-  if (isIntersection(this.direction, this.position)) {
-    const ignoreOpposite = oppositeDirection[this.direction];
-    const directionOptions = getDirectionOptions(this, ignoreOpposite, this.position);
+  const directionOptions = this.getDirectionOptions(this.direction);
+
+  if (directionOptions > 1) {
     this.direction = chooseRandom(directionOptions);
     return;
   }
