@@ -31,7 +31,7 @@ class Game {
     this.pacman = new Pacman(this);
     this.ghosts = [];
     this.scatter = false;
-    this.mode = 0;
+    this.modeCount = 0;
     this.lives = 3;
     this.isLost = false;
 
@@ -153,14 +153,19 @@ class Game {
   toggleMode() {
     this.scatter = !this.scatter;
 
-    if (MODE_TIME[this.mode]) {
-      setTimeout(this.toggleMode.bind(this), MODE_TIME[this.mode] * 1000);
+    if (MODE_TIME[this.modeCount]) {
+      setTimeout(this.toggleMode.bind(this), MODE_TIME[this.modeCount] * 1000);
     }
 
-    this.mode += 1;
+    this.modeCount += 1;
 
     this.ghosts.forEach(ghost => {
       ghost.reverse();
+      ghost.revertMode(false);
     });
+  }
+
+  get mode() {
+    return this.scatter ? 'scatter' : 'chase';
   }
 }

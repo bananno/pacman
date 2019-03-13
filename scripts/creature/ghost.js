@@ -15,8 +15,15 @@ class Ghost extends Creature {
     this.direction = oppositeDirection[this.direction];
   }
 
+  revertMode(force) {
+    if (force || (!this.blue && !this.eyes)) {
+      this.mode = this.game.mode;
+    }
+  }
+
   turnBlue() {
     this.blue = true;
+    this.mode = 'blue';
     this.reverse();
     clearInterval(this.blueInterval);
     this.blueInterval = setInterval(this.revertBlue.bind(this), GHOST_BLUE_TIME);
@@ -48,9 +55,11 @@ class Ghost extends Creature {
     this.blue = false;
     clearInterval(this.blueInterval);
     this.speed = 250;
+    this.revertMode(true);
   }
 
   catchBlue() {
+    this.mode = 'eyes';
     this.blue = false;
     this.eyes = true;
     clearInterval(this.blueInterval);
@@ -61,6 +70,7 @@ class Ghost extends Creature {
   revertEyes() {
     this.eyes = false;
     this.speed = 250;
+    this.revertMode(true);
   }
 
   set blue(value) {
