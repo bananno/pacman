@@ -7,6 +7,7 @@ const translateChar = {
   'g' : 'house',
   'P' : 'pacman',
   'G' : 'ghost',
+  't' : 'target',
 };
 
 class Tile {
@@ -22,6 +23,7 @@ class Tile {
     this.doorway = false;
     this.pacman = false;
     this.ghost = false;
+    this.target = false;
 
     if (translateChar[tileChar]) {
       this[translateChar[tileChar]] = true;
@@ -34,8 +36,13 @@ class Tile {
 
       if (this.ghost || this.doorway) {
         this.house = true;
-      } else if (this.food || this.token) {
-        this.$.text(tileChar);
+      } else if (this.target) {
+        this.food = true;
+        this.$.text('.');
+      } else if (this.food) {
+        this.$.text('.');
+      } else if (this.token) {
+        this.$.text('+');
       }
     }
   }
