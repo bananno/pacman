@@ -103,6 +103,24 @@ class Ghost extends Creature {
     clearInterval(this.blueInterval);
     this.blueInterval = setInterval(this.revertBlue.bind(this), GHOST_BLUE_TIME);
     this.speed = 500;
+
+    for (let t = 4; t >= 1; t--) {
+      let time = GHOST_BLUE_TIME - (t * 400);
+      if (time < 0) {
+        continue;
+      }
+      setTimeout(() => {
+        this.flashWhite(t % 2 == 0);
+      }, time);
+    }
+  }
+
+  flashWhite(toggle) {
+    if (!this.blue) {
+      return;
+    }
+    this.$.addClass('ghost-' + (toggle ? 'white' : 'blue'));
+    this.$.removeClass('ghost-' + (toggle ? 'blue' : 'white'));
   }
 
   revertBlue() {

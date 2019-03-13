@@ -4,6 +4,10 @@ function addTestButtons(game) {
 
   $('#board').append('<br>');
 
+  $('<button>').appendTo('#board').text('blue').click(eatToken);
+
+  $('#board').append('<br>');
+
   $('<button>').appendTo('#board').text('move pacman').click(movePacman);
   $('<button>').appendTo('#board').text('move ghost left').click(moveGhostLeft);
   $('<button>').appendTo('#board').text('move ghost right').click(moveGhostRight);
@@ -29,6 +33,10 @@ function addTestButtons(game) {
 
   function moveGhostRight() {
     game.ghosts[1].position = [14, 25];
+  }
+
+  function eatToken() {
+    game.eatToken();
   }
 
   function showPath(arr1, arr2) {
