@@ -1,14 +1,27 @@
 
-Game.prototype.findPath = function([startRow, startCol], [targetRow, targetCol]) {
+Game.prototype.findPath = function([startRow, startCol], [finalRow, finalCol]) {
   const coords = [];
   const pathAlreadyCovered = [];
   const intersections = [];
 
-  let [currentRow, currentCol] = [startRow, startCol];
   let safety = 0;
   let justReset = false;
-  let currentTrail = getNewTrail(currentRow, currentCol);
   let testInterval;
+
+  let [currentRow, currentCol] = [startRow, startCol];
+  let [targetRow, targetCol] = [finalRow, finalCol];
+
+  const startTile = this.tile(startRow, startCol);
+  const finalTargetTile = this.tile(finalRow, finalCol);
+
+  if (startTile.house != finalTargetTile.house) {
+    const doorwayTiles = this.doorwayTiles;
+    if (doorwayTiles.length) {
+      [targetRow, targetCol] = [doorwayTiles[0].row, doorwayTiles[0].col];
+    }
+  }
+
+  let currentTrail = getNewTrail(currentRow, currentCol);
 
   function coverPath(row, col) {
     pathAlreadyCovered[row] = pathAlreadyCovered[row] || [];
@@ -27,8 +40,7 @@ Game.prototype.findPath = function([startRow, startCol], [targetRow, targetCol])
   const canEnterTile = (row, col) => {
     const tile = this.tile(row, col);
     return tile && tile.isPassable() && !isPathCovered(row, col)
-      && (!tile.house || this.tile(currentRow, currentCol).house
-        || this.tile(targetRow, targetCol).house);
+      && (!tile.house || this.tile(currentRow, currentCol).house || finalTargetTile.house);
   };
 
   function getNewTrail(row, col) {
@@ -49,8 +61,12 @@ Game.prototype.findPath = function([startRow, startCol], [targetRow, targetCol])
     coverPath(currentRow, currentCol);
 
     if (currentRow == targetRow && currentCol == targetCol) {
-      coords.push([currentRow, currentCol]);
-      break;
+      if (currentRow == finalRow && currentCol == finalCol) {
+        coords.push([currentRow, currentCol]);
+        break;
+      }
+      targetRow = finalRow;
+      targetCol = finalCol;
     }
 
     const can = {
@@ -77,8 +93,8 @@ Game.prototype.findPath = function([startRow, startCol], [targetRow, targetCol])
         break;
       }
 
-      [...currentTrail.path, [currentRow, currentCol]].forEach(([tempRow, tempCol]) => {
-        uncoverPath(tempRow, tempCol);
+      [...currentTrail.path, [currentRow, currentCol]].forEach(([row, col]) => {
+        uncoverPath(row, col);
         coords.length -= 1;
       });
 
