@@ -9,7 +9,6 @@ Game.prototype.findPath = function([startRow, startCol], [targetRow, targetCol])
   let justReset = false;
   let currentTrail = getNewTrail(currentRow, currentCol);
   let testInterval;
-  let intersectionCount = 0;
 
   function coverPath(row, col) {
     pathAlreadyCovered[row] = pathAlreadyCovered[row] || [];
@@ -85,8 +84,8 @@ Game.prototype.findPath = function([startRow, startCol], [targetRow, targetCol])
 
       [currentRow, currentCol] = currentTrail.start;
 
-      currentTrail = intersections[intersectionCount - 1];
-      intersectionCount -= 1;
+      currentTrail = intersections[intersections.length - 1];
+      intersections.length -= 1;
 
       justReset = true;
 
@@ -104,10 +103,7 @@ Game.prototype.findPath = function([startRow, startCol], [targetRow, targetCol])
 
     if (isIntersection) {
       currentTrail.tried.push(nextDirection);
-
-      intersections[intersectionCount] = currentTrail;
-      intersectionCount += 1;
-
+      intersections.push(currentTrail);
       currentTrail = getNewTrail(currentRow, currentCol);
     } else {
       currentTrail.path.push([currentRow, currentCol]);
