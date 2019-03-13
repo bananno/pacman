@@ -1,4 +1,6 @@
 
+const MODE_TIME = [7, 20, 7, 20, 5, 20, 5];
+
 class Game {
   constructor(mapTemplate, isTest) {
     this.isTest = isTest || false;
@@ -28,7 +30,8 @@ class Game {
   newGame() {
     this.pacman = new Pacman(this);
     this.ghosts = [];
-    this.scatter = true;
+    this.scatter = false;
+    this.mode = 0;
 
     for (let i = 0; i < 4; i++) {
       this.ghosts.push(new Ghost(this, i));
@@ -56,7 +59,7 @@ class Game {
       creature.start();
     });
 
-    setTimeout(this.toggleMode.bind(this), 7000);
+    this.toggleMode();
   }
 
   lose() {
@@ -115,5 +118,11 @@ class Game {
 
   toggleMode() {
     this.scatter = !this.scatter;
+
+    if (MODE_TIME[this.mode]) {
+      setTimeout(this.toggleMode.bind(this), MODE_TIME[this.mode] * 1000);
+    }
+
+    this.mode += 1;
   }
 }
