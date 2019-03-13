@@ -1,6 +1,4 @@
 
-const GHOST_BLUE_TIME = 5000;
-
 class Creature {
   constructor(game) {
     this.$ = $('<span class="creature">');

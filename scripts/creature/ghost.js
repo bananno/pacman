@@ -1,4 +1,6 @@
 
+const GHOST_BLUE_TIME = 5000;
+
 class Ghost extends Creature {
   constructor(game, number) {
     super(game);
