@@ -87,6 +87,7 @@ class Ghost extends Creature {
     this.blue = true;
     this.$.addClass('ghost-blue');
     this.$.removeClass('ghost-dangerous');
+    this.direction = oppositeDirection[this.direction];
     clearInterval(this.blueInterval);
     this.blueInterval = setInterval(this.revertBlue.bind(this), GHOST_BLUE_TIME);
   }
