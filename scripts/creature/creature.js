@@ -21,6 +21,9 @@ class Creature {
   }
 
   set position([r, c]) {
+    if (!this.origin) {
+      this.origin = [r, c];
+    }
     this._position = [r, c];
     this.game.tile(r, c).$.append(this.$);
     this.direction = this.direction || getRandomDirection();
@@ -89,6 +92,7 @@ class Ghost extends Creature {
     this.$.addClass('ghost');
     this.$.addClass('ghost-dangerous');
     this.$.addClass('ghost' + (number + 1));
+    this.path = [];
   }
 
   turnBlue() {
@@ -115,6 +119,7 @@ class Ghost extends Creature {
     this.$.addClass('ghost-eyes');
     this.$.removeClass('ghost-blue');
     clearInterval(this.blueInterval);
+    this.path = this.game.findPath(this.position, this.origin);
   }
 
   revertEyes() {
