@@ -112,12 +112,20 @@ class Game {
     return this.board[row] ? this.board[row][col] : null;
   }
 
-  get doorwayTiles() {
+  get allTiles() {
     let list = [];
     this.board.forEach(row => {
-      list = list.concat(row.filter(tile => tile.doorway));
+      list = list.concat(row);
     });
     return list;
+  }
+
+  get doorwayTiles() {
+    return this.allTiles.filter(tile => tile.doorway);
+  }
+
+  get cornerTiles() {
+    return this.allTiles.filter(tile => tile.corner);
   }
 
   encounter(row, col) {
