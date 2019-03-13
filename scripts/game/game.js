@@ -75,7 +75,7 @@ class Game {
 
     setTimeout(() => {
       this.creatures.forEach(creature => {
-        creature.restartPosition();
+        creature.reset();
       });
     }, 500);
   }

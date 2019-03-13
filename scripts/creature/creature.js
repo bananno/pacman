@@ -33,12 +33,18 @@ class Creature {
     return this._position || [];
   }
 
-  restartPosition() {
+  reset() {
     if (this.origin) {
       this.position = this.origin;
     }
+
+    this.speed = 250;
+
     if (this.pacman) {
-      this.direction = 'right';
+    } else {
+      this.blue = false;
+      this.eyes = false;
+      this.path = [];
     }
   }
 
