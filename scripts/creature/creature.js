@@ -99,7 +99,6 @@ class Ghost extends Creature {
     this.ghost = true;
     this.number = number;
     this.$.addClass('ghost');
-    this.$.addClass('ghost-dangerous');
     this.$.addClass('ghost' + (number + 1));
     this.path = [];
   }
@@ -110,8 +109,6 @@ class Ghost extends Creature {
 
   turnBlue() {
     this.blue = true;
-    this.$.addClass('ghost-blue');
-    this.$.removeClass('ghost-dangerous');
     this.reverse();
     clearInterval(this.blueInterval);
     this.blueInterval = setInterval(this.revertBlue.bind(this), GHOST_BLUE_TIME);
@@ -132,14 +129,15 @@ class Ghost extends Creature {
     if (!this.blue) {
       return;
     }
-    this.$.addClass('ghost-' + (toggle ? 'white' : 'blue'));
-    this.$.removeClass('ghost-' + (toggle ? 'blue' : 'white'));
+    if (toggle) {
+      this.$.addClass('ghost-flash');
+    } else {
+      this.$.removeClass('ghost-flash');
+    }
   }
 
   revertBlue() {
     this.blue = false;
-    this.$.addClass('ghost-dangerous');
-    this.$.removeClass('ghost-blue');
     clearInterval(this.blueInterval);
     this.speed = 250;
   }
@@ -147,8 +145,6 @@ class Ghost extends Creature {
   catchBlue() {
     this.blue = false;
     this.eyes = true;
-    this.$.addClass('ghost-eyes');
-    this.$.removeClass('ghost-blue');
     clearInterval(this.blueInterval);
     this.path = this.game.findPath(this.position, this.origin);
     this.speed = 75;
@@ -156,8 +152,33 @@ class Ghost extends Creature {
 
   revertEyes() {
     this.eyes = false;
-    this.$.removeClass('ghost-eyes');
-    this.$.addClass('ghost-dangerous');
     this.speed = 250;
+  }
+
+  set blue(value) {
+    this._blue = value;
+    if (value) {
+      this.$.addClass('ghost-blue');
+    } else {
+      this.$.removeClass('ghost-blue');
+      this.$.removeClass('ghost-white');
+    }
+  }
+
+  set eyes(value) {
+    this._eyes = value;
+    if (value) {
+      this.$.addClass('ghost-eyes');
+    } else {
+      this.$.removeClass('ghost-eyes');
+    }
+  }
+
+  get blue() {
+    return this._blue;
+  }
+
+  get eyes() {
+    return this._eyes;
   }
 }

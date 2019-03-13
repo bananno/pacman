@@ -29,20 +29,20 @@
   transform: rotate(-90deg);
 }
 
-.creature.ghost-dangerous.ghost1 {
+.creature.ghost1 {
   background-image: url(../images/ghost1.gif);
 }
 
-.creature.ghost-dangerous.ghost2 {
+.creature.ghost2 {
   background-image: url(../images/ghost2.gif);
   background-size: 16px;
 }
 
-.creature.ghost-dangerous.ghost3 {
+.creature.ghost3 {
   background-image: url(../images/ghost3.gif);
 }
 
-.creature.ghost-dangerous.ghost4 {
+.creature.ghost4 {
   background-image: url(../images/ghost3.gif);
 }
 
@@ -50,7 +50,7 @@
   background-image: url(../images/ghost-blue.gif);
 }
 
-.creature.ghost-white {
+.creature.ghost-blue.ghost-flash {
   background-image: url(../images/ghost-white.gif);
 }
 
