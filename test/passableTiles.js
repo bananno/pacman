@@ -64,3 +64,22 @@ addTest(test => {
     test.game.isTilePassable(3, 1, test.game.ghosts[0])
   );
 });
+
+// GHOST HOUSE DOORWAY
+
+addTest(test => {
+  test.map = [
+    ' Gd ',
+  ];
+
+  test.check(
+    'ghost that is in house can enter a doorway tile', true,
+    test.game.isTilePassable(0, 2, test.game.ghosts[0])
+  );
+
+  test.game.ghosts[0].position = [0, 2];
+  test.check(
+    'ghost that is doorway tile cannot enter a regular house tile', false,
+    test.game.isTilePassable(0, 1, test.game.ghosts[0])
+  );
+});
