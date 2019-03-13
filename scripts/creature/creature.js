@@ -125,5 +125,8 @@ class Ghost extends Creature {
 
   revertEyes() {
     this.eyes = false;
+    this.$.removeClass('ghost-eyes');
+    this.$.addClass('ghost-dangerous');
+    this.speed = 250;
   }
 }

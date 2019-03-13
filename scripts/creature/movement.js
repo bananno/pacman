@@ -34,6 +34,10 @@ Creature.prototype.move = function() {
   if (tileContainsBoth(newTile)) {
     return this.game.lose();
   }
+
+  if (this.ghost && this.eyes && this.path.length == 0) {
+    this.revertEyes();
+  }
 };
 
 Creature.prototype.getNextPosition = function() {
