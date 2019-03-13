@@ -79,4 +79,12 @@ class Game {
     }
     return this.board[row] ? this.board[row][col] : null;
   }
+
+  get doorwayTiles() {
+    let list = [];
+    this.board.forEach(row => {
+      list = list.concat(row.filter(tile => tile.doorway));
+    });
+    return list;
+  }
 }
