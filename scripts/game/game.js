@@ -153,7 +153,7 @@ class Game {
   toggleMode() {
     this.scatter = !this.scatter;
 
-    if (MODE_TIME[this.modeCount]) {
+    if (MODE_TIME[this.modeCount] && !this.isTest) {
       setTimeout(this.toggleMode.bind(this), MODE_TIME[this.modeCount] * 1000);
     }
 
