@@ -41,6 +41,7 @@ class Creature {
     this.speed = 250;
 
     if (this.pacman) {
+      this.direction = 'right';
     } else {
       this.blue = false;
       this.eyes = false;
