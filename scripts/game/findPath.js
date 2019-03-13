@@ -39,7 +39,7 @@ Game.prototype.findPath = function([startRow, startCol], [finalRow, finalCol]) {
 
   const canEnterTile = (row, col) => {
     const tile = this.tile(row, col);
-    return tile && tile.isPassable() && !isPathCovered(row, col)
+    return tile != null && tile.isPassable() && !isPathCovered(row, col)
       && (!tile.house || this.tile(currentRow, currentCol).house || finalTargetTile.house);
   };
 
