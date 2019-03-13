@@ -25,15 +25,9 @@ Creature.prototype.move = function() {
     this.eat(newTile);
   }
 
-  this.position = [newTile.row, newTile.col];
+  this.position = [newRow, newCol];
 
-  if (this.blue && newTile.$.html().match('pacman')) {
-    return this.catchBlue();
-  }
-
-  if (tileContainsBoth(newTile)) {
-    return this.game.lose();
-  }
+  this.game.encounter(newRow, newCol);
 
   if (this.ghost && this.eyes && this.path.length == 0) {
     this.revertEyes();

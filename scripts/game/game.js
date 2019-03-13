@@ -87,4 +87,26 @@ class Game {
     });
     return list;
   }
+
+  encounter(row, col) {
+    if (this.pacman.position[0] != row || this.pacman.position[1] != col) {
+      return;
+    }
+
+    for (let i = 0; i < this.ghosts.length; i++) {
+      const ghost = this.ghosts[i];
+
+      if (ghost.position[0] != row || ghost.position[1] != col || ghost.eyes) {
+        continue;
+      }
+
+      if (ghost.blue) {
+        ghost.catchBlue();
+        continue;
+      }
+
+      this.lose();
+      break;
+    }
+  }
 }
