@@ -74,6 +74,9 @@ class Game {
   }
 
   tile(row, col) {
+    if (row.constructor == Array) {
+      [row, col] = row;
+    }
     return this.board[row] ? this.board[row][col] : null;
   }
 }
