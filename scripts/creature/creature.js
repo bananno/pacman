@@ -38,6 +38,7 @@ class Creature {
       this.position = this.origin;
     }
 
+    this.movementInterval = null;
     this.speed = 250;
 
     if (this.pacman) {
