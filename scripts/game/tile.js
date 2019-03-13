@@ -3,7 +3,7 @@ const translateChar = {
   '|' : 'wall',
   '.' : 'food',
   '+' : 'token',
-  'd' : 'door',
+  'd' : 'doorway',
   'g' : 'house',
   'P' : 'pacman',
   'G' : 'ghost',
@@ -19,7 +19,7 @@ class Tile {
     this.food = false;
     this.token = false;
     this.house = false;
-    this.door = false;
+    this.doorway = false;
     this.pacman = false;
     this.ghost = false;
 
@@ -32,7 +32,7 @@ class Tile {
     } else {
       this.$.addClass('board-path');
 
-      if (this.ghost || this.door) {
+      if (this.ghost || this.doorway) {
         this.house = true;
       } else if (this.food || this.token) {
         this.$.text(tileChar);
@@ -45,8 +45,14 @@ class Tile {
       return false;
     }
 
-    if (creature && !creature.inHouse && this.house) {
-      return false;
+    if (creature && this.house) {
+      if (!creature.inHouse) {
+        return false;
+      }
+
+      if (!this.doorway && creature.inDoorway) {
+        return false;
+      }
     }
 
     return true;
