@@ -17,6 +17,7 @@ td.test-coordinates {
 
 td.board-path.show-path {
   background-color: yellow;
+  color: black;
 }
 
 td.board-path.show-path-end {

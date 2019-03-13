@@ -16,7 +16,8 @@ function addTestButtons(game) {
   $('<button>').appendTo('#board').text('path4').click(showPath([5, 3], [12, 6]));
   $('<button>').appendTo('#board').text('path5').click(showPath([8, 5], [20, 19]));
   $('<button>').appendTo('#board').text('path6').click(showPath([5, 13], [20, 19]));
-  $('<button>').appendTo('#board').text('path7').click(showPath([26, 23], [14, 14]));
+  $('<button>').appendTo('#board').text('into house').click(showPath([26, 23], [14, 14]));
+  $('<button>').appendTo('#board').text('out of house').click(showPath([14, 14], [26, 23]));
 
   function movePacman() {
     game.pacman.position = [11, 10];
