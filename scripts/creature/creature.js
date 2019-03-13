@@ -120,6 +120,7 @@ class Ghost extends Creature {
     this.$.removeClass('ghost-blue');
     clearInterval(this.blueInterval);
     this.path = this.game.findPath(this.position, this.origin);
+    this.speed = 75;
   }
 
   revertEyes() {
