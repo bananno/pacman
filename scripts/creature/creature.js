@@ -33,6 +33,15 @@ class Creature {
     return this._position || [];
   }
 
+  restartPosition() {
+    if (this.origin) {
+      this.position = this.origin;
+    }
+    if (this.pacman) {
+      this.direction = 'right';
+    }
+  }
+
   set direction(newDirection) {
     this.$.removeClass('direction-' + this._direction);
     this.$.addClass('direction-' + newDirection);

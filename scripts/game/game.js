@@ -66,17 +66,24 @@ class Game {
 
   loseLife() {
     this.lives -= 1;
+
     if (this.lives < 0) {
-      this.loseGame();
+      return this.loseGame();
     }
+
+    this.clearAllIntervals();
+
+    setTimeout(() => {
+      this.creatures.forEach(creature => {
+        creature.restartPosition();
+      });
+    }, 500);
   }
 
   loseGame() {
     this.isLost = true;
 
-    this.creatures.forEach(creature => {
-      creature.clearAllIntervals();
-    });
+    this.clearAllIntervals();
 
     setTimeout(() => {
       if (!this.isTest) {
@@ -84,6 +91,12 @@ class Game {
       }
       this.newGame();
     }, 250);
+  }
+
+  clearAllIntervals() {
+    this.creatures.forEach(creature => {
+      creature.clearAllIntervals();
+    });
   }
 
   eatToken() {
