@@ -52,13 +52,13 @@ addTest(test => {
     test.game.isTilePassable(3, 1, test.game.pacman)
   );
 
-  test.game.ghosts[0].inHouse = true;
+  test.game.ghosts[0].tile.house = true;
   test.check(
     'ghost that is in house can enter another house tile', true,
     test.game.isTilePassable(3, 1, test.game.ghosts[0])
   );
 
-  test.game.ghosts[0].inHouse = false;
+  test.game.ghosts[0].tile.house = false;
   test.check(
     'ghost that is not in house cannot enter a house tile', false,
     test.game.isTilePassable(3, 1, test.game.ghosts[0])

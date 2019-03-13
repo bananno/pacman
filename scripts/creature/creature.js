@@ -32,6 +32,18 @@ class Creature {
     return this._direction;
   }
 
+  get tile() {
+    return this.game.tile(this.position);
+  }
+
+  get inHouse() {
+    return this.tile.house;
+  }
+
+  get inDoorway() {
+    return this.tile.doorway;
+  }
+
   clearAllIntervals() {
     clearInterval(this.movementInterval);
     clearInterval(this.blueInterval);
@@ -69,7 +81,6 @@ class Ghost extends Creature {
     this.$.addClass('ghost');
     this.$.addClass('ghost-dangerous');
     this.$.addClass('ghost' + (number + 1));
-    this.inHouse = true;
   }
 
   turnBlue() {
@@ -97,9 +108,5 @@ class Ghost extends Creature {
 
   revertEyes() {
     this.eyes = false;
-  }
-
-  get inDoorway() {
-    return this.game.tile(this.position).doorway;
   }
 }
