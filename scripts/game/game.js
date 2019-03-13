@@ -32,6 +32,8 @@ class Game {
     this.ghosts = [];
     this.scatter = false;
     this.mode = 0;
+    this.lives = 3;
+    this.isLost = false;
 
     for (let i = 0; i < 4; i++) {
       this.ghosts.push(new Ghost(this, i));
@@ -62,7 +64,16 @@ class Game {
     this.toggleMode();
   }
 
+  loseLife() {
+    this.lives -= 1;
+    if (this.lives < 0) {
+      this.lose();
+    }
+  }
+
   lose() {
+    this.isLost = true;
+
     this.creatures.forEach(creature => {
       creature.clearAllIntervals();
     });
@@ -111,7 +122,7 @@ class Game {
         continue;
       }
 
-      this.lose();
+      this.loseLife();
       break;
     }
   }
