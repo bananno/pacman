@@ -124,5 +124,9 @@ class Game {
     }
 
     this.mode += 1;
+
+    this.ghosts.forEach(ghost => {
+      ghost.reverse();
+    });
   }
 }
