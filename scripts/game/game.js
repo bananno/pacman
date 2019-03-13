@@ -28,6 +28,7 @@ class Game {
   newGame() {
     this.pacman = new Pacman(this);
     this.ghosts = [];
+    this.scatter = true;
 
     for (let i = 0; i < 4; i++) {
       this.ghosts.push(new Ghost(this, i));
@@ -54,6 +55,8 @@ class Game {
     this.creatures.forEach(creature => {
       creature.start();
     });
+
+    setTimeout(this.toggleMode.bind(this), 7000);
   }
 
   lose() {
@@ -108,5 +111,9 @@ class Game {
       this.lose();
       break;
     }
+  }
+
+  toggleMode() {
+    this.scatter = !this.scatter;
   }
 }
