@@ -67,11 +67,11 @@ class Game {
   loseLife() {
     this.lives -= 1;
     if (this.lives < 0) {
-      this.lose();
+      this.loseGame();
     }
   }
 
-  lose() {
+  loseGame() {
     this.isLost = true;
 
     this.creatures.forEach(creature => {
@@ -79,7 +79,9 @@ class Game {
     });
 
     setTimeout(() => {
-      alert('You lose!');
+      if (!this.isTest) {
+        alert('You lose!');
+      }
       this.newGame();
     }, 250);
   }
