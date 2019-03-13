@@ -98,4 +98,8 @@ class Ghost extends Creature {
   revertEyes() {
     this.eyes = false;
   }
+
+  get inDoorway() {
+    return this.game.tile(this.position).doorway;
+  }
 }
