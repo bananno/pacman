@@ -9,7 +9,15 @@ class Creature {
   }
 
   start() {
-    this.movementInterval = setInterval(this.move.bind(this), this.speed);
+    this.movementInterval = setInterval(this.move.bind(this), this._speed);
+  }
+
+  set speed(newSpeed) {
+    this._speed = newSpeed;
+    if (this.movementInterval) {
+      clearInterval(this.movementInterval);
+      this.start();
+    }
   }
 
   set position([r, c]) {
@@ -90,6 +98,7 @@ class Ghost extends Creature {
     this.direction = oppositeDirection[this.direction];
     clearInterval(this.blueInterval);
     this.blueInterval = setInterval(this.revertBlue.bind(this), GHOST_BLUE_TIME);
+    this.speed = 500;
   }
 
   revertBlue() {
@@ -97,6 +106,7 @@ class Ghost extends Creature {
     this.$.addClass('ghost-dangerous');
     this.$.removeClass('ghost-blue');
     clearInterval(this.blueInterval);
+    this.speed = 250;
   }
 
   catchBlue() {
