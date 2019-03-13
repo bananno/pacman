@@ -4,13 +4,21 @@ Creature.prototype.move = function() {
     return;
   }
 
-  if (this.ghost) {
-    this.chooseDirection();
-  } else if (!this.canMove()) {
-    return;
+  let newRow, newCol;
+
+  if (this.ghost && this.eyes && this.path.length) {
+    [newRow, newCol] = this.path[0];
+    this.path = this.path.slice(1);
+  } else {
+    if (this.ghost) {
+      this.chooseDirection();
+    } else if (!this.canMove()) {
+      return;
+    }
+
+    [newRow, newCol] = this.getNextPosition();
   }
 
-  const [newRow, newCol] = this.getNextPosition();
   const newTile = this.game.tile(newRow, newCol);
 
   if (this.pacman) {
