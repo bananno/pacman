@@ -120,3 +120,44 @@ addTest(test => {
     test.game.ghosts[0].direction
   );
 });
+
+// RETURN TO HOUSE IN EYES MODE
+
+addTest(test => {
+  test.map = [
+    '||||||||',
+    '|gGgd  |',
+    '||||||||',
+  ];
+
+  test.game.ghosts[0].position = [1, 6];
+
+  test.check(
+    'ghost origin is the original position before any movement',
+    [1, 2],
+    test.game.ghosts[0].origin
+  );
+
+  test.game.ghosts[0].mode = 'blue';
+  test.game.ghosts[0].catchBlue();
+
+  test.check(
+    'ghost creates path to origin when caught',
+    [[1, 6], [1, 5], [1, 4], [1, 3], [1, 2]],
+    test.game.ghosts[0].path
+  );
+
+  test.game.ghosts[0].move();
+
+  test.check(
+    'ghost in eyes mode moves to next location in path array',
+    [1, 6],
+    test.game.ghosts[0].position
+  );
+
+  test.check(
+    'next position is removed from ghost path array when ghost moves into position',
+    [[1, 5], [1, 4], [1, 3], [1, 2]],
+    test.game.ghosts[0].path
+  );
+});
