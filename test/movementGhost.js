@@ -233,7 +233,7 @@ addTest(test => {
 
   test.check(
     'ghost creates path to origin when caught',
-    [[1, 6], [1, 5], [1, 4], [1, 3], [1, 2]],
+    [[1, 5], [1, 4], [1, 3], [1, 2]],
     test.game.ghosts[0].path
   );
 
@@ -241,17 +241,16 @@ addTest(test => {
 
   test.check(
     'ghost in eyes mode moves to next location in path array',
-    [1, 6],
+    [1, 5],
     test.game.ghosts[0].position
   );
 
   test.check(
     'next position is removed from ghost path array when ghost moves into position',
-    [[1, 5], [1, 4], [1, 3], [1, 2]],
+    [[1, 4], [1, 3], [1, 2]],
     test.game.ghosts[0].path
   );
 
-  test.game.ghosts[0].move();
   test.game.ghosts[0].move();
   test.game.ghosts[0].move();
 
