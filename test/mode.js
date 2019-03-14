@@ -133,4 +133,67 @@ addTest(test => {
     'scatter',
     test.game.ghosts[0].mode
   );
+
+  // GAME MODE RESTARTED WHEN A LIFE IS LOST
+
+  test.game.scatter = true;
+  test.game.lives = 3;
+  test.game.loseLife();
+  test.check(
+    'game mode resets to \'scatter\' when a life is lost',
+    'scatter',
+    test.game.mode
+  );
+
+  test.game.scatter = true;
+  test.game.lives = 3;
+  test.game.modeCount = 6;
+  test.game.loseLife();
+  test.check(
+    'game mode counter resets to 0 when a life is lost',
+    0,
+    test.game.modeCount
+  );
+
+  // GHOST MODE IS REVERTED WHEN A LIFE IS LOST
+
+  test.game.scatter = true;
+  test.game.lives = 3;
+  test.game.ghosts[0].mode = 'scatter';
+  test.game.loseLife();
+  test.check(
+    'ghost in \'scatter\' mode stays in scatter mode when a life is lost',
+    'scatter',
+    test.game.ghosts[0].mode
+  );
+
+  test.game.scatter = true;
+  test.game.lives = 3;
+  test.game.ghosts[0].mode = 'chase';
+  test.game.loseLife();
+  test.check(
+    'ghost in \'chase\' mode resets when a life is lost',
+    'scatter',
+    test.game.ghosts[1].mode
+  );
+
+  test.game.scatter = true;
+  test.game.lives = 3;
+  test.game.ghosts[0].mode = 'blue';
+  test.game.loseLife();
+  test.check(
+    'ghost in \'blue\' mode resets when a life is lost',
+    'scatter',
+    test.game.ghosts[2].mode
+  );
+
+  test.game.scatter = true;
+  test.game.lives = 3;
+  test.game.ghosts[0].mode = 'eyes';
+  test.game.loseLife();
+  test.check(
+    'ghost in \'eyes\' mode resets when a life is lost',
+    'scatter',
+    test.game.ghosts[3].mode
+  );
 });
