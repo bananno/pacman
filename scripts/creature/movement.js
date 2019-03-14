@@ -27,7 +27,11 @@ Creature.prototype.move = function() {
 Creature.prototype.chooseNextPosition = function() {
   if (this.ghost) {
     if (this.path.length) {
-      return this.path.shift();
+      const newPosition = this.path.shift();
+      if (this.position) {
+        this.direction = getDirectionName(this.position, newPosition);
+      }
+      return newPosition;
     }
 
     const directionOptions = this.getDirectionOptions();

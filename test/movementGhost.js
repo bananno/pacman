@@ -147,6 +147,13 @@ addTest(test => {
   );
 
   test.game.ghosts[0].move();
+
+  test.check(
+    'ghost position automatically updates so that eyes will face direction of path',
+    'right',
+    test.game.ghosts[0].direction
+  );
+
   test.game.ghosts[0].move();
 
   test.check(
