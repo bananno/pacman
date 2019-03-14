@@ -18,6 +18,10 @@ class Ghost extends Creature {
   revertMode(force) {
     if (force || (this.mode != 'blue' && this.mode != 'eyes')) {
       this.mode = this.game.mode;
+
+      if (this.mode == 'scatter') {
+        this.startScatter();
+      }
     }
   }
 
@@ -37,6 +41,13 @@ class Ghost extends Creature {
 
   get mode() {
     return this._mode;
+  }
+
+  startScatter() {
+    const target = this.corner;
+    if (this.position.length && target) {
+      this.path = this.game.findPath(this.position, target).slice(1);
+    }
   }
 
   turnBlue() {
