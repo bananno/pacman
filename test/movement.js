@@ -122,7 +122,7 @@ addTest(test => {
   test.game.ghosts[0].direction = 'up';
   test.game.ghosts[0].move();
   test.check(
-    'ghost moves up when direction is up and tile is passable',
+    'ghost always moves up at non-intersection when direction is up and tile is passable',
     [0, 1],
     test.game.ghosts[0].position
   );
@@ -131,7 +131,7 @@ addTest(test => {
   test.game.ghosts[0].direction = 'down';
   test.game.ghosts[0].move();
   test.check(
-    'ghost moves down when direction is down and tile is passable',
+    'ghost always moves down at non-intersection when direction is down and tile is passable',
     [2, 1],
     test.game.ghosts[0].position
   );
@@ -148,7 +148,7 @@ addTest(test => {
   test.game.ghosts[0].direction = 'left';
   test.game.ghosts[0].move();
   test.check(
-    'ghost moves left when direction is left and tile is passable',
+    'ghost always moves left at non-intersection when direction is left and tile is passable',
     [1, 0],
     test.game.ghosts[0].position
   );
@@ -157,7 +157,7 @@ addTest(test => {
   test.game.ghosts[0].direction = 'right';
   test.game.ghosts[0].move();
   test.check(
-    'ghost moves right when direction is right and tile is passable',
+    'ghost always moves right at non-intersection when direction is right and tile is passable',
     [1, 2],
     test.game.ghosts[0].position
   );
