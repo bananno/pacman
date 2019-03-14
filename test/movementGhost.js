@@ -206,8 +206,49 @@ addTest(test => {
 
   test.check(
     'ghost creates a path to its designated corner when entering scatter mode',
-    [[1, 2], [1, 3], [1, 4], [1, 5]],
+    [[1, 3], [1, 4], [1, 5]],
     test.game.ghosts[0].path
+  );
+
+  test.game.ghosts[0].move();
+
+  test.check(
+    'ghost in scatter mode moves to next position in path array',
+    [1, 3],
+    test.game.ghosts[0].position
+  );
+
+  test.check(
+    'next position is removed from ghost path array when ghost moves into position',
+    [[1, 4], [1, 5]],
+    test.game.ghosts[0].path
+  );
+
+  test.game.ghosts[0].move();
+  test.game.ghosts[0].move();
+
+  test.check(
+    'ghost in scatter mode eventually reaches final position in path array',
+    [1, 5],
+    test.game.ghosts[0].position
+  );
+
+  test.check(
+    'path array is empty when ghost reaches final position',
+    [],
+    test.game.ghosts[0].path
+  );
+
+  test.check(
+    'final position on path is equal to the ghost\'s corresponding target corner',
+    test.game.cornerTiles[0],
+    test.game.ghosts[0].position
+  );
+
+  test.check(
+    'ghost switches to wander mode when it reaches its scatter target corner',
+    'wander',
+    test.game.ghosts[0].mode
   );
 });
 
