@@ -67,7 +67,7 @@ class Game {
   loseLife() {
     this.lives -= 1;
 
-    if (this.lives < 0) {
+    if (this.lives == 0) {
       return this.loseGame();
     }
 

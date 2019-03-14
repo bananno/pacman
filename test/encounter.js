@@ -21,15 +21,8 @@ addTest(test => {
     test.game.lives
   );
 
-  test.game.encounter(0, 0);
   test.check(
-    'a life is lost when pacman encounters ghost and there is 1 life remaining',
-    0,
-    test.game.lives
-  );
-
-  test.check(
-    'game is not lost when there are 0 lives remaining',
+    'game is not lost while there is 1 life remaining',
     false,
     test.game.isLost
   );
