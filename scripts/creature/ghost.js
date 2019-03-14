@@ -7,6 +7,7 @@ class Ghost extends Creature {
     this.ghost = true;
     this.number = number;
     this.$.addClass('ghost');
+    this.$.addClass('ghost-normal');
     this.$.addClass('ghost' + (number + 1));
     this.path = [];
   }
@@ -29,10 +30,13 @@ class Ghost extends Creature {
     this._mode = newMode;
 
     if (newMode == 'blue') {
+      this.$.removeClass('ghost-normal');
       this.$.addClass('ghost-blue');
     } else if (newMode == 'eyes') {
+      this.$.removeClass('ghost-normal');
       this.$.addClass('ghost-eyes');
     } else {
+      this.$.addClass('ghost-normal');
       this.$.removeClass('ghost-blue');
       this.$.removeClass('ghost-white');
       this.$.removeClass('ghost-eyes');

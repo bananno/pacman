@@ -29,55 +29,55 @@
   transform: rotate(-90deg);
 }
 
-.creature.ghost1 {
+.creature.ghost-normal.ghost1 {
   background-image: url(../images/ghost1-right.gif);
 }
 
-.creature.ghost2 {
+.creature.ghost-normal.ghost2 {
   background-image: url(../images/ghost2-right.gif);
 }
 
-.creature.ghost3 {
+.creature.ghost-normal.ghost3 {
   background-image: url(../images/ghost3-right.gif);
 }
 
-.creature.ghost4 {
+.creature.ghost-normal.ghost4 {
   background-image: url(../images/ghost4-right.gif);
 }
 
-.creature.ghost1.direction-up {
+.creature.ghost-normal.ghost1.direction-up {
   background-image: url(../images/ghost1-up.gif);
 }
 
-.creature.ghost2.direction-up {
+.creature.ghost-normal.ghost2.direction-up {
   background-image: url(../images/ghost2-up.gif);
 }
 
-.creature.ghost3.direction-up {
+.creature.ghost-normal.ghost3.direction-up {
   background-image: url(../images/ghost3-up.gif);
 }
 
-.creature.ghost4.direction-up {
+.creature.ghost-normal.ghost4.direction-up {
   background-image: url(../images/ghost4-up.gif);
 }
 
-.creature.ghost1.direction-down {
+.creature.ghost-normal.ghost1.direction-down {
   background-image: url(../images/ghost1-down.gif);
 }
 
-.creature.ghost2.direction-down {
+.creature.ghost-normal.ghost2.direction-down {
   background-image: url(../images/ghost2-down.gif);
 }
 
-.creature.ghost3.direction-down {
+.creature.ghost-normal.ghost3.direction-down {
   background-image: url(../images/ghost3-down.gif);
 }
 
-.creature.ghost4.direction-down {
+.creature.ghost-normal.ghost4.direction-down {
   background-image: url(../images/ghost4-down.gif);
 }
 
-.ghost.direction-left {
+.creature.ghost-normal.direction-left {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }
