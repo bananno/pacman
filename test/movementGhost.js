@@ -165,24 +165,24 @@ addTest(test => {
   );
 
   test.check(
-    'ghost corner is null if there are not enough corners for all ghosts',
-    null,
+    'ghost corner is undefined if there are not enough corners for all ghosts',
+    undefined,
     test.game.ghosts[1].corner
   );
-});
-
-addTest(test => {
-  test.map = [
-    ' ',
-  ];
 
   test.game.scatter = false;
   test.game.toggleMode();
 
   test.check(
+    'ghost enters \'scatter\' mode if it has a corresponding corner',
+    'scatter',
+    test.game.ghosts[0].mode
+  );
+
+  test.check(
     'ghost enters \'wander\' mode instead of scatter when there is no corner available',
     'wander',
-    test.game.ghosts[0].mode
+    test.game.ghosts[1].mode
   );
 });
 
