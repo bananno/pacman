@@ -121,6 +121,33 @@ addTest(test => {
   );
 });
 
+// TRAVEL TO CORNER IN SCATTER MODE
+
+addTest(test => {
+  test.map = [
+    '||||||||',
+    '|    t |',
+    '||||||||',
+  ];
+
+  test.game.ghosts[0].position = [1, 2];
+
+  test.game.scatter = false;
+  test.game.toggleMode();
+
+  test.check(
+    'ghost enters scatter mode when game mode is toggled',
+    'scatter',
+    test.game.ghosts[0].mode
+  );
+
+  test.check(
+    'ghost creates a path to its designated corner when entering scatter mode',
+    [[1, 2], [1, 3], [1, 4], [1, 5]],
+    test.game.ghosts[0].path
+  );
+});
+
 // RETURN TO HOUSE IN EYES MODE
 
 addTest(test => {
