@@ -5,6 +5,9 @@ class Pinky extends Ghost {
     this.name = 'Pinky';
     this.color = 'pink';
   }
+
+  chooseTarget() {
+  }
 }
 
 class Blinky extends Ghost {
@@ -12,6 +15,9 @@ class Blinky extends Ghost {
     super(game, 1);
     this.name = 'Blinky';
     this.color = 'red';
+  }
+
+  chooseTarget() {
   }
 }
 
@@ -21,6 +27,9 @@ class Clyde extends Ghost {
     this.name = 'Clyde';
     this.color = 'orange';
   }
+
+  chooseTarget() {
+  }
 }
 
 class Inky extends Ghost {
@@ -28,5 +37,8 @@ class Inky extends Ghost {
     super(game, 3);
     this.name = 'Inky';
     this.color = 'blue';
+  }
+
+  chooseTarget() {
   }
 }
