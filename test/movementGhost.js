@@ -130,6 +130,8 @@ addTest(test => {
     '||||||||',
   ];
 
+  test.game.scatter = true;
+
   test.game.ghosts[0].position = [1, 6];
 
   test.check(
@@ -159,5 +161,41 @@ addTest(test => {
     'next position is removed from ghost path array when ghost moves into position',
     [[1, 5], [1, 4], [1, 3], [1, 2]],
     test.game.ghosts[0].path
+  );
+
+  test.game.ghosts[0].move();
+  test.game.ghosts[0].move();
+  test.game.ghosts[0].move();
+
+  test.check(
+    'next position is removed from ghost path array when ghost moves into position',
+    [[1, 2]],
+    test.game.ghosts[0].path
+  );
+
+  test.check(
+    'ghost stays in \'eyes\' mode as long as there are positions remaining in the list',
+    'eyes',
+    test.game.ghosts[0].mode
+  );
+
+  test.game.ghosts[0].move();
+
+  test.check(
+    'ghost path array is empty when ghost reaches final position',
+    [],
+    test.game.ghosts[0].path
+  );
+
+  test.check(
+    'ghost final position is its origin',
+    test.game.ghosts[0].origin,
+    test.game.ghosts[0].position
+  );
+
+  test.check(
+    'ghost reverts to current game mode as soon as the last position is occupied',
+    'scatter',
+    test.game.ghosts[0].mode
   );
 });
