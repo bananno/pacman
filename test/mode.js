@@ -59,7 +59,6 @@ addTest(test => {
   );
 
   test.game.scatter = true;
-  test.game.ghosts[0].blue = true;
   test.game.ghosts[0].mode = 'blue';
   test.game.toggleMode();
   test.check(
@@ -67,10 +66,8 @@ addTest(test => {
     'blue',
     test.game.ghosts[0].mode
   );
-  test.game.ghosts[0].blue = false;
 
   test.game.scatter = true;
-  test.game.ghosts[0].eyes = true;
   test.game.ghosts[0].mode = 'eyes';
   test.game.toggleMode();
   test.check(
@@ -78,7 +75,6 @@ addTest(test => {
     'eyes',
     test.game.ghosts[0].mode
   );
-  test.game.ghosts[0].eyes = false;
 
   // GHOST REVERT MODE METHOD
 
@@ -102,47 +98,39 @@ addTest(test => {
 
   test.game.scatter = true;
   test.game.ghosts[0].mode = 'blue';
-  test.game.ghosts[0].blue = true;
   test.game.ghosts[0].revertMode();
   test.check(
     'ghosts in \'blue\' mode cannot be reverted to match game mode',
     'blue',
     test.game.ghosts[0].mode
   );
-  test.game.ghosts[0].blue = false;
 
   test.game.scatter = true;
   test.game.ghosts[0].mode = 'eyes';
-  test.game.ghosts[0].eyes = true;
   test.game.ghosts[0].revertMode();
   test.check(
     'ghosts in \'eyes\' mode cannot be reverted to match game mode',
     'eyes',
     test.game.ghosts[0].mode
   );
-  test.game.ghosts[0].eyes = false;
 
   // GHOST REVERT MODE METHOD WITH FORCE
 
   test.game.scatter = true;
   test.game.ghosts[0].mode = 'blue';
-  test.game.ghosts[0].blue = true;
   test.game.ghosts[0].revertMode(true);
   test.check(
     'ghosts in \'blue\' mode can be forced to revert to match game mode',
     'scatter',
     test.game.ghosts[0].mode
   );
-  test.game.ghosts[0].blue = false;
 
   test.game.scatter = true;
   test.game.ghosts[0].mode = 'eyes';
-  test.game.ghosts[0].eyes = true;
   test.game.ghosts[0].revertMode(true);
   test.check(
     'ghosts in \'eyes\' mode can be forced to revert to match game mode',
     'scatter',
     test.game.ghosts[0].mode
   );
-  test.game.ghosts[0].eyes = false;
 });

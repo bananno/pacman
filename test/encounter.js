@@ -43,9 +43,7 @@ addTest(test => {
   test.game.pacman.position = [0, 0];
   test.game.ghosts[0].position = [0, 0];
   test.game.ghosts[0].mode = 'blue';
-  test.game.ghosts[0].blue = true;
   test.game.lives = 3;
-
   test.game.encounter(0, 0);
 
   test.check(
@@ -63,10 +61,7 @@ addTest(test => {
   test.game.pacman.position = [0, 0];
   test.game.ghosts[0].position = [0, 0];
   test.game.ghosts[0].mode = 'eyes';
-  test.game.ghosts[0].blue = false;
-  test.game.ghosts[0].eyes = true;
   test.game.lives = 3;
-
   test.game.encounter(0, 0);
 
   test.check(
