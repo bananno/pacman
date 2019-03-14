@@ -75,6 +75,10 @@ class Game {
 
     this.clearAllIntervals();
 
+    this.ghosts.forEach(ghost => {
+      ghost.revertMode(true);
+    });
+
     setTimeout(() => {
       this.creatures.forEach(creature => {
         creature.reset();

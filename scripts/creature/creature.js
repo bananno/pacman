@@ -42,8 +42,6 @@ class Creature {
     if (this.pacman) {
       this.direction = 'right';
     } else {
-      this.blue = false;
-      this.eyes = false;
       this.path = [];
     }
   }
