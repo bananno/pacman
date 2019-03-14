@@ -125,6 +125,69 @@ addTest(test => {
 
 addTest(test => {
   test.map = [
+    'tttt',
+  ];
+
+  test.check(
+    'first ghost corresponds with first corner',
+    [0, 1],
+    test.game.ghosts[0].corner
+  );
+
+  test.check(
+    'second ghost corresponds with second corner',
+    [0, 2],
+    test.game.ghosts[1].corner
+  );
+
+  test.check(
+    'third ghost corresponds with third corner',
+    [0, 3],
+    test.game.ghosts[2].corner
+  );
+
+  test.check(
+    'fourth ghost corresponds with fourth corner',
+    [0, 4],
+    test.game.ghosts[3].corner
+  );
+});
+
+addTest(test => {
+  test.map = [
+    't',
+  ];
+
+  test.check(
+    'first ghost corresponds with first corner',
+    [0, 1],
+    test.game.ghosts[0].corner
+  );
+
+  test.check(
+    'ghost corner is null if there are not enough corners for all ghosts',
+    null,
+    test.game.ghosts[1].corner
+  );
+});
+
+addTest(test => {
+  test.map = [
+    ' ',
+  ];
+
+  test.game.scatter = false;
+  test.game.toggleMode();
+
+  test.check(
+    'ghost enters \'wander\' mode instead of scatter when there is no corner available',
+    'wander',
+    test.game.ghosts[0].mode
+  );
+});
+
+addTest(test => {
+  test.map = [
     '||||||||',
     '|    t |',
     '||||||||',
