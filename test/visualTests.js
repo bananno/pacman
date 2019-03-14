@@ -14,6 +14,13 @@ function addTestButtons(game) {
 
   $('#board').append('<br>');
 
+  $('<button>').appendTo('#board').text('turn up').click(turnAll('up'));
+  $('<button>').appendTo('#board').text('turn left').click(turnAll('left'));
+  $('<button>').appendTo('#board').text('turn right').click(turnAll('right'));
+  $('<button>').appendTo('#board').text('turn down').click(turnAll('down'));
+
+  $('#board').append('<br>');
+
   $('<button>').appendTo('#board').text('path1').click(showPath([3, 6], [5, 8]));
   $('<button>').appendTo('#board').text('path2').click(showPath([5, 3], [5, 10]));
   $('<button>').appendTo('#board').text('path3').click(showPath([3, 6], [12, 6]));
@@ -51,6 +58,14 @@ function addTestButtons(game) {
 
       coords.forEach(([row, col]) => {
         this.tile(row, col).$.addClass('show-path');
+      });
+    }).bind(game);
+  }
+
+  function turnAll(newDirection) {
+    return (function() {
+      this.creatures.forEach(creature => {
+        creature.direction = newDirection;
       });
     }).bind(game);
   }
