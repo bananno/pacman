@@ -277,12 +277,6 @@ addTest(test => {
     [],
     test.game.ghosts[0].path
   );
-
-  test.check(
-    'final position on path is equal to the ghost\'s corresponding target corner',
-    test.game.cornerTiles[0],
-    test.game.ghosts[0].position
-  );
 });
 
 // RETURN TO HOUSE IN EYES MODE
