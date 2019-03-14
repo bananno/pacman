@@ -20,7 +20,7 @@ class Ghost extends Creature {
       this.mode = this.game.mode;
 
       if (this.mode == 'scatter') {
-        this.startScatter();
+        this.pathTo(this.corner);
       }
     }
   }
@@ -41,15 +41,6 @@ class Ghost extends Creature {
 
   get mode() {
     return this._mode;
-  }
-
-  startScatter() {
-    const target = this.corner;
-    if (this.position && target) {
-      this.path = this.game.findPath(this.position, target).slice(1);
-    } else {
-      this.path = [];
-    }
   }
 
   turnBlue() {
@@ -90,7 +81,7 @@ class Ghost extends Creature {
   catchBlue() {
     this.mode = 'eyes';
     clearInterval(this.blueInterval);
-    this.path = this.game.findPath(this.position, this.origin).slice(1);
+    this.pathTo(this.origin);
     this.speed = 75;
   }
 
@@ -105,5 +96,13 @@ class Ghost extends Creature {
       return [tile.row, tile.col];
     }
     return null;
+  }
+
+  pathTo(target) {
+    if (this.position && target) {
+      this.path = this.game.findPath(this.position, target).slice(1);
+    } else {
+      this.path = [];
+    }
   }
 }
