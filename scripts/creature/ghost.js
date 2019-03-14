@@ -16,7 +16,7 @@ class Ghost extends Creature {
   }
 
   revertMode(force) {
-    if (force || this.mode == 'chase' || this.mode == 'scatter') {
+    if (force || (this.mode != 'blue' && this.mode != 'eyes')) {
       this.mode = this.game.mode;
     }
   }
