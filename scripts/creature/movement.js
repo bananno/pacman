@@ -1,6 +1,6 @@
 
 Creature.prototype.move = function() {
-  if (this.position.length == 0) {
+  if (this.position == null) {
     return;
   }
 

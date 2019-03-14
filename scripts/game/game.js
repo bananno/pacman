@@ -135,14 +135,16 @@ class Game {
   }
 
   encounter(row, col) {
-    if (this.pacman.position[0] != row || this.pacman.position[1] != col) {
+    if (this.pacman.position == null || this.pacman.position[0] != row
+        || this.pacman.position[1] != col) {
       return;
     }
 
     for (let i = 0; i < this.ghosts.length; i++) {
       const ghost = this.ghosts[i];
 
-      if (ghost.position[0] != row || ghost.position[1] != col || ghost.mode == 'eyes') {
+      if (ghost.position == null || ghost.position[0] != row || ghost.position[1] != col
+          || ghost.mode == 'eyes') {
         continue;
       }
 
