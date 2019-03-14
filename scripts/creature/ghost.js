@@ -77,7 +77,7 @@ class Ghost extends Creature {
   catchBlue() {
     this.mode = 'eyes';
     clearInterval(this.blueInterval);
-    this.path = this.game.findPath(this.position, this.origin);
+    this.path = this.game.findPath(this.position, this.origin).slice(1);
     this.speed = 75;
   }
 
