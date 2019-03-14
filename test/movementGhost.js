@@ -184,6 +184,15 @@ addTest(test => {
     'wander',
     test.game.ghosts[1].mode
   );
+
+  test.game.ghosts[0].position = [0, 0];
+  test.game.scatter = false;
+  test.game.toggleMode();
+  test.check(
+    'ghost immediately enters wander mode if it already occupies its corresponding corner',
+    'wander',
+    test.game.ghosts[0].mode
+  );
 });
 
 addTest(test => {

@@ -45,7 +45,8 @@ class Ghost extends Creature {
 
   startScatter() {
     const target = this.corner;
-    if (this.position && target) {
+    if (this.position && target
+        && (this.position[0] != target[0] || this.position[1] != target[1])) {
       this.path = this.game.findPath(this.position, target).slice(1);
     } else {
       this.mode = 'wander';
