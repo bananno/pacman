@@ -136,11 +136,11 @@ class Game {
     for (let i = 0; i < this.ghosts.length; i++) {
       const ghost = this.ghosts[i];
 
-      if (ghost.position[0] != row || ghost.position[1] != col || ghost.eyes) {
+      if (ghost.position[0] != row || ghost.position[1] != col || ghost.mode == 'eyes') {
         continue;
       }
 
-      if (ghost.blue) {
+      if (ghost.mode == 'blue') {
         ghost.catchBlue();
         continue;
       }
