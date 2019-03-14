@@ -174,7 +174,7 @@ addTest(test => {
   test.check(
     'ghost in \'chase\' mode resets when a life is lost',
     'scatter',
-    test.game.ghosts[1].mode
+    test.game.ghosts[0].mode
   );
 
   test.game.scatter = true;
@@ -184,7 +184,7 @@ addTest(test => {
   test.check(
     'ghost in \'blue\' mode resets when a life is lost',
     'scatter',
-    test.game.ghosts[2].mode
+    test.game.ghosts[0].mode
   );
 
   test.game.scatter = true;
@@ -194,6 +194,6 @@ addTest(test => {
   test.check(
     'ghost in \'eyes\' mode resets when a life is lost',
     'scatter',
-    test.game.ghosts[3].mode
+    test.game.ghosts[0].mode
   );
 });
