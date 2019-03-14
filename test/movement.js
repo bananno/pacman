@@ -1,4 +1,6 @@
 
+// MOVEMENT WITHOUT INITIAL POSITION
+
 addTest(test => {
   test.map = [
     ' ',
@@ -20,6 +22,8 @@ addTest(test => {
     test.game.ghosts[0].position
   );
 });
+
+// PACMAN MOVEMENT OR NO MOVEMENT
 
 addTest(test => {
   test.map = [
@@ -105,11 +109,13 @@ addTest(test => {
   );
 });
 
+// GHOST MOVEMENT
+
 addTest(test => {
   test.map = [
-    '   ',
-    ' G ',
-    '   ',
+    '| |',
+    '|G|',
+    '| |',
   ];
 
   test.game.ghosts[0].position = [1, 1];
@@ -120,6 +126,23 @@ addTest(test => {
     [0, 1],
     test.game.ghosts[0].position
   );
+
+  test.game.ghosts[0].position = [1, 1];
+  test.game.ghosts[0].direction = 'down';
+  test.game.ghosts[0].move();
+  test.check(
+    'ghost moves down when direction is down and tile is passable',
+    [2, 1],
+    test.game.ghosts[0].position
+  );
+});
+
+addTest(test => {
+  test.map = [
+    '|||',
+    ' G ',
+    '|||',
+  ];
 
   test.game.ghosts[0].position = [1, 1];
   test.game.ghosts[0].direction = 'left';
@@ -136,15 +159,6 @@ addTest(test => {
   test.check(
     'ghost moves right when direction is right and tile is passable',
     [1, 2],
-    test.game.ghosts[0].position
-  );
-
-  test.game.ghosts[0].position = [1, 1];
-  test.game.ghosts[0].direction = 'down';
-  test.game.ghosts[0].move();
-  test.check(
-    'ghost moves down when direction is down and tile is passable',
-    [2, 1],
     test.game.ghosts[0].position
   );
 });
