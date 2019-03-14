@@ -29,7 +29,9 @@ Creature.prototype.chooseNextPosition = function() {
     if (this.mode == 'eyes') {
       return this.path.shift();
     }
-    this.chooseDirection();
+
+    const directionOptions = this.getDirectionOptions();
+    this.direction = chooseRandom(directionOptions);
   }
 
   return this.game.getNextPosition(this.direction, this.position);
@@ -41,23 +43,21 @@ Creature.prototype.canMove = function(tryDirection) {
   return this.game.isTilePassable(newRow, newCol, this);
 };
 
-Creature.prototype.getDirectionOptions = function(removeDirection) {
+Creature.prototype.getPassableDirections = function() {
   return ['up', 'left', 'right', 'down'].filter(direction => {
-    return direction != removeDirection && this.canMove(direction);
+    return this.canMove(direction);
   });
 };
 
-Ghost.prototype.chooseDirection = function() {
-  if (!this.canMove()) {
-    const directionOptions = this.getDirectionOptions();
-    this.direction = chooseRandom(directionOptions);
-    return;
+Ghost.prototype.getDirectionOptions = function() {
+  let directionOptions = this.getPassableDirections();
+
+  if (this.canMove()) {
+    const directionToIgnore = oppositeDirection[this.direction];
+    directionOptions = directionOptions.filter(direction => {
+      return direction != directionToIgnore;
+    });
   }
 
-  const directionToIgnore = oppositeDirection[this.direction];
-  const directionOptions = this.getDirectionOptions(directionToIgnore);
-
-  if (directionOptions.length > 1) {
-    this.direction = chooseRandom(directionOptions);
-  }
+  return directionOptions;
 };
