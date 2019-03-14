@@ -54,4 +54,10 @@ addTest(test => {
     null,
     test.game.pacman.position
   );
+
+  test.check(
+    'ghost path is an empty array, not null, if no mode or path are set',
+    Array,
+    test.game.ghosts[0].path.constructor
+  );
 });
