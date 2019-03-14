@@ -61,3 +61,59 @@ addTest(test => {
     test.game.ghosts[0].path.constructor
   );
 });
+
+// DIRECTION NAME HELPER
+
+addTest(test => {
+  test.map = [
+    ' '
+  ];
+
+  test.check(
+    'direction name returns up',
+    'up',
+    getDirectionName([5, 5], [4, 5])
+  );
+
+  test.check(
+    'direction name returns left',
+    'left',
+    getDirectionName([5, 5], [5, 4])
+  );
+
+  test.check(
+    'direction name returns right',
+    'right',
+    getDirectionName([5, 5], [5, 6])
+  );
+
+  test.check(
+    'direction name returns down',
+    'down',
+    getDirectionName([5, 5], [6, 5])
+  );
+
+  test.check(
+    'direction name returns up when wrapping from top to bottom',
+    'up',
+    getDirectionName([0, 5], [10, 5])
+  );
+
+  test.check(
+    'direction name returns left when wrapping from left to right',
+    'left',
+    getDirectionName([5, 0], [5, 10])
+  );
+
+  test.check(
+    'direction name returns right when wrapping from right to left',
+    'right',
+    getDirectionName([5, 10], [5, 0])
+  );
+
+  test.check(
+    'direction name returns down when wrapping from bottom to top',
+    'down',
+    getDirectionName([10, 5], [0, 5])
+  );
+});
