@@ -30,20 +30,19 @@
 }
 
 .creature.ghost1 {
-  background-image: url(../images/ghost1.gif);
+  background-image: url(../images/ghost1-right.gif);
 }
 
 .creature.ghost2 {
-  background-image: url(../images/ghost2.gif);
-  background-size: 16px;
+  background-image: url(../images/ghost2-right.gif);
 }
 
 .creature.ghost3 {
-  background-image: url(../images/ghost3.gif);
+  background-image: url(../images/ghost3-right.gif);
 }
 
 .creature.ghost4 {
-  background-image: url(../images/ghost4.gif);
+  background-image: url(../images/ghost4-right.gif);
 }
 
 .ghost.direction-left {
