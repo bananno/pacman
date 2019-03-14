@@ -85,4 +85,12 @@ class Ghost extends Creature {
     this.revertMode(true);
     this.speed = 250;
   }
+
+  get corner() {
+    const tile = this.game.cornerTiles[this.number];
+    if (tile) {
+      return [tile.row, tile.col];
+    }
+    return null;
+  }
 }

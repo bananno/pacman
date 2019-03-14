@@ -125,7 +125,7 @@ addTest(test => {
 
 addTest(test => {
   test.map = [
-    'tttt',
+    ' t t t  t ',
   ];
 
   test.check(
@@ -136,19 +136,19 @@ addTest(test => {
 
   test.check(
     'second ghost corresponds with second corner',
-    [0, 2],
+    [0, 3],
     test.game.ghosts[1].corner
   );
 
   test.check(
     'third ghost corresponds with third corner',
-    [0, 3],
+    [0, 5],
     test.game.ghosts[2].corner
   );
 
   test.check(
     'fourth ghost corresponds with fourth corner',
-    [0, 4],
+    [0, 8],
     test.game.ghosts[3].corner
   );
 });
