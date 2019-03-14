@@ -160,7 +160,7 @@ addTest(test => {
 
   test.check(
     'first ghost corresponds with first corner',
-    [0, 1],
+    [0, 0],
     test.game.ghosts[0].corner
   );
 
