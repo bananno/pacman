@@ -121,7 +121,7 @@ addTest(test => {
   );
 });
 
-// TRAVEL TO CORNER IN SCATTER MODE
+// CORRESPONDING CORNERS
 
 addTest(test => {
   test.map = [
@@ -153,6 +153,8 @@ addTest(test => {
   );
 });
 
+// CORNER TILE NOT AVAILABLE
+
 addTest(test => {
   test.map = [
     't',
@@ -172,28 +174,31 @@ addTest(test => {
 
   test.game.scatter = false;
   test.game.toggleMode();
-
   test.check(
-    'ghost enters \'scatter\' mode if it has a corresponding corner',
-    'scatter',
-    test.game.ghosts[0].mode
-  );
-
-  test.check(
-    'ghost enters \'wander\' mode instead of scatter when there is no corner available',
-    'wander',
-    test.game.ghosts[1].mode
+    'scatter path is empty if ghost has no position',
+    [],
+    test.game.ghosts[0].path
   );
 
   test.game.ghosts[0].position = [0, 0];
   test.game.scatter = false;
   test.game.toggleMode();
   test.check(
-    'ghost immediately enters wander mode if it already occupies its corresponding corner',
-    'wander',
-    test.game.ghosts[0].mode
+    'scatter path is empty if ghost is already in its corresponding corner tile',
+    [],
+    test.game.ghosts[0].path
+  );
+
+  test.game.scatter = false;
+  test.game.toggleMode();
+  test.check(
+    'scatter path is empty if ghost has no corresponding corner tile',
+    [],
+    test.game.ghosts[1].path
   );
 });
+
+// TRAVEL TO CORNER IN SCATTER MODE
 
 addTest(test => {
   test.map = [
@@ -252,12 +257,6 @@ addTest(test => {
     'final position on path is equal to the ghost\'s corresponding target corner',
     test.game.cornerTiles[0],
     test.game.ghosts[0].position
-  );
-
-  test.check(
-    'ghost switches to wander mode when it reaches its scatter target corner',
-    'wander',
-    test.game.ghosts[0].mode
   );
 });
 
