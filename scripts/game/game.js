@@ -71,6 +71,8 @@ class Game {
       return this.loseGame();
     }
 
+    this.modeCount = 0;
+
     this.clearAllIntervals();
 
     setTimeout(() => {
