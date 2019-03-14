@@ -49,6 +49,7 @@ class Ghost extends Creature {
 
   turnBlue() {
     this.mode = 'blue';
+    this.pathTo(null);
     this.reverse();
     clearInterval(this.blueInterval);
     this.blueInterval = setInterval(this.revertBlue.bind(this), GHOST_BLUE_TIME);
