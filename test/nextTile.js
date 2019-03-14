@@ -32,7 +32,7 @@ addTest(test => {
   );
 });
 
-// GAME - GET COORDINATES FOR NEXT TILE ON COURSE (PASSABLE OR NOT)
+// GET COORDINATES FOR NEXT TILE IN GIVEN DIRECTION (PASSABLE OR NOT)
 
 addTest(test => {
   test.map = [
@@ -76,44 +76,6 @@ addTest(test => {
     'next tile will wrap around board if necessary',
     [1, 0],
     test.game.getNextPosition('right', [1, 2])
-  );
-});
-
-// CREATURE - GET COORDINATES FOR NEXT TILE ON COURSE (PASSABLE OR NOT)
-
-addTest(test => {
-  test.map = [
-    '   ',
-    ' P ',
-    '   ',
-  ];
-
-  test.game.pacman.direction = 'up';
-  test.check(
-    'next tile when moving up',
-    [0, 1],
-    test.game.pacman.getNextPosition()
-  );
-
-  test.game.pacman.direction = 'left';
-  test.check(
-    'next tile when moving left',
-    [1, 0],
-    test.game.pacman.getNextPosition()
-  );
-
-  test.game.pacman.direction = 'right';
-  test.check(
-    'next tile when moving right',
-    [1, 2],
-    test.game.pacman.getNextPosition()
-  );
-
-  test.game.pacman.direction = 'down';
-  test.check(
-    'next tile when moving down',
-    [2, 1],
-    test.game.pacman.getNextPosition()
   );
 });
 
