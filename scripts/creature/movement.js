@@ -4,21 +4,11 @@ Creature.prototype.move = function() {
     return;
   }
 
-  let newRow, newCol;
-
-  if (this.ghost && this.eyes && this.path.length) {
-    [newRow, newCol] = this.path[0];
-    this.path = this.path.slice(1);
-  } else {
-    if (this.ghost) {
-      this.chooseDirection();
-    } else if (!this.canMove()) {
-      return;
-    }
-
-    [newRow, newCol] = this.getNextPosition();
+  if (this.pacman && !this.canMove()) {
+    return;
   }
 
+  const [newRow, newCol] = this.chooseNextPosition();
   const newTile = this.game.tile(newRow, newCol);
 
   if (this.pacman) {
@@ -29,12 +19,19 @@ Creature.prototype.move = function() {
 
   this.game.encounter(newRow, newCol);
 
-  if (this.ghost && this.eyes && this.path.length == 0) {
+  if (this.ghost && this.mode == 'eyes' && this.path.length == 0) {
     this.revertEyes();
   }
 };
 
-Creature.prototype.getNextPosition = function() {
+Creature.prototype.chooseNextPosition = function() {
+  if (this.ghost) {
+    if (this.mode == 'eyes') {
+      return this.path.slice(1);
+    }
+    this.chooseDirection();
+  }
+
   return this.game.getNextPosition(this.direction, this.position);
 };
 
