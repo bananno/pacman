@@ -43,3 +43,15 @@ addTest(test => {
     test.game.isLost
   );
 });
+
+addTest(test => {
+  test.map = [
+    ' '
+  ];
+
+  test.check(
+    'creature position is null before being set',
+    null,
+    test.game.pacman.position
+  );
+});
