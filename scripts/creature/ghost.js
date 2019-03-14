@@ -47,6 +47,8 @@ class Ghost extends Creature {
     const target = this.corner;
     if (this.position && target) {
       this.path = this.game.findPath(this.position, target).slice(1);
+    } else {
+      this.mode = 'wander';
     }
   }
 
