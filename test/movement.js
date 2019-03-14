@@ -10,7 +10,7 @@ addTest(test => {
   test.game.pacman.move();
   test.check(
     'pacman does not move when no position is assigned',
-    [],
+    null,
     test.game.pacman.position
   );
 
@@ -18,7 +18,7 @@ addTest(test => {
   test.game.ghosts[0].move();
   test.check(
     'ghost does not move when no position is assigned',
-    [],
+    null,
     test.game.ghosts[0].position
   );
 });
