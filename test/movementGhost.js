@@ -130,8 +130,6 @@ addTest(test => {
     '||||||||',
   ];
 
-  test.game.scatter = true;
-
   test.game.ghosts[0].position = [1, 6];
 
   test.check(
@@ -195,7 +193,7 @@ addTest(test => {
 
   test.check(
     'ghost reverts to current game mode as soon as the last position is occupied',
-    'scatter',
+    test.game.mode,
     test.game.ghosts[0].mode
   );
 });
