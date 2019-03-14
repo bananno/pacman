@@ -116,3 +116,39 @@ addTest(test => {
     numDirections.down > 0 && numDirections.down < 15
   );
 });
+
+addTest(test => {
+  test.map = [
+    '|||',
+    ' G ',
+    '|||',
+  ];
+
+  test.game.scatter = false;
+  test.game.ghosts[0].direction = 'right';
+  test.game.toggleMode();
+  test.check(
+    'ghost will reverse directions when game mode changes from chase to scatter',
+    'left',
+    test.game.ghosts[0].direction
+  );
+
+  test.game.scatter = true;
+  test.game.ghosts[0].direction = 'right';
+  test.game.toggleMode();
+  test.check(
+    'ghost will reverse directions when game mode changes from scatter to chase',
+    'left',
+    test.game.ghosts[0].direction
+  );
+
+  test.game.scatter = true;
+  test.game.ghosts[0].direction = 'right';
+  test.game.ghosts[0].mode = 'scatter';
+  test.game.ghosts[0].turnBlue();
+  test.check(
+    'ghost will reverse directions when ghost mode changes to blue',
+    'left',
+    test.game.ghosts[0].direction
+  );
+});
