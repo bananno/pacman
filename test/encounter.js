@@ -76,3 +76,39 @@ addTest(test => {
     test.game.lives
   );
 });
+
+addTest(test => {
+  test.map = [
+    '  ',
+  ];
+
+  test.game.lives = 3;
+  test.game.pacman.position = [0, 0];
+  test.game.pacman.direction = 'right';
+  test.game.ghosts[0].position = [0, 1];
+  test.game.pacman.move();
+
+  test.check(
+    'encountered is triggered when pacman moves into ghost tile',
+    2,
+    test.game.lives
+  );
+});
+
+addTest(test => {
+  test.map = [
+    '  ',
+  ];
+
+  test.game.lives = 3;
+  test.game.pacman.position = [0, 0];
+  test.game.ghosts[0].position = [0, 1];
+  test.game.ghosts[0].direction = 'left';
+  test.game.ghosts[0].move();
+
+  test.check(
+    'encountered is triggered when ghost moves into pacman tile',
+    2,
+    test.game.lives
+  );
+});
