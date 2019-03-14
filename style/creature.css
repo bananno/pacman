@@ -46,6 +46,11 @@
   background-image: url(../images/ghost4.gif);
 }
 
+.ghost.direction-left {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
 .creature.ghost-blue {
   background-image: url(../images/ghost-blue.gif);
 }
