@@ -327,6 +327,23 @@ addTest(test => {
   );
 });
 
+// BLUE MODE
+
+addTest(test => {
+  test.map = [
+    ' ',
+  ];
+
+  test.game.ghosts[0].path = [[0, 1], [0, 2]];
+  test.game.ghosts[0].turnBlue();
+
+  test.check(
+    'ghost path is deleted when switching to blue mode',
+    [],
+    test.game.ghosts[0].path
+  );
+});
+
 // RETURN TO HOUSE IN EYES MODE
 
 addTest(test => {
