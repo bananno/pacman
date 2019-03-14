@@ -1,28 +1,32 @@
 
-class Blinky extends Ghost {
-  constructor(game) {
-    super(game);
-    this.color = 'red';
-  }
-}
-
 class Pinky extends Ghost {
   constructor(game) {
-    super(game);
+    super(game, 0);
+    this.name = 'Pinky';
     this.color = 'pink';
   }
 }
 
-class Inky extends Ghost {
+class Blinky extends Ghost {
   constructor(game) {
-    super(game);
-    this.color = 'blue';
+    super(game, 1);
+    this.name = 'Blinky';
+    this.color = 'red';
   }
 }
 
 class Clyde extends Ghost {
   constructor(game) {
-    super(game);
+    super(game, 2);
+    this.name = 'Clyde';
     this.color = 'orange';
+  }
+}
+
+class Inky extends Ghost {
+  constructor(game) {
+    super(game, 3);
+    this.name = 'Inky';
+    this.color = 'blue';
   }
 }
