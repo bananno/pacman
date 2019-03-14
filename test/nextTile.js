@@ -32,7 +32,54 @@ addTest(test => {
   );
 });
 
-// GET COORDINATES FOR NEXT TILE ON COURSE (PASSABLE OR NOT)
+// GAME - GET COORDINATES FOR NEXT TILE ON COURSE (PASSABLE OR NOT)
+
+addTest(test => {
+  test.map = [
+    '   ',
+    '   ',
+    '   ',
+  ];
+
+  test.check(
+    'next tile when moving up',
+    [0, 1],
+    test.game.getNextPosition('up', [1, 1])
+  );
+
+  test.check(
+    'next tile when moving left',
+    [1, 0],
+    test.game.getNextPosition('left', [1, 1])
+  );
+
+  test.check(
+    'next tile when moving right',
+    [1, 2],
+    test.game.getNextPosition('right', [1, 1])
+  );
+
+  test.check(
+    'next tile when moving down',
+    [2, 1],
+    test.game.getNextPosition('down', [1, 1])
+  );
+
+  test.game.tile(0, 1).wall = true;
+  test.check(
+    'next tile does not need to be passable',
+    [0, 1],
+    test.game.getNextPosition('up', [1, 1])
+  );
+
+  test.check(
+    'next tile will wrap around board if necessary',
+    [1, 0],
+    test.game.getNextPosition('right', [1, 2])
+  );
+});
+
+// CREATURE - GET COORDINATES FOR NEXT TILE ON COURSE (PASSABLE OR NOT)
 
 addTest(test => {
   test.map = [
