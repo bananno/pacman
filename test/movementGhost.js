@@ -121,6 +121,31 @@ addTest(test => {
   );
 });
 
+// GENERAL PATH
+
+addTest(test => {
+  test.map = [
+    'G   ',
+  ];
+
+  test.game.ghosts[0].mode = 'DUMMY MODE';
+  test.game.ghosts[0].direction = 'DUMMY DIRECTION';
+  test.game.ghosts[0].path = [[0, 1], [0, 2], [0, 3]];
+  test.game.ghosts[0].move();
+
+  test.check(
+    'when path exists, ghost moves along path regardless of mode or direction',
+    [0, 1],
+    test.game.ghosts[0].position
+  );
+
+  test.check(
+    'next position is removed from path list as soon as ghost moves',
+    [[0, 2], [0, 3]],
+    test.game.ghosts[0].path
+  );
+});
+
 // CORRESPONDING CORNERS
 
 addTest(test => {

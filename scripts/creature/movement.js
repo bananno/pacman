@@ -26,7 +26,7 @@ Creature.prototype.move = function() {
 
 Creature.prototype.chooseNextPosition = function() {
   if (this.ghost) {
-    if (this.mode == 'eyes') {
+    if (this.path.length) {
       return this.path.shift();
     }
 
