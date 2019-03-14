@@ -87,8 +87,32 @@ addTest(test => {
   );
 
   test.check(
-    'ghost will never reverse directions at an intersection',
+    'ghost will never reverse directions at an intersection when current direction is passable',
     true,
     numDirections.down == 0
+  );
+});
+
+addTest(test => {
+  test.map = [
+    '||||||||',
+    '||||||||',
+    '    G   ',
+    '|||| |||',
+    '|||| |||',
+  ];
+
+  let numDirections = { up: 0, left: 0, right: 0, down: 0 };
+
+  for (let count = 0; count < 15; count++) {
+    test.game.ghosts[0].direction = 'up';
+    test.game.ghosts[0].chooseDirection();
+    numDirections[test.game.ghosts[0].direction] += 1;
+  }
+
+  test.check(
+    'ghost will sometimes reverse directions when current direction is not passable',
+    true,
+    numDirections.down > 0 && numDirections.down < 15
   );
 });
