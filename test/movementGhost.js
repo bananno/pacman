@@ -156,6 +156,37 @@ addTest(test => {
   );
 });
 
+addTest(test => {
+  test.map = [
+    '||||||',
+    '|    |',
+    '||||||',
+  ];
+
+  test.game.ghosts[0].pathTo(0, 4);
+  test.check(
+    'generated path is empty if ghost has no position',
+    [],
+    test.game.ghosts[0].path
+  );
+
+  test.game.ghosts[0].position = [1, 1];
+  test.game.ghosts[0].pathTo(null);
+  test.check(
+    'generated path is empty if target position is null',
+    [],
+    test.game.ghosts[0].path
+  );
+
+  test.game.ghosts[0].position = [1, 1];
+  test.game.ghosts[0].pathTo([1, 4]);
+  test.check(
+    'path is generated if position and target both exist',
+    [[1, 2], [1, 3], [1, 4]],
+    test.game.ghosts[0].path
+  );
+});
+
 // CORRESPONDING CORNERS
 
 addTest(test => {
