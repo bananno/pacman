@@ -102,6 +102,9 @@ class Ghost extends Creature {
     return null;
   }
 
+  chooseTarget() {
+  }
+
   pathTo(target) {
     if (this.position && target) {
       this.path = this.game.findPath(this.position, target).slice(1);

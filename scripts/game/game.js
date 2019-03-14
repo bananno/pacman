@@ -30,19 +30,19 @@ class Game {
   newGame() {
     this.pacman = new Pacman(this);
 
-    this.ghosts = [
-      new Pinky(this),
-      new Blinky(this),
-      new Clyde(this),
-      new Inky(this)
-    ];
+    this.ghosts = [];
 
     this.scatter = false;
     this.modeCount = 0;
     this.lives = 3;
     this.isLost = false;
 
+    for (let i = 0; i < 4; i++) {
+      this.ghosts.push(new Ghost(this, i));
+    }
+
     this.board = [];
+
     this.createBoard();
 
     if (!this.isTest) {
