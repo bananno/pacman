@@ -97,12 +97,12 @@ addTest(test => {
 
 addTest(test => {
   test.map = [
-    '  ',
+    '|||',
+    'PG ',
+    '|||',
   ];
 
   test.game.lives = 3;
-  test.game.pacman.position = [0, 0];
-  test.game.ghosts[0].position = [0, 1];
   test.game.ghosts[0].direction = 'left';
   test.game.ghosts[0].move();
 
