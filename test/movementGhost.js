@@ -60,36 +60,11 @@ addTest(test => {
     '|||| |||',
   ];
 
-  let numDirections = { up: 0, left: 0, right: 0, down: 0 };
-
-  for (let count = 0; count < 30; count++) {
-    test.game.ghosts[0].direction = 'up';
-    test.game.ghosts[0].chooseDirection();
-    numDirections[test.game.ghosts[0].direction] += 1;
-  }
-
+  test.game.ghosts[0].direction = 'up';
   test.check(
-    'ghost will sometimes continue straight at an intersection',
-    true,
-    numDirections.up > 0
-  );
-
-  test.check(
-    'ghost will sometimes turn left at an intersection',
-    true,
-    numDirections.left > 0
-  );
-
-  test.check(
-    'ghost will sometimes turn right at an intersection',
-    true,
-    numDirections.right > 0
-  );
-
-  test.check(
-    'ghost will never reverse directions at an intersection when current direction is passable',
-    true,
-    numDirections.down == 0
+    'ghost can turn 90 degrees but cannot reverse directions when current direction is passable',
+    ['up', 'left', 'right'],
+    test.game.ghosts[0].getDirectionOptions()
   );
 });
 
@@ -102,18 +77,11 @@ addTest(test => {
     '|||| |||',
   ];
 
-  let numDirections = { up: 0, left: 0, right: 0, down: 0 };
-
-  for (let count = 0; count < 15; count++) {
-    test.game.ghosts[0].direction = 'up';
-    test.game.ghosts[0].chooseDirection();
-    numDirections[test.game.ghosts[0].direction] += 1;
-  }
-
+  test.game.ghosts[0].direction = 'up';
   test.check(
-    'ghost will sometimes reverse directions when current direction is not passable',
-    true,
-    numDirections.down > 0 && numDirections.down < 15
+    'ghost can reverse directions when current direction is not passable',
+    ['left', 'right', 'down'],
+    test.game.ghosts[0].getDirectionOptions()
   );
 });
 
