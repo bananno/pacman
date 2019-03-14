@@ -100,4 +100,11 @@ addTest(test => {
     ['left', 'right', 'down'],
     test.game.pacman.getPassableDirections()
   );
+
+  test.game.pacman.position = [1, 2];
+  test.check(
+    'passable directions list includes wrap-around',
+    ['up', 'left', 'right', 'down'],
+    test.game.pacman.getPassableDirections()
+  );
 });
