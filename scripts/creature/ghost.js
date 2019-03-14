@@ -103,6 +103,11 @@ class Ghost extends Creature {
   }
 
   chooseTarget() {
+    if (this.number == 1) {
+      this.pathTo(this.game.pacman.position);
+    } else {
+      this.pathTo(null);
+    }
   }
 
   pathTo(target) {
