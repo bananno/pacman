@@ -28,7 +28,7 @@ class Creature {
   }
 
   get position() {
-    return this._position || [];
+    return this._position || null;
   }
 
   reset() {
