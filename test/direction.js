@@ -79,7 +79,7 @@ addTest(test => {
   );
 });
 
-// LIST OF DIRECTION OPTIONS FOR CREATURES
+// LIST OF PASSABLE DIRECTIONS FOR CREATURE
 
 addTest(test => {
   test.map = [
@@ -89,21 +89,15 @@ addTest(test => {
   ];
 
   test.check(
-    'direction option list includes all directions when all tiles are passable',
+    'passable directions list includes all directions when all tiles are passable',
     ['up', 'left', 'right', 'down'],
-    test.game.pacman.getDirectionOptions()
-  );
-
-  test.check(
-    'direction option list does not include direction given as parameter',
-    ['up', 'right', 'down'],
-    test.game.pacman.getDirectionOptions('left')
+    test.game.pacman.getPassableDirections()
   );
 
   test.game.tile(0, 1).wall = true;
   test.check(
-    'direction option list does not include tiles that are not passable',
+    'passable directions list does not include tiles that are not passable',
     ['left', 'right', 'down'],
-    test.game.pacman.getDirectionOptions()
+    test.game.pacman.getPassableDirections()
   );
 });
