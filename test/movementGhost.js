@@ -130,11 +130,12 @@ addTest(test => {
 
   test.game.ghosts[0].mode = 'DUMMY MODE';
   test.game.ghosts[0].direction = 'DUMMY DIRECTION';
+
   test.game.ghosts[0].path = [[0, 1], [0, 2], [0, 3]];
   test.game.ghosts[0].move();
 
   test.check(
-    'when path exists, ghost moves along path regardless of mode or direction',
+    'when path exists, ghost moves along path regardless of position, mode, or direction',
     [0, 1],
     test.game.ghosts[0].position
   );
@@ -142,6 +143,15 @@ addTest(test => {
   test.check(
     'next position is removed from path list as soon as ghost moves',
     [[0, 2], [0, 3]],
+    test.game.ghosts[0].path
+  );
+
+  test.game.ghosts[0].move();
+  test.game.ghosts[0].move();
+
+  test.check(
+    'path becomes an empty array when ghost reaches last position',
+    [],
     test.game.ghosts[0].path
   );
 });
