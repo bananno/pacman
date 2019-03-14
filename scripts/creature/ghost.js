@@ -16,13 +16,30 @@ class Ghost extends Creature {
   }
 
   revertMode(force) {
-    if (force || (!this.blue && !this.eyes)) {
+    if (force || this.mode == 'chase' || this.mode == 'scatter') {
       this.mode = this.game.mode;
     }
   }
 
+  set mode(newMode) {
+    this._mode = newMode;
+
+    if (newMode == 'blue') {
+      this.$.addClass('ghost-blue');
+    } else if (newMode == 'eyes') {
+      this.$.addClass('ghost-eyes');
+    } else {
+      this.$.removeClass('ghost-blue');
+      this.$.removeClass('ghost-white');
+      this.$.removeClass('ghost-eyes');
+    }
+  }
+
+  get mode() {
+    return this._mode;
+  }
+
   turnBlue() {
-    this.blue = true;
     this.mode = 'blue';
     this.reverse();
     clearInterval(this.blueInterval);
@@ -41,7 +58,7 @@ class Ghost extends Creature {
   }
 
   flashWhite(toggle) {
-    if (!this.blue) {
+    if (this.mode != 'blue') {
       return;
     }
     if (toggle) {
@@ -52,51 +69,20 @@ class Ghost extends Creature {
   }
 
   revertBlue() {
-    this.blue = false;
     clearInterval(this.blueInterval);
-    this.speed = 250;
     this.revertMode(true);
+    this.speed = 250;
   }
 
   catchBlue() {
     this.mode = 'eyes';
-    this.blue = false;
-    this.eyes = true;
     clearInterval(this.blueInterval);
     this.path = this.game.findPath(this.position, this.origin);
     this.speed = 75;
   }
 
   revertEyes() {
-    this.eyes = false;
-    this.speed = 250;
     this.revertMode(true);
-  }
-
-  set blue(value) {
-    this._blue = value;
-    if (value) {
-      this.$.addClass('ghost-blue');
-    } else {
-      this.$.removeClass('ghost-blue');
-      this.$.removeClass('ghost-white');
-    }
-  }
-
-  set eyes(value) {
-    this._eyes = value;
-    if (value) {
-      this.$.addClass('ghost-eyes');
-    } else {
-      this.$.removeClass('ghost-eyes');
-    }
-  }
-
-  get blue() {
-    return this._blue;
-  }
-
-  get eyes() {
-    return this._eyes;
+    this.speed = 250;
   }
 }
