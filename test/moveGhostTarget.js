@@ -88,7 +88,50 @@ addTest(test => {
   );
 });
 
-// RED GHOST CHASE TARGET
+// PINK GHOST (#0) CHASE TARGET
+
+addTest(test => {
+  test.map = [
+    '     ',
+    '     ',
+    '  P  ',
+    '     ',
+    '     ',
+  ];
+
+  test.game.ghosts[0].position = [0, 0];
+  test.game.ghosts[0].mode = 'chase';
+
+  test.game.pacman.direction = 'up';
+  test.check(
+    'when pacman is moving up, pink ghost\'s chase target is 4 tiles above pacman',
+    [-2, 2],
+    test.game.ghosts[0].target
+  );
+
+  test.game.pacman.direction = 'left';
+  test.check(
+    'when pacman is moving left, pink ghost\'s chase target is 4 tiles to the left of pacman',
+    [2, -2],
+    test.game.ghosts[0].target
+  );
+
+  test.game.pacman.direction = 'right';
+  test.check(
+    'when pacman is moving right, pink ghost\'s chase target is 4 tiles to the right of pacman',
+    [2, 6],
+    test.game.ghosts[0].target
+  );
+
+  test.game.pacman.direction = 'down';
+  test.check(
+    'when pacman is moving down, pink ghost\'s chase target is 4 tiles below pacman',
+    [6, 2],
+    test.game.ghosts[0].target
+  );
+});
+
+// RED GHOST (#1) CHASE TARGET
 
 addTest(test => {
   test.map = [
@@ -97,7 +140,7 @@ addTest(test => {
 
   test.game.ghosts[1].mode = 'chase';
   test.check(
-    'ghost #1\'s case target is pacman\'s location',
+    'red ghost\'s chase target is pacman\'s location',
     [0, 7],
     test.game.ghosts[1].target
   );
