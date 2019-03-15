@@ -9,7 +9,6 @@ class Ghost extends Creature {
     this.$.addClass('ghost');
     this.$.addClass('ghost-normal');
     this.$.addClass('ghost' + (number + 1));
-    this.path = [];
   }
 
   reverse() {
