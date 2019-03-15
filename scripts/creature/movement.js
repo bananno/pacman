@@ -34,6 +34,25 @@ Creature.prototype.chooseNextPosition = function() {
       if (targetTile) this.game.tile(this.target).$.addClass(tempClass);
     }
 
+    if (!this.game.isTest && this.target && this.number == 1) {
+
+      let temp = {};
+
+      ['up', 'down', 'left', 'right'].forEach(direction => {
+        let targetCoords = this.target;
+
+        temp[direction] = {};
+        temp[direction].passable = this.canMove(direction);
+
+        if (temp[direction].passable) {
+          let [row, col] = this.game.getNextPosition(direction, this.position);
+          temp[direction].distance = this.game.getDiagonalDistance([row, col], targetCoords);
+        }
+      });
+
+      console.log(temp);
+    }
+
     if (this.path.length) {
       const newPosition = this.path.shift();
       if (this.position) {
