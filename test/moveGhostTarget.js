@@ -87,3 +87,18 @@ addTest(test => {
     test.game.ghosts[0].target
   );
 });
+
+// RED GHOST CHASE TARGET
+
+addTest(test => {
+  test.map = [
+    'GG     P',
+  ];
+
+  test.game.ghosts[1].mode = 'chase';
+  test.check(
+    'ghost #1\'s case target is pacman\'s location',
+    [0, 7],
+    test.game.ghosts[1].target
+  );
+});
