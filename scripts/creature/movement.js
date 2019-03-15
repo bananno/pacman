@@ -26,43 +26,7 @@ Creature.prototype.move = function() {
 
 Creature.prototype.chooseNextPosition = function() {
   if (this.ghost) {
-    const targetPosition = this.target;
-
-    let tempClass = 'target-tile-' + (this.number + 1);
-    $('.' + tempClass).removeClass(tempClass);
-    if (this.target) {
-      let targetTile = this.target;
-      if (targetTile) this.game.tile(this.target).$.addClass(tempClass);
-    }
-
-    if (this.target) {
-
-      const distances = {};
-
-      ['up', 'down', 'left', 'right'].forEach(direction => {
-        let targetCoords = this.target;
-
-        if (this.canMove(direction)) {
-          let [row, col] = this.game.getNextPosition(direction, this.position);
-          distances[direction] = this.game.getDiagonalDistance([row, col], targetCoords);
-        } else {
-          distances[direction] = 1000;
-        }
-      });
-
-      distances[oppositeDirection[this.direction]] += 500;
-
-      let list = ['up', 'left', 'down', 'right'];
-
-      list.sort((a, b) => {
-        return distances[a] - distances[b];
-      });
-
-      this.direction = list[0];
-    } else {
-      const directionOptions = this.getDirectionOptions();
-      this.direction = chooseRandom(directionOptions);
-    }
+    this.direction = this.getDirectionChoice();
   }
 
   return this.game.getNextPosition(this.direction, this.position);
@@ -93,3 +57,38 @@ Ghost.prototype.getDirectionOptions = function() {
 
   return directionOptions;
 };
+
+Ghost.prototype.getDirectionChoice = function() {
+  const targetPosition = this.target;
+  const targetTileClass = 'target-tile-' + (this.number + 1);
+
+  $('.' + targetTileClass).removeClass(targetTileClass);
+
+  if (targetPosition == null) {
+    const directionOptions = this.getDirectionOptions();
+    return chooseRandom(directionOptions);
+  }
+
+  this.game.tile(targetPosition).$.addClass(targetTileClass);
+
+  const distanceToTarget = {};
+
+  ['up', 'down', 'left', 'right'].forEach(direction => {
+    if (this.canMove(direction)) {
+      let [row, col] = this.game.getNextPosition(direction, this.position);
+      distanceToTarget[direction] = this.game.getDiagonalDistance([row, col], targetPosition);
+    } else {
+      distanceToTarget[direction] = 1000;
+    }
+  });
+
+  distanceToTarget[oppositeDirection[this.direction]] += 500;
+
+  let directionChoiceRanking = ['up', 'left', 'down', 'right'];
+
+  directionChoiceRanking.sort((direction2, direction1) => {
+    return distanceToTarget[direction2] - distanceToTarget[direction1];
+  });
+
+  return directionChoiceRanking[0];
+}
