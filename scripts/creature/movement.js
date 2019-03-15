@@ -26,6 +26,7 @@ Creature.prototype.move = function() {
 
 Creature.prototype.chooseNextPosition = function() {
   if (this.ghost) {
+    const targetPosition = this.target;
 
     let tempClass = 'target-tile-' + (this.number + 1);
     $('.' + tempClass).removeClass(tempClass);
@@ -36,21 +37,18 @@ Creature.prototype.chooseNextPosition = function() {
 
     if (!this.game.isTest && this.target && this.number == 1) {
 
-      let temp = {};
+      const distances = {};
 
       ['up', 'down', 'left', 'right'].forEach(direction => {
         let targetCoords = this.target;
 
-        temp[direction] = {};
-        temp[direction].passable = this.canMove(direction);
-
-        if (temp[direction].passable) {
+        if (this.canMove(direction)) {
           let [row, col] = this.game.getNextPosition(direction, this.position);
-          temp[direction].distance = this.game.getDiagonalDistance([row, col], targetCoords);
+          distances[direction] = this.game.getDiagonalDistance([row, col], targetCoords);
         }
       });
 
-      console.log(temp);
+      console.log(distances);
     }
 
     if (this.path.length) {
