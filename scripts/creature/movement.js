@@ -58,13 +58,14 @@ Creature.prototype.getPassableDirections = function() {
 };
 
 Ghost.prototype.getDirectionOptions = function() {
-  let directionOptions = this.getPassableDirections();
+  const directionToIgnore = oppositeDirection[this.direction];
 
-  if (this.canMove()) {
-    const directionToIgnore = oppositeDirection[this.direction];
-    directionOptions = directionOptions.filter(direction => {
-      return direction != directionToIgnore;
-    });
+  const directionOptions = this.getPassableDirections().filter(direction => {
+    return direction != directionToIgnore;
+  });
+
+  if (directionOptions == 0) {
+    return directionToIgnore;
   }
 
   return directionOptions;
