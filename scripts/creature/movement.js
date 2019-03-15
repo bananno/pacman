@@ -35,7 +35,7 @@ Creature.prototype.chooseNextPosition = function() {
       if (targetTile) this.game.tile(this.target).$.addClass(tempClass);
     }
 
-    if (!this.game.isTest && this.target && this.number == 1) {
+    if (this.target) {
 
       const distances = {};
 
@@ -58,23 +58,11 @@ Creature.prototype.chooseNextPosition = function() {
         return distances[a] - distances[b];
       });
 
-      list = list.map(direction => {
-        return direction + ' ' + distances[direction];
-      })
-
-      console.log(list);
+      this.direction = list[0];
+    } else {
+      const directionOptions = this.getDirectionOptions();
+      this.direction = chooseRandom(directionOptions);
     }
-
-    if (this.path.length) {
-      const newPosition = this.path.shift();
-      if (this.position) {
-        this.direction = getDirectionName(this.position, newPosition);
-      }
-      return newPosition;
-    }
-
-    const directionOptions = this.getDirectionOptions();
-    this.direction = chooseRandom(directionOptions);
   }
 
   return this.game.getNextPosition(this.direction, this.position);
