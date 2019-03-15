@@ -58,3 +58,17 @@ addTest(test => {
     test.game.findPath([1, 0], [1, 2])
   );
 });
+
+addTest(test => {
+  test.map = [
+    '   ', // 0,0  0,1  0,2
+    ' | ', // 1,0   |   1,2
+    '   ', // 2,0  2,1  2,2
+  ];
+
+  test.check(
+    'when up and down are equidistant from target, up is chosen first',
+    [[1, 0], [0, 0], [0, 1], [0, 2], [1, 2]],
+    test.game.findPath([1, 0], [1, 2])
+  );
+});
