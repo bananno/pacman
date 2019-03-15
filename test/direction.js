@@ -108,3 +108,23 @@ addTest(test => {
     test.game.pacman.getPassableDirections()
   );
 });
+
+// DISTANCE
+
+addTest(test => {
+  test.map = [
+    ' '
+  ];
+
+  test.check(
+    'distance between (0, 0) and (0, 1) is 1',
+    1,
+    test.game.getDiagonalDistance([0, 0], [0, 1])
+  );
+
+  test.check(
+    'distance between (3, 7) and (15, 37) is ~32.3',
+    32.3,
+    test.game.getDiagonalDistance([3, 7], [15, 37])
+  );
+});
