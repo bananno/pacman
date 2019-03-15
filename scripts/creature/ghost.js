@@ -19,10 +19,6 @@ class Ghost extends Creature {
   revertMode(force) {
     if (force || (this.mode != 'blue' && this.mode != 'eyes')) {
       this.mode = this.game.mode;
-
-      if (this.mode == 'scatter') {
-        this.pathTo(this.corner);
-      }
     }
   }
 
@@ -49,7 +45,6 @@ class Ghost extends Creature {
 
   turnBlue() {
     this.mode = 'blue';
-    this.pathTo(null);
     this.reverse();
     clearInterval(this.blueInterval);
     this.blueInterval = setInterval(this.revertBlue.bind(this), GHOST_BLUE_TIME);
@@ -86,7 +81,6 @@ class Ghost extends Creature {
   catchBlue() {
     this.mode = 'eyes';
     clearInterval(this.blueInterval);
-    this.pathTo(this.origin);
     this.speed = 75;
   }
 
@@ -101,14 +95,6 @@ class Ghost extends Creature {
       return [tile.row, tile.col];
     }
     return null;
-  }
-
-  pathTo(target) {
-    if (this.position && target) {
-      this.path = this.game.findPath(this.position, target).slice(1);
-    } else {
-      this.path = [];
-    }
   }
 
   get target() {
