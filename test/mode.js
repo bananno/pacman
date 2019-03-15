@@ -15,7 +15,7 @@ addTest(test => {
 
   test.game.scatter = false;
   test.check(
-    'game mode returns \'chase\' when scatter is true',
+    'game mode returns \'chase\' when scatter is false',
     'chase',
     test.game.mode
   );
