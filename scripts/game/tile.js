@@ -47,6 +47,10 @@ class Tile {
     }
   }
 
+  get position() {
+    return [this.row, this.col];
+  }
+
   isPassable(creature) {
     if (this.wall) {
       return false;
