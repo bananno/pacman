@@ -19,7 +19,8 @@ Creature.prototype.move = function() {
 
   this.game.encounter(newRow, newCol);
 
-  if (this.ghost && this.mode == 'eyes' && this.path.length == 0) {
+  if (this.ghost && this.mode == 'eyes' && this.position && this.origin
+      && this.position[0] == this.origin[0] && this.position[1] == this.origin[1]) {
     this.revertEyes();
   }
 };

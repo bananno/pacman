@@ -200,13 +200,14 @@ addTest(test => {
 
 addTest(test => {
   test.map = [
-    'G ',
+    '  ',
   ];
 
   // REVERT EYES MODE
 
   test.game.scatter = true;
   test.game.ghosts[0].mode = 'eyes';
+  test.game.ghosts[0].origin = [0, 0];
   test.game.ghosts[0].position = [0, 1];
   test.game.ghosts[0].direction = 'left';
   test.game.ghosts[0].move();
