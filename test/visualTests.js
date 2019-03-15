@@ -5,6 +5,7 @@ function addTestButtons(game) {
   $('#board').append('<br>');
 
   $('<button>').appendTo('#board').text('blue').click(eatToken);
+  $('<button>').appendTo('#board').text('stop').click(clearAllIntervals);
 
   $('#board').append('<br>');
 
@@ -44,6 +45,10 @@ function addTestButtons(game) {
 
   function eatToken() {
     game.eatToken();
+  }
+
+  function clearAllIntervals() {
+    game.clearAllIntervals();
   }
 
   function showPath(arr1, arr2) {
