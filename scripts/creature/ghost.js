@@ -118,4 +118,14 @@ class Ghost extends Creature {
       this.path = [];
     }
   }
+
+  get target() {
+    if (this.mode == 'scatter') {
+      return this.corner;
+    }
+    if (this.mode == 'eyes') {
+      return this.origin;
+    }
+    return null;
+  }
 }

@@ -15,45 +15,32 @@ addTest(test => {
     test.game.ghosts[0].target
   );
 
-  test.game.scatter = false;
-  test.game.toggleMode();
-
+  test.game.ghosts[0].mode = 'scatter';
   test.check(
-    'first ghost uses first corner as target during scatter mode',
+    'first ghost uses corresponding corner as target during scatter mode',
     [1, 1],
     test.game.ghosts[0].target
   );
 
-  test.check(
-    'second ghost uses second corner as target during scatter mode',
-    [1, 16],
-    test.game.ghosts[1].target
-  );
-
-  test.check(
-    'third ghost uses third corner as target during scatter mode',
-    [4, 1],
-    test.game.ghosts[2].target
-  );
-
-  test.check(
-    'target tile is null for any ghost that does not have a target tile available',
-    [4, 1],
-    test.game.ghosts[2].target
-  );
-
-  test.game.ghosts[0].turnBlue();
+  test.game.ghosts[0].mode = 'blue';
   test.check(
     'target tile is null when ghost switches to blue mode',
     null,
     test.game.ghosts[0].target
   );
 
-  test.game.ghosts[0].catchBlue();
+  test.game.ghosts[0].mode = 'eyes';
   test.check(
     'target tile is the ghost\'s origin when blue ghost is caught',
     [2, 8],
-    test.game.ghosts[0].origin
+    test.game.ghosts[0].target
+  );
+
+  test.game.ghosts[3].mode = 'scatter';
+  test.check(
+    'target tile is null for any ghost that does not have a target tile available',
+    null,
+    test.game.ghosts[3].target
   );
 });
 
