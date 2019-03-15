@@ -45,10 +45,24 @@ Creature.prototype.chooseNextPosition = function() {
         if (this.canMove(direction)) {
           let [row, col] = this.game.getNextPosition(direction, this.position);
           distances[direction] = this.game.getDiagonalDistance([row, col], targetCoords);
+        } else {
+          distances[direction] = 1000;
         }
       });
 
-      console.log(distances);
+      distances[oppositeDirection[this.direction]] += 500;
+
+      let list = ['up', 'left', 'down', 'right'];
+
+      list.sort((a, b) => {
+        return distances[a] - distances[b];
+      });
+
+      list = list.map(direction => {
+        return direction + ' ' + distances[direction];
+      })
+
+      console.log(list);
     }
 
     if (this.path.length) {
