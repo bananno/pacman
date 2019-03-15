@@ -62,7 +62,7 @@ addTest(test => {
 
   test.game.ghosts[0].direction = 'up';
   test.check(
-    'ghost can turn 90 degrees but cannot reverse directions when current direction is passable',
+    'ghost cannot reverse directions when current direction is passable',
     ['up', 'left', 'right'],
     test.game.ghosts[0].getDirectionOptions()
   );
@@ -79,8 +79,25 @@ addTest(test => {
 
   test.game.ghosts[0].direction = 'up';
   test.check(
-    'ghost can reverse directions when current direction is not passable',
-    ['left', 'right', 'down'],
+    'ghost cannot reverse directions when any 90 degree turn is possible',
+    ['left', 'right'],
+    test.game.ghosts[0].getDirectionOptions()
+  );
+});
+
+addTest(test => {
+  test.map = [
+    '||||||||',
+    '||||||||',
+    '||||G|||',
+    '|||| |||',
+    '|||| |||',
+  ];
+
+  test.game.ghosts[0].direction = 'up';
+  test.check(
+    'ghost can reverse directions when there are no other passable options',
+    ['down'],
     test.game.ghosts[0].getDirectionOptions()
   );
 });
