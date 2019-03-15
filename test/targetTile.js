@@ -1,6 +1,50 @@
 
 addTest(test => {
   test.map = [
+    '||||||||||||||||||',
+    '|t              t|',
+    '|       GG   P   |',
+    '|       GG       |',
+    '|t               |',
+    '||||||||||||||||||',
+  ];
+
+  test.check(
+    'ghost initial target tile is null',
+    null,
+    test.game.ghosts[0].target
+  );
+
+  test.game.scatter = false;
+  test.game.toggleMode();
+
+  test.check(
+    'first ghost uses first corner as target during scatter mode',
+    [1, 1],
+    test.game.ghosts[0].target
+  );
+
+  test.check(
+    'second ghost uses second corner as target during scatter mode',
+    [1, 16],
+    test.game.ghosts[1].target
+  );
+
+  test.check(
+    'third ghost uses third corner as target during scatter mode',
+    [4, 1],
+    test.game.ghosts[2].target
+  );
+
+  test.check(
+    'target tile is null for any ghost that does not have a target tile available',
+    [4, 1],
+    test.game.ghosts[2].target
+  );
+});
+
+addTest(test => {
+  test.map = [
     '   ', // 0,0  0,1  0,2
     '   ', // 1,0  1,1  1,2
     '   ', // 2,0  2,1  2,2
