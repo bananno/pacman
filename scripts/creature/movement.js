@@ -26,10 +26,6 @@ Creature.prototype.move = function() {
 
 Creature.prototype.chooseNextPosition = function() {
   if (this.ghost) {
-    if (this.mode == 'chase') {
-      this.chooseTarget();
-    }
-
     if (this.path.length) {
       const newPosition = this.path.shift();
       if (this.position) {

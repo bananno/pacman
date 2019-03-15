@@ -103,14 +103,6 @@ class Ghost extends Creature {
     return null;
   }
 
-  chooseTarget() {
-    if (this.number == 1) {
-      this.pathTo(this.game.pacman.position);
-    } else {
-      this.pathTo(null);
-    }
-  }
-
   pathTo(target) {
     if (this.position && target) {
       this.path = this.game.findPath(this.position, target).slice(1);
@@ -125,6 +117,11 @@ class Ghost extends Creature {
     }
     if (this.mode == 'eyes') {
       return this.origin;
+    }
+    if (this.mode == 'chase') {
+      if (this.number == 1) {
+        return this.game.pacman.position;
+      }
     }
     return null;
   }
