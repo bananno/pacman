@@ -26,6 +26,14 @@ Creature.prototype.move = function() {
 
 Creature.prototype.chooseNextPosition = function() {
   if (this.ghost) {
+
+    let tempClass = 'target-tile-' + (this.number + 1);
+    $('.' + tempClass).removeClass(tempClass);
+    if (this.target) {
+      let targetTile = this.target;
+      if (targetTile) this.game.tile(this.target).$.addClass(tempClass);
+    }
+
     if (this.path.length) {
       const newPosition = this.path.shift();
       if (this.position) {

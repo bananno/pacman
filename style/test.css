@@ -23,3 +23,19 @@ td.board-path.show-path {
 td.board-path.show-path-end {
   background-color: red;
 }
+
+td.target-tile-1 {
+  background-color: pink;
+}
+
+td.target-tile-2 {
+  background-color: red;
+}
+
+td.target-tile-3 {
+  background-color: orange;
+}
+
+td.target-tile-4 {
+  background-color: teal;
+}
