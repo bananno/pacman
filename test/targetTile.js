@@ -44,6 +44,13 @@ addTest(test => {
     test.game.ghosts[0].target
   );
 
+  test.game.ghosts[3].mode = 'scatter';
+  test.check(
+    'target tile is null for any ghost that does not have a corresponding corner tile',
+    null,
+    test.game.ghosts[3].target
+  );
+
   test.game.ghosts[0].mode = 'blue';
   test.check(
     'target tile is null when ghost switches to blue mode',
@@ -56,13 +63,6 @@ addTest(test => {
     'target tile is the ghost\'s origin when blue ghost is caught',
     [2, 8],
     test.game.ghosts[0].target
-  );
-
-  test.game.ghosts[3].mode = 'scatter';
-  test.check(
-    'target tile is null for any ghost that does not have a target tile available',
-    null,
-    test.game.ghosts[3].target
   );
 });
 
