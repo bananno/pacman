@@ -79,8 +79,34 @@ addTest(test => {
 
   test.game.ghosts[0].position = [0, 2];
   test.check(
-    'ghost that is doorway tile cannot enter a regular house tile', false,
+    'ghost that is in a doorway tile cannot enter a regular house tile', false,
     test.game.isTilePassable(0, 1, test.game.ghosts[0])
+  );
+});
+
+addTest(test => {
+  test.map = [
+    '|||||||',
+    '|gd   |',
+    '|||||||',
+  ];
+
+  test.game.ghosts[0].origin = [1, 1];
+  test.game.ghosts[0].position = [1, 3];
+  test.game.ghosts[0].mode = 'eyes';
+  test.check(
+    'ghost that is not in house can enter a doorway tile if that is its (temporary) target',
+    true,
+    test.game.isTilePassable(1, 2, test.game.ghosts[0])
+  );
+
+  test.game.ghosts[0].origin = [1, 1];
+  test.game.ghosts[0].position = [1, 2];
+  test.game.ghosts[0].mode = 'eyes';
+  test.check(
+    'ghost that is in a doorway tile can enter a house tile if that is its target',
+    true,
+    test.game.isTilePassable(1, 1, test.game.ghosts[0])
   );
 });
 
