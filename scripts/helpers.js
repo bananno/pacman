@@ -25,3 +25,7 @@ function getDirectionName([oldRow, oldCol], [newRow, newCol]) {
   }
   return newRow < oldRow ? 'up' : 'down';
 }
+
+function getDiagonalDistance([row1, col1], [row2, col2]) {
+  return Math.round(Math.sqrt(((row1 - row2) ** 2) + ((col1 - col2) ** 2)) * 10) / 10;
+}
