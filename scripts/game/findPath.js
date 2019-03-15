@@ -132,6 +132,10 @@ Game.prototype.findPath = function([startRow, startCol], [finalRow, finalCol]) {
   return coords;
 };
 
+Game.prototype.getDiagonalDistance = function([row1, col1], [row2, col2]) {
+  return Math.round(Math.sqrt(((row1 - row2) ** 2) + ((col1 - col2) ** 2)) * 10) / 10;
+};
+
 function getNextDirection(currentRow, currentCol, targetRow, targetCol, validDirections) {
   const order = getDirectionTryOrder(currentRow, currentCol, targetRow, targetCol);
 

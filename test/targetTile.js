@@ -1,4 +1,26 @@
 
+// DISTANCE
+
+addTest(test => {
+  test.map = [
+    ' '
+  ];
+
+  test.check(
+    'distance between (0, 0) and (0, 1) is 1',
+    1,
+    test.game.getDiagonalDistance([0, 0], [0, 1])
+  );
+
+  test.check(
+    'distance between (3, 7) and (15, 37) is ~32.3',
+    32.3,
+    test.game.getDiagonalDistance([3, 7], [15, 37])
+  );
+});
+
+// TARGET TILE SELECTION
+
 addTest(test => {
   test.map = [
     '||||||||||||||||||',
@@ -101,22 +123,6 @@ addTest(test => {
     'path will enter ghost house tile if origin is in house',
     [[1, 0], [1, 1], [1, 2]],
     test.game.findPath([1, 0], [1, 2])
-  );
-});
-
-// DISTANCE
-
-addTest(test => {
-  test.check(
-    'distance between (0, 0) and (0, 1) is 1',
-    1,
-    getDiagonalDistance([0, 0], [0, 1])
-  );
-
-  test.check(
-    'distance between (3, 7) and (15, 37) is ~32.3',
-    32.3,
-    getDiagonalDistance([3, 7], [15, 37])
   );
 });
 
