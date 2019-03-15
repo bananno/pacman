@@ -197,3 +197,22 @@ addTest(test => {
     test.game.ghosts[0].mode
   );
 });
+
+addTest(test => {
+  test.map = [
+    'G ',
+  ];
+
+  // REVERT EYES MODE
+
+  test.game.scatter = true;
+  test.game.ghosts[0].mode = 'eyes';
+  test.game.ghosts[0].position = [0, 1];
+  test.game.ghosts[0].direction = 'left';
+  test.game.ghosts[0].move();
+  test.check(
+    'ghost in \'eyes\' mode reverts to current game mode when it enters its origin tile',
+    'scatter',
+    test.game.ghosts[0].mode
+  );
+});
