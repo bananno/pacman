@@ -41,6 +41,20 @@ addTest(test => {
     [4, 1],
     test.game.ghosts[2].target
   );
+
+  test.game.ghosts[0].turnBlue();
+  test.check(
+    'target tile is null when ghost switches to blue mode',
+    null,
+    test.game.ghosts[0].target
+  );
+
+  test.game.ghosts[0].catchBlue();
+  test.check(
+    'target tile is the ghost\'s origin when blue ghost is caught',
+    [2, 8],
+    test.game.ghosts[0].origin
+  );
 });
 
 addTest(test => {
