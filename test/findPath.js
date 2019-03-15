@@ -59,6 +59,24 @@ addTest(test => {
   );
 });
 
+// DISTANCE
+
+addTest(test => {
+  test.check(
+    'distance between (0, 0) and (0, 1) is 1',
+    1,
+    calculateCrowFliesDistance([0, 0], [0, 1])
+  );
+
+  test.check(
+    'distance between (3, 7) and (15, 37) is ~32.3',
+    32.3,
+    calculateCrowFliesDistance([3, 7], [15, 37])
+  );
+});
+
+// DIRECTION PRIORITY
+
 addTest(test => {
   test.map = [
     '   ', // 0,0  0,1  0,2
