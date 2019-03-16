@@ -24,13 +24,18 @@ $(document).ready(() => {
     const $item = $('<li>').text(test.message);
     $('#tests ul:last').append($item);
 
-    if (test.expectedResult != test.actualResult) {
-      $item.addClass('test-failed');
-      $('#tests p:last').addClass('test-failed');
+    if (test.pass) {
       testsPass += 1;
-    } else {
-      testsFail += 1;
+      return;
     }
+
+    testsFail += 1;
+
+    $item.addClass('test-failed');
+    $('#tests p:last').addClass('test-failed');
+
+    console.warn('TEST FAILED: ' + test.message);
+    console.log('  > expected: ' + test.expectedResult + '\n  > result:   ' + test.actualResult);
   });
 
   console.log('\nTESTS FINISHED.\n  > total:  ' + (testsPass + testsFail)
@@ -55,20 +60,13 @@ class Test {
   }
 
   check(message, expectedResult, actualResult) {
-    const saveTest = {
+    allTestList.push({
       title: this.title,
       message: message,
       pass: valuesMatch(expectedResult, actualResult),
       expectedResult: expectedResult,
       actualResult: actualResult,
-    };
-
-    allTestList.push(saveTest);
-
-    if (!saveTest.pass) {
-      console.warn('TEST FAILED: ' + message);
-      console.log('  > expected: ' + expectedResult + '\n  > result:   ' + actualResult);
-    }
+    });
   }
 }
 
