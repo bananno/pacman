@@ -1,10 +1,4 @@
 
-const countTests = {
-  total: 0,
-  pass: 0,
-  fail: 0,
-};
-
 const allTestList = [];
 
 const allTests = [];
@@ -16,12 +10,21 @@ $(document).ready(() => {
     new Test(name, callback);
   });
 
-  console.log('\nTESTS FINISHED.\n  > total:  ' + countTests.total
-    + '\n  > passed: ' + countTests.pass + '\n  > failed: ' + countTests.fail);
+  let testsPass = 0;
+  let testsFail = 0;
 
   allTestList.forEach(test => {
     $('#tests').append('<p>' + test.message + '</p>');
+
+    if (test.pass) {
+      testsPass += 1;
+    } else {
+      testsFail += 1;
+    }
   });
+
+  console.log('\nTESTS FINISHED.\n  > total:  ' + (testsPass + testsFail)
+    + '\n  > passed: ' + testsPass + '\n  > failed: ' + testsFail);
 });
 
 function addTest(title, callback) {
@@ -42,8 +45,6 @@ class Test {
   }
 
   check(message, expectedResult, actualResult) {
-    countTests.total += 1;
-
     const saveTest = {
       title: this.title,
       message: message,
@@ -54,12 +55,9 @@ class Test {
 
     allTestList.push(saveTest);
 
-    if (saveTest.pass) {
-      countTests.pass += 1;
-    } else {
+    if (!saveTest.pass) {
       console.warn('TEST FAILED: ' + message);
       console.log('  > expected: ' + expectedResult + '\n  > result:   ' + actualResult);
-      countTests.fail += 1;
     }
   }
 }
