@@ -1,5 +1,5 @@
 
-addTest('Game method: isTilePassable()', test => {
+addTest('game.isTilePassable() - empty space', test => {
   test.map = [
     '||||||',
     '|    |',
@@ -28,7 +28,7 @@ addTest('Game method: isTilePassable()', test => {
     test.game.isTilePassable(4, 2, test.game.ghosts[0])
   );
 
-  // WALLS
+  test.title = 'game.isTilePassable() - wall';
 
   test.check(
     'wall is not passable for any creature', false,
@@ -45,7 +45,7 @@ addTest('Game method: isTilePassable()', test => {
     test.game.isTilePassable(4, 0, test.game.ghosts[0])
   );
 
-  // GHOST HOUSE
+  test.title = 'game.isTilePassable() - ghost house';
 
   test.check(
     'pacman cannot enter ghost house', false,
@@ -67,7 +67,7 @@ addTest('Game method: isTilePassable()', test => {
 
 // GHOST HOUSE DOORWAY
 
-addTest('Game method: isTilePassable() - ghost house doorway', test => {
+addTest('game.isTilePassable() - ghost house doorway', test => {
   test.map = [
     ' Gd ',
   ];
@@ -84,7 +84,7 @@ addTest('Game method: isTilePassable() - ghost house doorway', test => {
   );
 });
 
-addTest('Game method: isTilePassable() - house & doorway depending on target', test => {
+addTest('game.isTilePassable() - ghost house & doorway depending on target', test => {
   test.map = [
     '|||||||||||',
     '|Gggd    t|',
@@ -136,7 +136,7 @@ addTest('Game method: isTilePassable() - house & doorway depending on target', t
 
 // WHETHER CREATURE CAN MOVE GIVEN DIRECTION
 
-addTest('Creature method: canMove(direction)', test => {
+addTest('creature.canMove(direction)', test => {
   test.map = [
     '   ',
     ' P ',

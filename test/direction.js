@@ -1,6 +1,6 @@
 // GET COORDINATES TO WRAP AROUND
 
-addTest('Get wrapped direction coordinates', test => {
+addTest('game.getWrappedCoordinates()', test => {
   test.map = [
     '      ',
     '      ',
@@ -34,7 +34,7 @@ addTest('Get wrapped direction coordinates', test => {
 
 // GET COORDINATES FOR NEXT TILE IN GIVEN DIRECTION (PASSABLE OR NOT)
 
-addTest('Get coordinates in any direction, passable or not', test => {
+addTest('game.getNextPosition(direction, position)', test => {
   test.map = [
     '   ',
     '   ',
@@ -81,7 +81,7 @@ addTest('Get coordinates in any direction, passable or not', test => {
 
 // LIST OF PASSABLE DIRECTIONS FOR CREATURE
 
-addTest('Get list of passable directions for creature', test => {
+addTest('creature.getPassableDirections()', test => {
   test.map = [
     '   ',
     ' P ',
@@ -111,7 +111,7 @@ addTest('Get list of passable directions for creature', test => {
 
 // DISTANCE
 
-addTest('Get diagonal distance between two positions', test => {
+addTest('game.getDiagonalDistance(fromPosition, toPosition)', test => {
   test.map = [
     ' '
   ];
