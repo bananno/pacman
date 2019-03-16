@@ -1,5 +1,5 @@
 
-addTest(test => {
+addTest('Assoted class attributes', test => {
   test.map = [
     '  dd ',
     '  d  ',
@@ -25,7 +25,7 @@ addTest(test => {
   );
 });
 
-addTest(test => {
+addTest('Assoted class attributes', test => {
   test.map = [
     ' '
   ];
@@ -58,7 +58,7 @@ addTest(test => {
 
 // DIRECTION NAME HELPER
 
-addTest(test => {
+addTest('Get direction name between two positions', test => {
   test.map = [
     ' '
   ];

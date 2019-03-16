@@ -1,5 +1,5 @@
 
-addTest(test => {
+addTest('Ghost moving without target tile', test => {
   test.map = [
     '| |',
     '|G|',
@@ -25,7 +25,7 @@ addTest(test => {
   );
 });
 
-addTest(test => {
+addTest('Ghost moving without target tile', test => {
   test.map = [
     '|||',
     ' G ',
@@ -51,7 +51,7 @@ addTest(test => {
   );
 });
 
-addTest(test => {
+addTest('Ghost moving without target tile', test => {
   test.map = [
     '|||| |||',
     '|||| |||',
@@ -68,7 +68,7 @@ addTest(test => {
   );
 });
 
-addTest(test => {
+addTest('Ghost moving without target tile', test => {
   test.map = [
     '||||||||',
     '||||||||',
@@ -85,7 +85,7 @@ addTest(test => {
   );
 });
 
-addTest(test => {
+addTest('Ghost moving without target tile', test => {
   test.map = [
     '||||||||',
     '||||||||',
@@ -102,7 +102,7 @@ addTest(test => {
   );
 });
 
-addTest(test => {
+addTest('Ghost moving without target tile', test => {
   test.map = [
     '|||',
     ' G ',

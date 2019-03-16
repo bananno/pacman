@@ -1,7 +1,7 @@
 
 // BASIC TARGET TILE SELECTION
 
-addTest(test => {
+addTest('Basic target tile selection', test => {
   test.map = [
     '||||||||||||||||||',
     '|t              t|',
@@ -48,7 +48,7 @@ addTest(test => {
 
 // TEMPORARY TARGET TILE SELECTION: GHOST HOUSE DOOR
 
-addTest(test => {
+addTest('Ghost house door target selection', test => {
   test.map = [
     '|||||||||||',
     '|Ggd      |',
@@ -90,7 +90,7 @@ addTest(test => {
 
 // PINK GHOST (#0) CHASE TARGET
 
-addTest(test => {
+addTest('Pink ghost chase target', test => {
   test.map = [
     '     ',
     '     ',
@@ -133,7 +133,7 @@ addTest(test => {
 
 // RED GHOST (#1) CHASE TARGET
 
-addTest(test => {
+addTest('Red ghost chase target', test => {
   test.map = [
     'GG     P',
   ];

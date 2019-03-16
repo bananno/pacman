@@ -1,7 +1,7 @@
 
 // MOVEMENT WITHOUT INITIAL POSITION
 
-addTest(test => {
+addTest('Movement without initial position', test => {
   test.map = [
     ' ',
   ];
@@ -25,7 +25,7 @@ addTest(test => {
 
 // PACMAN MOVEMENT OR NO MOVEMENT
 
-addTest(test => {
+addTest('Pacman moves if direction is passable', test => {
   test.map = [
     '   ',
     ' P ',

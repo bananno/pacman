@@ -1,5 +1,5 @@
 
-addTest(test => {
+addTest('Game and ghost mode', test => {
   test.map = [
     ' ',
   ];
@@ -198,7 +198,7 @@ addTest(test => {
   );
 });
 
-addTest(test => {
+addTest('Game and ghost mode', test => {
   test.map = [
     '  ',
   ];

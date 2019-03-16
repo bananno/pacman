@@ -1,5 +1,5 @@
 
-addTest(test => {
+addTest('Game method: isTilePassable()', test => {
   test.map = [
     '||||||',
     '|    |',
@@ -67,7 +67,7 @@ addTest(test => {
 
 // GHOST HOUSE DOORWAY
 
-addTest(test => {
+addTest('Game method: isTilePassable() - ghost house doorway', test => {
   test.map = [
     ' Gd ',
   ];
@@ -84,7 +84,7 @@ addTest(test => {
   );
 });
 
-addTest(test => {
+addTest('Game method: isTilePassable() - house & doorway depending on target', test => {
   test.map = [
     '|||||||||||',
     '|Gggd    t|',
@@ -136,7 +136,7 @@ addTest(test => {
 
 // WHETHER CREATURE CAN MOVE GIVEN DIRECTION
 
-addTest(test => {
+addTest('Creature method: canMove(direction)', test => {
   test.map = [
     '   ',
     ' P ',
