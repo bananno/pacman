@@ -10,20 +10,23 @@ const allTests = [];
 const WILD = 'WILD';
 
 $(document).ready(() => {
-  allTests.forEach(nextTest => {
-    new Test(nextTest);
+  allTests.forEach(([name, callback]) => {
+    new Test(name, callback);
   });
 
   console.log('\nTESTS FINISHED.\n  > total:  ' + countTests.total
     + '\n  > passed: ' + countTests.pass + '\n  > failed: ' + countTests.fail);
 });
 
-function addTest(nextTest) {
-  allTests.push(nextTest);
+function addTest(name, callback) {
+  if (typeof name == 'function') {
+    [name, callback] = [null, name];
+  }
+  allTests.push([name, callback]);
 }
 
 class Test {
-  constructor(callback) {
+  constructor(name, callback) {
     callback(this);
   }
 
