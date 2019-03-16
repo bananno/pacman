@@ -1,12 +1,10 @@
 
-const allTestList = [];
-
-const allTests = [];
-
+const mainTestList = [];
+const subTestList = [];
 const WILD = 'WILD';
 
 $(document).ready(() => {
-  allTests.forEach(([name, callback]) => {
+  mainTestList.forEach(([name, callback]) => {
     new Test(name, callback);
   });
 
@@ -14,7 +12,7 @@ $(document).ready(() => {
   let testsPass = 0;
   let testsFail = 0;
 
-  allTestList.forEach(test => {
+  subTestList.forEach(test => {
     if (test.title != null && test.title != previousTitle) {
       $('#tests').append('<p><b>' + test.title + '</b></p>');
       $('#tests').append('<ul></ul>');
@@ -46,7 +44,7 @@ function addTest(title, callback) {
   if (typeof title == 'function') {
     [title, callback] = [null, title];
   }
-  allTests.push([title, callback]);
+  mainTestList.push([title, callback]);
 }
 
 class Test {
@@ -60,7 +58,7 @@ class Test {
   }
 
   check(message, expectedResult, actualResult) {
-    allTestList.push({
+    subTestList.push({
       title: this.title,
       message: message,
       pass: valuesMatch(expectedResult, actualResult),
