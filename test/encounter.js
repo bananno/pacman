@@ -95,7 +95,7 @@ addTest('Encounter is triggered', test => {
   );
 });
 
-addTest(test => {
+addTest('Encounter is triggered', test => {
   test.map = [
     '|||',
     'PG ',

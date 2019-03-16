@@ -72,7 +72,7 @@ addTest('Ghost house door target selection', test => {
   );
 });
 
-addTest(test => {
+addTest('Ghost house door target selection', test => {
   test.map = [
     '|||||||||||',
     '|Ggg      |',

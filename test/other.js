@@ -25,7 +25,7 @@ addTest('Assoted class attributes', test => {
   );
 });
 
-addTest('Assoted class attributes', test => {
+addTest('Assorted class attributes', test => {
   test.map = [
     ' '
   ];
@@ -44,7 +44,7 @@ addTest('Assoted class attributes', test => {
   );
 });
 
-addTest(test => {
+addTest('Assorted class attributes', test => {
   test.map = [
     ' '
   ];
