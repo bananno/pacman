@@ -13,7 +13,7 @@ $(document).ready(() => {
   let testsFail = 0;
 
   subTestList.forEach(test => {
-    if (test.title != null && test.title != previousTitle) {
+    if (test.title != previousTitle) {
       $('#tests').append('<p><b>' + test.title + '</b></p>');
       $('#tests').append('<ul></ul>');
       previousTitle = test.title;
@@ -41,9 +41,6 @@ $(document).ready(() => {
 });
 
 function addTest(title, callback) {
-  if (typeof title == 'function') {
-    [title, callback] = [null, title];
-  }
   mainTestList.push([title, callback]);
 }
 
