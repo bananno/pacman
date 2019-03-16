@@ -16,7 +16,7 @@ td {
   margin-left: 20px;
 }
 
-#tests li.pass-false {
+#tests .test-failed {
   color: red;
 }
 

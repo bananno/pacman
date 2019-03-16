@@ -21,9 +21,12 @@ $(document).ready(() => {
       previousTitle = test.title;
     }
 
-    $('#tests ul:last').append('<li class="pass-' + test.pass + '">' + test.message + '</li>');
+    const $item = $('<li>').text(test.message);
+    $('#tests ul:last').append($item);
 
-    if (test.pass) {
+    if (test.expectedResult != test.actualResult) {
+      $item.addClass('test-failed');
+      $('#tests p:last').addClass('test-failed');
       testsPass += 1;
     } else {
       testsFail += 1;
