@@ -5,6 +5,8 @@ const countTests = {
   fail: 0,
 };
 
+const allTestList = [];
+
 const allTests = [];
 
 const WILD = 'WILD';
@@ -16,17 +18,22 @@ $(document).ready(() => {
 
   console.log('\nTESTS FINISHED.\n  > total:  ' + countTests.total
     + '\n  > passed: ' + countTests.pass + '\n  > failed: ' + countTests.fail);
+
+  allTestList.forEach(test => {
+    $('#tests').append('<p>' + test.message + '</p>');
+  });
 });
 
-function addTest(name, callback) {
-  if (typeof name == 'function') {
-    [name, callback] = [null, name];
+function addTest(title, callback) {
+  if (typeof title == 'function') {
+    [title, callback] = [null, title];
   }
-  allTests.push([name, callback]);
+  allTests.push([title, callback]);
 }
 
 class Test {
-  constructor(name, callback) {
+  constructor(title, callback) {
+    this.title = title;
     callback(this);
   }
 
@@ -36,7 +43,18 @@ class Test {
 
   check(message, expectedResult, actualResult) {
     countTests.total += 1;
-    if (valuesMatch(expectedResult, actualResult)) {
+
+    const saveTest = {
+      title: this.title,
+      message: message,
+      pass: valuesMatch(expectedResult, actualResult),
+      expectedResult: expectedResult,
+      actualResult: actualResult,
+    };
+
+    allTestList.push(saveTest);
+
+    if (saveTest.pass) {
       countTests.pass += 1;
     } else {
       console.warn('TEST FAILED: ' + message);
