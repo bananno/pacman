@@ -1,6 +1,6 @@
 // GET COORDINATES TO WRAP AROUND
 
-addTest(test => {
+addTest('Get wrapped direction coordinates', test => {
   test.map = [
     '      ',
     '      ',
@@ -34,7 +34,7 @@ addTest(test => {
 
 // GET COORDINATES FOR NEXT TILE IN GIVEN DIRECTION (PASSABLE OR NOT)
 
-addTest(test => {
+addTest('Get coordinates in any direction, passable or not', test => {
   test.map = [
     '   ',
     '   ',
@@ -81,7 +81,7 @@ addTest(test => {
 
 // LIST OF PASSABLE DIRECTIONS FOR CREATURE
 
-addTest(test => {
+addTest('Get list of passable directions for creature', test => {
   test.map = [
     '   ',
     ' P ',
@@ -111,7 +111,7 @@ addTest(test => {
 
 // DISTANCE
 
-addTest(test => {
+addTest('Get diagonal distance between two positions', test => {
   test.map = [
     ' '
   ];

@@ -7,13 +7,18 @@ td {
 }
 
 #tests {
-  padding: 10px;
   margin: 30px;
+  padding: 20px;
+  padding-top: 10px;
   background-color: #ddd;
 }
 
 #tests ul {
   margin-left: 20px;
+}
+
+#tests p {
+  margin: 10px 0px;
 }
 
 #tests .test-failed {

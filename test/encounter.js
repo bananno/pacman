@@ -1,5 +1,5 @@
 
-addTest(test => {
+addTest('Life is lost on encounter', test => {
   test.map = [
     ' ',
   ];
@@ -35,7 +35,7 @@ addTest(test => {
   );
 });
 
-addTest(test => {
+addTest('Ghost encounter in each mode', test => {
   test.map = [
     ' ',
   ];
@@ -77,7 +77,7 @@ addTest(test => {
   );
 });
 
-addTest(test => {
+addTest('Encounter is triggered', test => {
   test.map = [
     '  ',
   ];
