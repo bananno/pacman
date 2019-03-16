@@ -10,11 +10,18 @@ $(document).ready(() => {
     new Test(name, callback);
   });
 
+  let previousTitle = null;
   let testsPass = 0;
   let testsFail = 0;
 
   allTestList.forEach(test => {
-    $('#tests').append('<p>' + test.message + '</p>');
+    if (test.title != null && test.title != previousTitle) {
+      $('#tests').append('<p><b>' + test.title + '</b></p>');
+      $('#tests').append('<ul></ul>');
+      previousTitle = test.title;
+    }
+
+    $('#tests ul:last').append('<li class="pass-' + test.pass + '">' + test.message + '</li>');
 
     if (test.pass) {
       testsPass += 1;

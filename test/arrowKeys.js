@@ -1,5 +1,5 @@
 
-addTest(test => {
+addTest('Arrow Keys', test => {
   test.map = [
     '|||||',
     '|   |', //     1,2

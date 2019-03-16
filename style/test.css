@@ -6,6 +6,20 @@ td {
   border: none;
 }
 
+#tests {
+  padding: 10px;
+  margin: 30px;
+  background-color: #ddd;
+}
+
+#tests ul {
+  margin-left: 20px;
+}
+
+#tests li.pass-false {
+  color: red;
+}
+
 td.test-coordinates {
   font-weight: normal;
   color: red;

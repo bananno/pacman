@@ -33,9 +33,3 @@ td.board-path {
 td.board-wall {
   background-color: blue;
 }
-
-#tests {
-  padding: 10px;
-  margin: 30px;
-  background-color: #ddd;
-}
