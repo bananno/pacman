@@ -150,3 +150,37 @@ addTest('Red ghost chase target', test => {
     test.game.ghosts[1].trueTarget
   );
 });
+
+// ORANGE GHOST (#2) CHASE TARGET
+
+addTest('Orange ghost chase target', test => {
+  test.map = [
+    '         P',
+    '          ',
+    '          ',
+    '          ',
+    'tttt      ',
+  ];
+
+  test.game.ghosts[2].position = [0, 0];
+  test.check(
+    'orange ghost\'s chase target is pacman\'s location when pacman farther than 8 tiles away',
+    [0, 9],
+    test.game.ghosts[2].trueTarget
+  );
+
+  test.game.ghosts[2].position = [0, 1];
+  test.check(
+    'orange ghost\'s chase target is its own corner when pacman is within 8 tiles',
+    [4, 2],
+    test.game.ghosts[2].trueTarget
+  );
+});
+
+// TEAL GHOST (#3) CHASE TARGET
+
+addTest('Teal ghost chase target', test => {
+  test.map = [
+    ' ',
+  ];
+});
