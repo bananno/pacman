@@ -96,7 +96,7 @@ addTest('game.isTilePassable() - ghost house doorway', test => {
 addTest('game.isTilePassable() - ghost house & doorway depending on target', test => {
   test.map = [
     '|||||||||||',
-    '|Gggd    t|',
+    '|Gggg    t|',
     '|||||||||||',
   ];
 
