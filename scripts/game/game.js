@@ -17,7 +17,7 @@ class Game {
 
   pressKey(event) {
     if (event.key.match('Arrow')) {
-      event.preventDefault();
+      event.preventDefault ? event.preventDefault() : null;
 
       let newDirection = event.key.toLowerCase().slice(5);
 
