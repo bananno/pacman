@@ -68,9 +68,12 @@ Ghost.prototype.getDirectionChoice = function() {
   if (targetPosition == null) {
     const directionOptions = this.getDirectionOptions();
     return chooseRandom(directionOptions);
+  } else {
+    const targetTile = this.game.tile(targetPosition);
+    if (targetTile) {
+      targetTile.$.addClass(targetTileClass);
+    }
   }
-
-  this.game.tile(targetPosition).$.addClass(targetTileClass);
 
   const distanceToTarget = {};
 
