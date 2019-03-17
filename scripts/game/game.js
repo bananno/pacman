@@ -8,6 +8,10 @@ class Game {
 
     this.newGame();
 
+    this.test = {
+      showTargets: false
+    };
+
     if (!this.isTest) {
       $(document).keydown(event => {
         this.pressKey(event);

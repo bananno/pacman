@@ -61,17 +61,21 @@ Ghost.prototype.getDirectionOptions = function() {
 
 Ghost.prototype.getDirectionChoice = function() {
   const targetPosition = this.target;
-  const targetTileClass = 'target-tile-' + (this.number + 1);
-
-  $('.' + targetTileClass).removeClass(targetTileClass);
 
   if (targetPosition == null) {
     const directionOptions = this.getDirectionOptions();
     return chooseRandom(directionOptions);
-  } else {
-    const targetTile = this.game.tile(targetPosition);
-    if (targetTile) {
-      targetTile.$.addClass(targetTileClass);
+  }
+
+  if (this.game.test.showTargets) {
+    const targetTileClass = 'target-tile-' + (this.number + 1);
+    $('.' + targetTileClass).removeClass(targetTileClass);
+
+    if (targetPosition) {
+      const targetTile = this.game.tile(targetPosition);
+      if (targetTile) {
+        targetTile.$.addClass(targetTileClass);
+      }
     }
   }
 

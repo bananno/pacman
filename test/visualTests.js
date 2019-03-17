@@ -13,6 +13,7 @@ function addButton(buttonText, buttonClick, newLine) {
 
 function addTestButtons(game) {
   addButton('toggle grid', toggleGrid);
+  addButton('toggle targets', toggleTargets);
 
   addButton('blue', eatToken, true);
   addButton('stop', clearAllIntervals);
@@ -25,6 +26,16 @@ function addTestButtons(game) {
   addButton('turn left', turnAll('left'));
   addButton('turn right', turnAll('right'));
   addButton('turn down', turnAll('down'));
+
+  function toggleTargets() {
+    game.test.showTargets = !game.test.showTargets;
+    if (!game.test.showTargets) {
+      $('.target-tile-1').removeClass('target-tile-1');
+      $('.target-tile-2').removeClass('target-tile-2');
+      $('.target-tile-3').removeClass('target-tile-3');
+      $('.target-tile-4').removeClass('target-tile-4');
+    }
+  }
 
   function movePacman() {
     game.pacman.position = [11, 10];
