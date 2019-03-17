@@ -102,30 +102,37 @@ addTest('Pink ghost chase target', test => {
 
   test.game.pacman.direction = 'up';
   test.check(
-    'when pacman is moving up, pink ghost\'s chase target is 4 tiles above pacman',
+    'when pacman is moving up, pink ghost\'s true chase target is 4 tiles above pacman',
     [-2, 2],
     test.game.ghosts[0].trueTarget
   );
 
   test.game.pacman.direction = 'left';
   test.check(
-    'when pacman is moving left, pink ghost\'s chase target is 4 tiles to the left of pacman',
+    'when pacman is moving left, pink ghost\'s true chase target is 4 tiles to the left of pacman',
     [2, -2],
     test.game.ghosts[0].trueTarget
   );
 
   test.game.pacman.direction = 'right';
   test.check(
-    'when pacman is moving right, pink ghost\'s chase target is 4 tiles to the right of pacman',
+    'when pacman is moving right, pink ghost\'s true chase target is 4 tiles to the right of pacman',
     [2, 6],
     test.game.ghosts[0].trueTarget
   );
 
   test.game.pacman.direction = 'down';
   test.check(
-    'when pacman is moving down, pink ghost\'s chase target is 4 tiles below pacman',
+    'when pacman is moving down, pink ghost\'s true chase target is 4 tiles below pacman',
     [6, 2],
     test.game.ghosts[0].trueTarget
+  );
+
+  test.game.pacman.direction = 'up';
+  test.check(
+    'pink ghost\'s actual target might not be a valid tile on the board',
+    [-2, 2],
+    test.game.ghosts[0].target
   );
 });
 
