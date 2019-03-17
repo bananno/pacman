@@ -44,24 +44,33 @@ addTest('game.isTilePassable() - empty space', test => {
     'wall is not passable for ghost', false,
     test.game.isTilePassable(4, 0, test.game.ghosts[0])
   );
+});
 
-  test.title = 'game.isTilePassable() - ghost house';
+addTest('game.isTilePassable() - ghost house', test => {
+  test.map = [
+    '||||||||',
+    '|GggP  |',
+    '|ggg   |',
+    '||||||||',
+  ];
 
   test.check(
-    'pacman cannot enter ghost house', false,
-    test.game.isTilePassable(3, 1, test.game.pacman)
+    'pacman cannot enter ghost house',
+    false,
+    test.game.isTilePassable(1, 3, test.game.pacman)
   );
 
-  test.game.ghosts[0].tile.house = true;
   test.check(
-    'ghost that is in house can enter another house tile', true,
-    test.game.isTilePassable(3, 1, test.game.ghosts[0])
+    'ghost that is in house can enter another house tile',
+    true,
+    test.game.isTilePassable(1, 2, test.game.ghosts[0])
   );
 
-  test.game.ghosts[0].tile.house = false;
+  test.game.ghosts[0].position = [2, 4];
   test.check(
-    'ghost that is not in house cannot enter a house tile', false,
-    test.game.isTilePassable(3, 1, test.game.ghosts[0])
+    'ghost that is not in house, and has no target tile, cannot enter a house tile',
+    false,
+    test.game.isTilePassable(2, 3, test.game.ghosts[0])
   );
 });
 
