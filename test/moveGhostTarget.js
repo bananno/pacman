@@ -68,15 +68,6 @@ addTest('Ghost house door target selection', test => {
   );
 
   test.game.ghosts[0].origin = [1, 1];
-  test.game.ghosts[0].position = [2, 3];
-  test.game.ghosts[0].mode = 'scatter';
-  test.check(
-    'temporary exit target step is skipped when ghost is already in a doorway tile',
-    [2, 9],
-    test.game.ghosts[0].target
-  );
-
-  test.game.ghosts[0].origin = [1, 1];
   test.game.ghosts[0].position = [2, 9];
   test.game.ghosts[0].mode = 'eyes';
   test.check(
@@ -86,11 +77,11 @@ addTest('Ghost house door target selection', test => {
   );
 
   test.game.ghosts[0].origin = [1, 1];
-  test.game.ghosts[0].position = [1, 3];
-  test.game.ghosts[0].mode = 'eyes';
+  test.game.ghosts[0].position = [2, 3];
+  test.game.ghosts[0].mode = 'scatter';
   test.check(
-    'temporary entance target step is skipped when ghost is already in a doorway tile',
-    [1, 1],
+    'temporary exit target step is skipped when ghost is already in a doorway tile',
+    [2, 9],
     test.game.ghosts[0].target
   );
 });

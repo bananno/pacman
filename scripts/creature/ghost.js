@@ -106,7 +106,7 @@ class Ghost extends Creature {
     const currentTile = this.game.tile(this.position);
     const targetTile = this.game.tile(trueTarget);
 
-    if (currentTile.house != targetTile.house) {
+    if (currentTile.house != targetTile.house && !currentTile.doorway) {
       const doorwayTile = this.game.doorwayTiles[0];
       if (doorwayTile) {
         return doorwayTile.position;
