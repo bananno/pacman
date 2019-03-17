@@ -9,7 +9,8 @@ class Game {
     this.newGame();
 
     if (!this.isTest) {
-      $(document).keydown((event) => {
+      $(document).keydown(event => {
+        event.preventDefault();
         this.pressKey(event);
       });
     }
