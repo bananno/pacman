@@ -50,22 +50,22 @@ class Tile {
   get position() {
     return [this.row, this.col];
   }
+}
 
-  isPassable(creature) {
-    if (this.wall) {
+Tile.prototype.isPassable = function(creature) {
+  if (this.wall) {
+    return false;
+  }
+
+  if (creature && this.house) {
+    if (!creature.inHouse) {
       return false;
     }
 
-    if (creature && this.house) {
-      if (!creature.inHouse) {
-        return false;
-      }
-
-      if (!this.doorway && creature.inDoorway) {
-        return false;
-      }
+    if (!this.doorway && creature.inDoorway) {
+      return false;
     }
-
-    return true;
   }
-}
+
+  return true;
+};
