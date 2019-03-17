@@ -121,14 +121,31 @@ class Ghost extends Creature {
     if (this.mode == 'scatter') {
       return this.corner;
     }
+
     if (this.mode == 'eyes') {
       return this.origin;
     }
+
     if (this.mode == 'chase') {
+      if (this.number == 0) {
+        const pacmanPosition = this.game.pacman.position;
+        const pacmanDirection = this.game.pacman.direction;
+
+        if (!pacmanPosition || !pacmanDirection) {
+          return null;
+        }
+
+        let row = pacmanPosition[0] + positionAdjustment[pacmanDirection][0] * 4;
+        let col = pacmanPosition[1] + positionAdjustment[pacmanDirection][1] * 4;
+
+        return [row, col];
+      }
+
       if (this.number == 1) {
         return this.game.pacman.position;
       }
     }
+
     return null;
   }
 }
