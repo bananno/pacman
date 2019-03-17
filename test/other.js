@@ -111,3 +111,23 @@ addTest('Get direction name between two positions', test => {
     getDirectionName([10, 5], [0, 5])
   );
 });
+
+addTest('Designated "doorway" tiles', test => {
+  test.map = [
+    '||||||',
+    '|gg  |',
+    '||||||',
+  ];
+
+  test.check(
+    'ghost house tiles with no adjacent empty spaces are not considered doorways',
+    false,
+    test.game.tile(1, 1).doorway
+  );
+
+  test.check(
+    'ghost house tiles with adjacent empty spaces are considered doorways',
+    true,
+    test.game.tile(1, 2).doorway
+  );
+});
