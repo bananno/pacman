@@ -88,17 +88,7 @@ Tile.prototype.isPassable = function(creature) {
   }
 
   if (creature.target == null) {
-    if (this.house) {
-      if (!creature.inHouse) {
-        return false;
-      }
-
-      if (!this.doorway && creature.inDoorway) {
-        return false;
-      }
-    }
-
-    return true;
+    return !this.house || (creature.inHouse && !creature.inDoorway);
   }
 
   let creatureInHouse = creature.inHouse;
