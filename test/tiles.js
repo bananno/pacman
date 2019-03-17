@@ -1,4 +1,64 @@
 
+addTest('Tile types', test => {
+  test.map = [
+    '|.+tPgG',
+  ];
+
+  test.check(
+    'pipe indicates a wall',
+    true,
+    test.game.tile(0, 0).wall
+  );
+
+  test.check(
+    'period indicates food',
+    true,
+    test.game.tile(0, 1).food
+  );
+
+  test.check(
+    'plus indicates booster token',
+    true,
+    test.game.tile(0, 2).token
+  );
+
+  test.check(
+    't indicates ghost corner target',
+    true,
+    test.game.tile(0, 3).corner
+  );
+
+  test.check(
+    'corner target is also food',
+    true,
+    test.game.tile(0, 3).food
+  );
+
+  test.check(
+    'P indicates pacman initial position',
+    [0, 4],
+    test.game.pacman.position
+  );
+
+  test.check(
+    'g indicates ghost house',
+    true,
+    test.game.tile(0, 5).house
+  );
+
+  test.check(
+    'G indicates ghost initial position',
+    [0, 6],
+    test.game.ghosts[0].position
+  );
+
+  test.check(
+    'ghost initial position is also ghost house',
+    true,
+    test.game.tile(0, 6).house
+  );
+});
+
 addTest('Designated "doorway" tiles', test => {
   test.map = [
     '||||||',
