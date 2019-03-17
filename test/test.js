@@ -15,6 +15,8 @@ function devMode() {
     return;
   }
 
+  document.title += ' [dev mode]';
+
   $('#test-buttons, #tests').show();
 
   mainTestList.forEach(([name, callback]) => {
