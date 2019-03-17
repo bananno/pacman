@@ -1,10 +1,10 @@
 
 function addButton(buttonText, buttonClick, newLine) {
   if (newLine) {
-    $('#board').append('<br>');
+    $('#test-buttons').append('<br>');
   }
 
-  const $button = $('<button>').appendTo('#board').text(buttonText);
+  const $button = $('<button>').appendTo('#test-buttons').text(buttonText);
 
   if (buttonClick) {
     $button.click(buttonClick);
