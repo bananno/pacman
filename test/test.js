@@ -4,13 +4,18 @@ const subTestList = [];
 const WILD = 'WILD';
 
 $(document).ready(() => {
-  runAllTests(true);
+  const isLocal = window.location.href.match('index.html') != null;
+  if (isLocal) {
+    devMode();
+  }
 });
 
-function runAllTests(devModeOnly) {
-  if (devModeOnly && !devMode || subTestList.length) {
+function devMode() {
+  if (subTestList.length) {
     return;
   }
+
+  $('#test-buttons, #tests').show();
 
   mainTestList.forEach(([name, callback]) => {
     new Test(name, callback);
