@@ -129,7 +129,7 @@ addTest('game.isTilePassable() - ghost house & doorway depending on target', tes
   test.game.ghosts[0].mode = 'scatter';
   test.check(
     'ghost that is not in house can NOT enter a house tile if its target is not in house',
-    true,
+    false,
     test.game.isTilePassable(1, 4, test.game.ghosts[0])
   );
 });
