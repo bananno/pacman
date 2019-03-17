@@ -14,13 +14,13 @@ $(document).ready(() => {
 
   subTestList.forEach(test => {
     if (test.title != previousTitle) {
-      $('#tests').append('<p><b>' + test.title + '</b></p>');
-      $('#tests').append('<ul></ul>');
+      $('#tests').append('<p>' + test.title + '</p>');
+      $('#tests').append('<ul class="test-list"></ul>');
       previousTitle = test.title;
     }
 
     const $item = $('<li>').text(test.message);
-    $('#tests ul:last').append($item);
+    $('#tests ul.test-list:last').append($item);
 
     if (test.pass) {
       testsPass += 1;
@@ -32,9 +32,15 @@ $(document).ready(() => {
     $item.addClass('test-failed');
     $('#tests p:last').addClass('test-failed');
 
+    $item.append('<ul><li>expected: ' + test.expectedResult + '</li><li>result: '
+      + test.actualResult + '</li></ul>');
+
     console.warn('TEST FAILED: ' + test.message);
     console.log('  > expected: ' + test.expectedResult + '\n  > result:   ' + test.actualResult);
   });
+
+  $('#test-results').append('Total tests: ' + (testsPass + testsFail)
+    + '<br> >> Passed: ' + testsPass + '<br> >> Failed: ' + testsFail)
 
   console.log('\nTESTS FINISHED.\n  > total:  ' + (testsPass + testsFail)
     + '\n  > passed: ' + testsPass + '\n  > failed: ' + testsFail);

@@ -19,6 +19,7 @@ td {
 
 #tests p {
   margin: 10px 0px;
+  font-weight: bold;
 }
 
 #tests .test-failed {
