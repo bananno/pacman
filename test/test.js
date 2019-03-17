@@ -4,6 +4,14 @@ const subTestList = [];
 const WILD = 'WILD';
 
 $(document).ready(() => {
+  runAllTests(true);
+});
+
+function runAllTests(devModeOnly) {
+  if (devModeOnly && !devMode || subTestList.length) {
+    return;
+  }
+
   mainTestList.forEach(([name, callback]) => {
     new Test(name, callback);
   });
@@ -44,7 +52,7 @@ $(document).ready(() => {
 
   console.log('\nTESTS FINISHED.\n  > total:  ' + (testsPass + testsFail)
     + '\n  > passed: ' + testsPass + '\n  > failed: ' + testsFail);
-});
+}
 
 function addTest(title, callback) {
   mainTestList.push([title, callback]);
