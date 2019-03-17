@@ -1,14 +1,16 @@
 
-addTest('Assoted class attributes', test => {
+addTest('Game tile getters', test => {
   test.map = [
-    '  dd ',
-    '  d  ',
-    'tt   ',
+    '||||||||||',
+    '|  |ggg| |',
+    '|  |ggg| |',
+    '|tt      |',
+    '||||||||||',
   ];
 
   test.check(
     'tile getter returns all tiles',
-    15,
+    50,
     test.game.allTiles.length
   );
 
