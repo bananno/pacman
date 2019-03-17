@@ -77,7 +77,7 @@ Tile.prototype.isPassable = function(creature) {
 
   let tileInHouse = this.house;
   let creatureInHouse = creature.inHouse;
-  let targetInHouse = creature.game.tile(creature.target).inHouse == true;
+  let targetInHouse = creature.game.tile(creature.target).house == true;
 
   if (tileInHouse && !creatureInHouse) {
     return targetInHouse;
