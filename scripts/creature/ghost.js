@@ -91,12 +91,33 @@ class Ghost extends Creature {
   get corner() {
     const tile = this.game.cornerTiles[this.number];
     if (tile) {
-      return [tile.row, tile.col];
+      return tile.position;
     }
     return null;
   }
 
   get target() {
+    let finalTarget = this.finalTarget();
+
+    if (finalTarget == null || this.position == null) {
+      return finalTarget;
+    }
+
+    const currentTile = this.game.tile(this.position);
+    const targetTile = this.game.tile(finalTarget);
+
+    if (currentTile.house != targetTile.house) {
+      const doorwayTile = this.game.doorwayTiles[0];
+      if (doorwayTile) {
+        return doorwayTile.position;
+      }
+      return finalTarget;
+    }
+
+    return finalTarget;
+  }
+
+  finalTarget() {
     if (this.mode == 'scatter') {
       return this.corner;
     }
