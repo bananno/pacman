@@ -160,6 +160,20 @@ class Ghost extends Creature {
 
         return this.corner;
       }
+
+      if (this.number == 3) {
+        const pacmanPosition = this.game.pacman.position;
+        const redGhostPosition = this.game.ghosts[1].position;
+
+        if (!pacmanPosition || !this.position || !redGhostPosition) {
+          return null;
+        }
+
+        const row = pacmanPosition[0] * 2 - redGhostPosition[0];
+        const col = pacmanPosition[1] * 2 - redGhostPosition[1];
+
+        return [row, col];
+      }
     }
 
     return null;

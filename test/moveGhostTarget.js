@@ -184,19 +184,20 @@ addTest('Orange ghost chase target', test => {
 addTest('Teal ghost chase target', test => {
   test.map = [
     '             ',
-    '.... ..... + ',
-    '   P .       ',
-    '.            ',
+    '             ',
+    '             ',
+    '             ',
     '             ',
   ];
 
-  test.game.ghosts[1].position = [3, 0];
+  test.game.pacman.position = [4, 6];
+  test.game.ghosts[1].position = [1, 2];
 
   test.game.ghosts[3].position = [0, 0];
   test.game.ghosts[3].mode = 'chase';
   test.check(
     'teal ghost\'s chase target is based on both pacman\'s location and red ghost\'s location',
-    [1, 1],
+    [7, 10],
     test.game.ghosts[3].trueTarget
   );
 });
