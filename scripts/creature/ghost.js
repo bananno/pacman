@@ -97,27 +97,27 @@ class Ghost extends Creature {
   }
 
   get target() {
-    let finalTarget = this.finalTarget();
+    let trueTarget = this.trueTarget;
 
-    if (finalTarget == null || this.position == null) {
-      return finalTarget;
+    if (trueTarget == null || this.position == null) {
+      return trueTarget;
     }
 
     const currentTile = this.game.tile(this.position);
-    const targetTile = this.game.tile(finalTarget);
+    const targetTile = this.game.tile(trueTarget);
 
     if (currentTile.house != targetTile.house) {
       const doorwayTile = this.game.doorwayTiles[0];
       if (doorwayTile) {
         return doorwayTile.position;
       }
-      return finalTarget;
+      return trueTarget;
     }
 
-    return finalTarget;
+    return trueTarget;
   }
 
-  finalTarget() {
+  get trueTarget() {
     if (this.mode == 'scatter') {
       return this.corner;
     }
