@@ -3,7 +3,6 @@ const translateChar = {
   '|' : 'wall',
   '.' : 'food',
   '+' : 'token',
-  'd' : 'doorway',
   'g' : 'house',
   'P' : 'pacman',
   'G' : 'ghost',
@@ -34,7 +33,7 @@ class Tile {
     } else {
       this.$.addClass('board-path');
 
-      if (this.ghost || this.doorway) {
+      if (this.ghost) {
         this.house = true;
       } else if (this.corner) {
         this.food = true;
