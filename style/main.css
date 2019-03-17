@@ -14,7 +14,6 @@ body {
 
 table {
   margin: auto;
-  margin-top: 30px;
 }
 
 td {
@@ -35,5 +34,7 @@ td.board-wall {
 }
 
 #score {
+  width: 555px;
+  margin: 10px auto;
   color: white;
 }
