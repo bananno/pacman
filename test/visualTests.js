@@ -1,24 +1,30 @@
 
+function addButton(buttonText, buttonClick, newLine) {
+  if (newLine) {
+    $('#board').append('<br>');
+  }
+
+  const $button = $('<button>').appendTo('#board').text(buttonText);
+
+  if (buttonClick) {
+    $button.click(buttonClick);
+  }
+}
+
 function addTestButtons(game) {
-  $('<button>').appendTo('#board').text('toggle grid').click(toggleGrid);
+  addButton('toggle grid', toggleGrid);
 
-  $('#board').append('<br>');
+  addButton('blue', eatToken, true);
+  addButton('stop', clearAllIntervals);
 
-  $('<button>').appendTo('#board').text('blue').click(eatToken);
-  $('<button>').appendTo('#board').text('stop').click(clearAllIntervals);
+  addButton('move pacman', movePacman, true);
+  addButton('move ghost left', moveGhostLeft);
+  addButton('move ghost right', moveGhostRight);
 
-  $('#board').append('<br>');
-
-  $('<button>').appendTo('#board').text('move pacman').click(movePacman);
-  $('<button>').appendTo('#board').text('move ghost left').click(moveGhostLeft);
-  $('<button>').appendTo('#board').text('move ghost right').click(moveGhostRight);
-
-  $('#board').append('<br>');
-
-  $('<button>').appendTo('#board').text('turn up').click(turnAll('up'));
-  $('<button>').appendTo('#board').text('turn left').click(turnAll('left'));
-  $('<button>').appendTo('#board').text('turn right').click(turnAll('right'));
-  $('<button>').appendTo('#board').text('turn down').click(turnAll('down'));
+  addButton('turn up', turnAll('up'), true);
+  addButton('turn left', turnAll('left'));
+  addButton('turn right', turnAll('right'));
+  addButton('turn down', turnAll('down'));
 
   function movePacman() {
     game.pacman.position = [11, 10];
