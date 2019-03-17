@@ -3,6 +3,10 @@
   display: none;
 }
 
+#tests p, #tests li {
+  font-family: "Courier New", Courier, monospace;
+}
+
 td {
   border: 1px solid red;
 }
