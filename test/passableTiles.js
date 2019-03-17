@@ -133,6 +133,15 @@ addTest('game.isTilePassable() - ghost house & doorway depending on target', tes
 
   test.game.ghosts[0].origin = [1, 1];
   test.game.ghosts[0].position = [1, 3];
+  test.game.ghosts[0].mode = 'eyes';
+  test.check(
+    'ghost in doorway can CAN enter another house tile if its target is in house',
+    true,
+    test.game.isTilePassable(1, 2, test.game.ghosts[0])
+  );
+
+  test.game.ghosts[0].origin = [1, 1];
+  test.game.ghosts[0].position = [1, 3];
   test.game.ghosts[0].mode = 'scatter';
   test.check(
     'ghost in doorway can NOT enter another house tile if its target is outside house',

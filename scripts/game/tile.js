@@ -87,16 +87,34 @@ Tile.prototype.isPassable = function(creature) {
     return true;
   }
 
-  if (creature.target == null) {
+  const targetPosition = creature.target;
+
+  if (targetPosition == null) {
     return !this.house || (creature.inHouse && !creature.inDoorway);
   }
 
-  let creatureInHouse = creature.inHouse;
-  let newTileInHouse = this.house;
-  let targetInHouse = this.game.tile(creature.target).house == true;
+  if (this.row == targetPosition[0] && this.col == targetPosition[1]) {
+    return true;
+  }
 
-  if (!creatureInHouse && newTileInHouse) {
-    return targetInHouse;
+  let creatureInHouse = creature.inHouse;
+  let creatureInDoorway = creature.tile.doorway;
+  let newTileInHouse = this.house;
+  let newTileIsDoorway = this.doorway;
+  let targetTile = this.game.tile(targetPosition);
+  let targetInHouse = targetTile.house;
+  let targetIsDoorway = targetTile.doorway;
+
+  if (creatureInHouse && newTileIsDoorway && targetInHouse) {
+    return false;
+  }
+
+  if (creatureInHouse && newTileInHouse && !newTileIsDoorway && !targetInHouse) {
+    return false;
+  }
+
+  if (!creatureInHouse && newTileInHouse && !targetInHouse) {
+    return false;
   }
 
   if (creatureInHouse && !newTileInHouse && targetInHouse) {
