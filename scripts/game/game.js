@@ -42,6 +42,7 @@ class Game {
     this.modeCount = 0;
     this.lives = 3;
     this.isLost = false;
+    this.score = 0;
 
     for (let i = 0; i < 4; i++) {
       this.ghosts.push(new Ghost(this, i));
@@ -54,6 +55,17 @@ class Game {
     if (!this.isTest) {
       addTestButtons(this);
     }
+  }
+
+  set score(newScore) {
+    this._score = newScore;
+    if (!this.isTest) {
+      $('#score').text(this._score);
+    }
+  }
+
+  get score() {
+    return this._score;
   }
 
   get creatures() {

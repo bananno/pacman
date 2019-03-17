@@ -33,3 +33,7 @@ td.board-path {
 td.board-wall {
   background-color: blue;
 }
+
+#score {
+  color: white;
+}
