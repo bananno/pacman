@@ -51,9 +51,14 @@ class Tile {
     return [this.row, this.col];
   }
 
-  neighbor(direction) {
-    const row = this.row + positionAdjustment[direction][0];
-    const col = this.col + positionAdjustment[direction][1];
+  neighbor(direction, wrapAround) {
+    let row = this.row + positionAdjustment[direction][0];
+    let col = this.col + positionAdjustment[direction][1];
+
+    if (wrapAround) {
+      [row, col] = this.game.getWrappedCoordinates(row, col);
+    }
+
     return this.game.tile(row, col);
   }
 
@@ -63,7 +68,7 @@ class Tile {
     }
 
     for (let i = 0; i < 4; i++) {
-      const otherTile = this.neighbor(DIRECTIONS[i]);
+      const otherTile = this.neighbor(DIRECTIONS[i], false);
 
       if (otherTile && !otherTile.wall && !otherTile.house) {
         this.doorway = true;
