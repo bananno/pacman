@@ -69,18 +69,27 @@ addTest('game.isTilePassable() - empty space', test => {
 
 addTest('game.isTilePassable() - ghost house doorway', test => {
   test.map = [
-    ' Gd ',
+    '||||',
+    '|Gg ',
+    '|gg ',
+    '||||',
   ];
 
   test.check(
     'ghost that is in house can enter a doorway tile', true,
-    test.game.isTilePassable(0, 2, test.game.ghosts[0])
+    test.game.isTilePassable(1, 2, test.game.ghosts[0])
   );
 
-  test.game.ghosts[0].position = [0, 2];
+  test.game.ghosts[0].position = [1, 2];
   test.check(
     'ghost that is in a doorway tile cannot enter a regular house tile', false,
-    test.game.isTilePassable(0, 1, test.game.ghosts[0])
+    test.game.isTilePassable(1, 1, test.game.ghosts[0])
+  );
+
+  test.game.ghosts[0].position = [1, 2];
+  test.check(
+    'ghost that is in a doorway tile cannot enter another doorway tile', false,
+    test.game.isTilePassable(2, 2, test.game.ghosts[0])
   );
 });
 
