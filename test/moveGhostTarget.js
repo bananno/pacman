@@ -51,8 +51,8 @@ addTest('Basic target tile selection', test => {
 addTest('Ghost house door target selection', test => {
   test.map = [
     '|||||||||||',
-    '|Ggd      |',
-    '|ggd     t|',
+    '|Ggg      |',
+    '|ggg     t|',
     '|||||||||||',
   ];
 
@@ -68,22 +68,6 @@ addTest('Ghost house door target selection', test => {
   test.check(
     'when ghost must enter the ghost house, the temporary target is the first door tile',
     [1, 3],
-    test.game.ghosts[0].target
-  );
-});
-
-addTest('Ghost house door target selection', test => {
-  test.map = [
-    '|||||||||||',
-    '|Ggg      |',
-    '|ggg     t|',
-    '|||||||||||',
-  ];
-
-  test.game.ghosts[0].mode = 'scatter';
-  test.check(
-    'temp temporary target step is skipped if the map has no ghost door tiles',
-    [2, 9],
     test.game.ghosts[0].target
   );
 });
