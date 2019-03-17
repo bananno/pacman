@@ -57,14 +57,30 @@ Tile.prototype.isPassable = function(creature) {
     return false;
   }
 
-  if (creature && this.house) {
-    if (!creature.inHouse) {
-      return false;
+  if (creature == null) {
+    return true;
+  }
+
+  if (creature.target == null) {
+    if (this.house) {
+      if (!creature.inHouse) {
+        return false;
+      }
+
+      if (!this.doorway && creature.inDoorway) {
+        return false;
+      }
     }
 
-    if (!this.doorway && creature.inDoorway) {
-      return false;
-    }
+    return true;
+  }
+
+  let tileInHouse = this.house;
+  let creatureInHouse = creature.inHouse;
+  let targetInHouse = creature.game.tile(creature.target).inHouse == true;
+
+  if (tileInHouse && !creatureInHouse) {
+    return targetInHouse;
   }
 
   return true;
