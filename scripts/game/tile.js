@@ -10,7 +10,8 @@ const translateChar = {
 };
 
 class Tile {
-  constructor(row, col, tileChar) {
+  constructor(game, row, col, tileChar) {
+    this.game = game;
     this.row = row;
     this.col = col;
     this.$ = $('<td>');
@@ -50,19 +51,19 @@ class Tile {
     return [this.row, this.col];
   }
 
-  neighbor(game, direction) {
+  neighbor(direction) {
     const row = this.row + positionAdjustment[direction][0];
     const col = this.col + positionAdjustment[direction][1];
-    return game.tile(row, col);
+    return this.game.tile(row, col);
   }
 
-  decideDoorway(game) {
+  decideDoorway() {
     if (!this.house) {
       return;
     }
 
     for (let i = 0; i < 4; i++) {
-      const otherTile = this.neighbor(game, DIRECTIONS[i]);
+      const otherTile = this.neighbor(DIRECTIONS[i]);
 
       if (otherTile && !otherTile.wall && !otherTile.house) {
         this.doorway = true;
@@ -97,7 +98,7 @@ Tile.prototype.isPassable = function(creature) {
 
   let tileInHouse = this.house;
   let creatureInHouse = creature.inHouse;
-  let targetInHouse = creature.game.tile(creature.target).house == true;
+  let targetInHouse = this.game.tile(creature.target).house == true;
 
   if (tileInHouse && !creatureInHouse) {
     return targetInHouse;

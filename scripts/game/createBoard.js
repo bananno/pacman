@@ -17,7 +17,7 @@ Game.prototype.createBoard = function() {
     $row.append($('<td class="test-coordinates">').text(r));
 
     tiles.forEach((tileChar, c) => {
-      const tile = new Tile(r, c, tileChar);
+      const tile = new Tile(this, r, c, tileChar);
 
       $row.append(tile.$);
 
@@ -37,7 +37,7 @@ Game.prototype.createBoard = function() {
   });
 
   this.allTiles.forEach(tile => {
-    tile.decideDoorway(this);
+    tile.decideDoorway();
   });
 
   $table.append($numberedRow.clone());
