@@ -5,8 +5,10 @@ addTest('Basic target tile selection', test => {
   test.map = [
     '||||||||||||||||||',
     '|t              t|',
-    '|       GG   P   |',
-    '|       GG       |',
+    '|      |gg|      |',
+    '|      |GG|  P   |',
+    '|      |GG|      |',
+    '|      ||||      |',
     '|t               |',
     '||||||||||||||||||',
   ];
@@ -21,7 +23,7 @@ addTest('Basic target tile selection', test => {
   test.check(
     'first ghost uses corresponding corner as target during scatter mode',
     [1, 1],
-    test.game.ghosts[0].target
+    test.game.ghosts[0].trueTarget
   );
 
   test.game.ghosts[3].mode = 'scatter';
@@ -33,16 +35,16 @@ addTest('Basic target tile selection', test => {
 
   test.game.ghosts[0].mode = 'blue';
   test.check(
-    'target tile is null when ghost switches to blue mode',
+    'target tile is null while ghost is in blue mode',
     null,
     test.game.ghosts[0].target
   );
 
   test.game.ghosts[0].mode = 'eyes';
   test.check(
-    'target tile is the ghost\'s origin when blue ghost is caught',
-    [2, 8],
-    test.game.ghosts[0].target
+    'target tile is the ghost\'s origin while in eyes mode',
+    [3, 8],
+    test.game.ghosts[0].trueTarget
   );
 });
 
@@ -90,28 +92,28 @@ addTest('Pink ghost chase target', test => {
   test.check(
     'when pacman is moving up, pink ghost\'s chase target is 4 tiles above pacman',
     [-2, 2],
-    test.game.ghosts[0].target
+    test.game.ghosts[0].trueTarget
   );
 
   test.game.pacman.direction = 'left';
   test.check(
     'when pacman is moving left, pink ghost\'s chase target is 4 tiles to the left of pacman',
     [2, -2],
-    test.game.ghosts[0].target
+    test.game.ghosts[0].trueTarget
   );
 
   test.game.pacman.direction = 'right';
   test.check(
     'when pacman is moving right, pink ghost\'s chase target is 4 tiles to the right of pacman',
     [2, 6],
-    test.game.ghosts[0].target
+    test.game.ghosts[0].trueTarget
   );
 
   test.game.pacman.direction = 'down';
   test.check(
     'when pacman is moving down, pink ghost\'s chase target is 4 tiles below pacman',
     [6, 2],
-    test.game.ghosts[0].target
+    test.game.ghosts[0].trueTarget
   );
 });
 
@@ -126,6 +128,6 @@ addTest('Red ghost chase target', test => {
   test.check(
     'red ghost\'s chase target is pacman\'s location',
     [0, 7],
-    test.game.ghosts[1].target
+    test.game.ghosts[1].trueTarget
   );
 });
