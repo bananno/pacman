@@ -144,6 +144,22 @@ class Ghost extends Creature {
       if (this.number == 1) {
         return this.game.pacman.position;
       }
+
+      if (this.number == 2) {
+        const pacmanPosition = this.game.pacman.position;
+
+        if (!pacmanPosition || !this.position) {
+          return null;
+        }
+
+        const distanceToPacman = this.game.getDiagonalDistance(this.position, pacmanPosition);
+
+        if (distanceToPacman > 8) {
+          return pacmanPosition;
+        }
+
+        return this.corner;
+      }
     }
 
     return null;
