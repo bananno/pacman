@@ -36,6 +36,10 @@ Game.prototype.createBoard = function() {
     $row.append($('<td class="test-coordinates">').text(r));
   });
 
+  this.allTiles.forEach(tile => {
+    tile.decideDoorway(this);
+  });
+
   $table.append($numberedRow.clone());
 
   if (!this.isTest) {

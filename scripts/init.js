@@ -13,6 +13,8 @@ const positionAdjustment = {
   down: [1, 0]
 };
 
+const DIRECTIONS = ['up', 'left', 'right', 'down'];
+
 $(document).ready(() => {
   new Game();
 });

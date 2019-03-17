@@ -49,6 +49,27 @@ class Tile {
   get position() {
     return [this.row, this.col];
   }
+
+  neighbor(game, direction) {
+    const row = this.row + positionAdjustment[direction][0];
+    const col = this.col + positionAdjustment[direction][1];
+    return game.tile(row, col);
+  }
+
+  decideDoorway(game) {
+    if (!this.house) {
+      return;
+    }
+
+    for (let i = 0; i < 4; i++) {
+      const otherTile = this.neighbor(game, DIRECTIONS[i]);
+
+      if (otherTile && !otherTile.wall && !otherTile.house) {
+        this.doorway = true;
+        break;
+      }
+    }
+  }
 }
 
 Tile.prototype.isPassable = function(creature) {
