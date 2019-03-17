@@ -2,6 +2,12 @@
   padding: 0;
   margin: 0;
   border-collapse: collapse;
+  font-family: "PixelEmulator";
+}
+
+@font-face {
+  font-family: "PixelEmulator";
+  src: url("../vendor/pixel-sagas_pixel-emulator/PixelEmulator.otf") format("opentype");
 }
 
 *::selection {
