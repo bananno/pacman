@@ -10,7 +10,6 @@ class Game {
 
     if (!this.isTest) {
       $(document).keydown(event => {
-        event.preventDefault();
         this.pressKey(event);
       });
     }
@@ -18,6 +17,8 @@ class Game {
 
   pressKey(event) {
     if (event.key.match('Arrow')) {
+      event.preventDefault();
+
       let newDirection = event.key.toLowerCase().slice(5);
 
       this.start();
