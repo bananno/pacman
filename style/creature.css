@@ -15,7 +15,7 @@
 
 .show-life {
   display: inline-block;
-  background-image: url(../images/pacman.gif);
+  background-image: url(../images/pacman-freeze.gif);
 }
 
 .creature.pacman {
