@@ -17,7 +17,7 @@ class Tile {
     this.$ = $('<div class="board-cell">');
 
     this.wall = false;
-    this.food = false;
+    this._food = false;
     this.token = false;
     this.house = false;
     this.doorway = false;
