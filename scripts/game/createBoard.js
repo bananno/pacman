@@ -1,12 +1,6 @@
 
 Game.prototype.createBoard = function() {
-  const $boardRows = [];
-
   let countGhost = 0;
-
-  const $numberedRow = createNumberedRow(this.mapTemplate);
-
-  $boardRows.push($numberedRow);
 
   this.mapTemplate.forEach((row, r) => {
     this.board[r] = [];
@@ -21,7 +15,9 @@ Game.prototype.createBoard = function() {
       if (tile.pacman) {
         this.pacman.position = [r, c];
         return;
-      } else if (tile.ghost) {
+      }
+
+      if (tile.ghost) {
         this.ghosts[countGhost].position = [r, c];
         countGhost += 1;
         return;
@@ -29,7 +25,17 @@ Game.prototype.createBoard = function() {
     });
   });
 
+  this.allTiles.forEach(tile => {
+    tile.decideDoorway();
+  });
+
   if (!this.isTest) {
+    const $boardRows = [];
+
+    const $numberedRow = createNumberedRow(this.mapTemplate);
+
+    $boardRows.push($numberedRow);
+
     this.board.forEach((row, r) => {
       const $row = $('<div class="board-row">');
       $row.append($('<div class="board-cell test-coordinates">').text(r));
@@ -39,15 +45,9 @@ Game.prototype.createBoard = function() {
       $row.append($('<div class="board-cell test-coordinates">').text(r));
       $boardRows.push($row);
     });
-  }
 
-  this.allTiles.forEach(tile => {
-    tile.decideDoorway();
-  });
+    $boardRows.push($numberedRow.clone());
 
-  $boardRows.push($numberedRow.clone());
-
-  if (!this.isTest) {
     printBoardOnScreen($boardRows);
   }
 };
