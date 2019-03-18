@@ -31,7 +31,7 @@ class Tile {
 
     if (this.wall) {
       this.$.addClass('board-wall');
-      this.$.append('<div class="walls">');
+      this.$.append('<div class="walls"><div class="angle"></div></div>');
     } else {
       this.$.addClass('board-path');
 
@@ -104,6 +104,16 @@ class Tile {
 
       if (connections.up && !connections.down && connections.left && connections.right) {
         this.$.find('div').addClass('horizontal');
+        return;
+      }
+
+      if (connections.up && !connections.down && !connections.left && connections.right) {
+        this.$.find('div').addClass('bottom-left');
+        return;
+      }
+
+      if (connections.up && !connections.down && connections.left && !connections.right) {
+        this.$.find('div').addClass('bottom-right');
         return;
       }
 
