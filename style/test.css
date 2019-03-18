@@ -7,12 +7,8 @@
   font-family: "Courier New", Courier, monospace;
 }
 
-td {
+#board.show-test-borders .board-cell {
   border: 1px solid red;
-}
-
-#board.normal td {
-  border: none;
 }
 
 #test-buttons {
@@ -43,36 +39,28 @@ td {
   color: red;
 }
 
-td.test-coordinates {
+.test-coordinates {
   font-weight: normal;
   color: red;
+  font-size: 12px;
 }
 
-#board.normal td.test-coordinates {
+#board:not(.show-test-borders) .test-coordinates {
   display: none;
 }
 
-td.board-path.show-path {
-  background-color: yellow;
-  color: black;
-}
-
-td.board-path.show-path-end {
-  background-color: red;
-}
-
-td.target-tile-1 {
+.target-tile-1 {
   background-color: pink;
 }
 
-td.target-tile-2 {
+.target-tile-2 {
   background-color: red;
 }
 
-td.target-tile-3 {
+.target-tile-3 {
   background-color: orange;
 }
 
-td.target-tile-4 {
+.target-tile-4 {
   background-color: teal;
 }

@@ -18,13 +18,19 @@ body {
   background-color: black;
 }
 
+#screen {
+  width: 100%;
+  text-align: center;
+}
+
 #score {
   width: 555px;
   margin: 10px auto;
   color: white;
   font-size: 30px;
+  text-align: left;
 }
 
-table {
-  margin: auto;
+#board {
+  display: inline-block;
 }

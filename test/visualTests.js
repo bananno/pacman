@@ -67,9 +67,9 @@ function addTestButtons(game) {
 }
 
 function toggleGrid() {
-  if ($('#board').hasClass('normal')) {
-    $('#board').removeClass('normal');
+  if ($('#board').hasClass('show-test-borders')) {
+    $('#board').removeClass('show-test-borders');
   } else {
-    $('#board').addClass('normal');
+    $('#board').addClass('show-test-borders');
   }
 }
