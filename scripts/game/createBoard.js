@@ -46,12 +46,17 @@ Game.prototype.createBoard = function() {
   $boardRows.push($numberedRow.clone());
 
   if (!this.isTest) {
-    $('#board').html('');
-    $boardRows.forEach($row => {
-      $('#board').append($row);
-    });
+    printBoardOnScreen($boardRows);
   }
 };
+
+function printBoardOnScreen($boardRows) {
+  $('#board').html('');
+
+  $boardRows.forEach($row => {
+    $('#board').append($row);
+  });
+}
 
 function createNumberedRow(mapTemplate) {
   const numColumns = mapTemplate[0].split('').length;
