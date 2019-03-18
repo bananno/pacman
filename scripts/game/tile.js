@@ -14,7 +14,7 @@ class Tile {
     this.game = game;
     this.row = row;
     this.col = col;
-    this.$ = $('<td>');
+    this.$ = $('<div class="board-cell">');
 
     this.wall = false;
     this.food = false;
