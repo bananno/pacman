@@ -68,7 +68,7 @@ class Tile {
 
       DIRECTIONS.forEach(direction => {
         const otherTile = this.neighbor(direction, false);
-        connections[direction] = otherTile && otherTile.wall;
+        connections[direction] = otherTile == null ? -1 : otherTile.wall ? 1 : 0;
       });
 
       this.$.addClass(getWallClasses(connections));
@@ -125,12 +125,44 @@ Tile.prototype.isPassable = function(creature) {
 };
 
 function getWallClasses(connections) {
+  if (connections.up == -1 && connections.down == 1 && connections.left == 1 && connections.right == 1) {
+    return 'wall-corner top-right';
+  }
+
+  if (connections.up < 1 && connections.down == 1 && connections.left < 1 && connections.right == 1) {
+    return 'wall-corner top-left';
+  }
+
+  if (connections.up < 1 && connections.down == 1 && connections.left == 1 && connections.right < 1) {
+    return 'wall-corner top-right';
+  }
+
+  if (connections.up == 1 && connections.down < 0 && connections.left < 0 && connections.right == 1) {
+    return 'wall-corner bottom-left';
+  }
+
+  if (connections.up == 1 && connections.down < 0 && connections.left == 1 && connections.right < 0) {
+    return 'wall-corner bottom-right';
+  }
+
   if (connections.up && connections.down && !connections.left && !connections.right) {
     return 'wall-vertical';
   }
 
   if (connections.up && connections.down && (connections.left != connections.right)) {
     return 'wall-vertical';
+  }
+
+  if (connections.up && !connections.down && connections.left && connections.right) {
+    return 'wall-horizontal';
+  }
+
+  if (!connections.up && connections.down && connections.left && connections.right) {
+    return 'wall-horizontal';
+  }
+
+  if (!connections.up && connections.down && connections.left && !connections.right) {
+    return 'wall-corner top-right';
   }
 
   if (!connections.up && !connections.down && connections.left && connections.right) {
@@ -143,29 +175,5 @@ function getWallClasses(connections) {
 
   if (!connections.up && !connections.down && connections.left && !connections.right) {
     return 'wall-horizontal';
-  }
-
-  if (!connections.up && connections.down && connections.left && connections.right) {
-    return 'wall-horizontal';
-  }
-
-  if (connections.up && !connections.down && connections.left && connections.right) {
-    return 'wall-horizontal';
-  }
-
-  if (!connections.up && connections.down && !connections.left && connections.right) {
-    return 'wall-corner top-left';
-  }
-
-  if (!connections.up && connections.down && connections.left && !connections.right) {
-    return 'wall-corner top-right';
-  }
-
-  if (connections.up && !connections.down && !connections.left && connections.right) {
-    return 'wall-corner bottom-left';
-  }
-
-  if (connections.up && !connections.down && connections.left && !connections.right) {
-    return 'wall-corner bottom-right';
   }
 }
