@@ -188,3 +188,22 @@ addTest('Arrow key events', test => {
   );
   test.game.tile(0, 1).wall = false;
 });
+
+addTest('Arrow key events', test => {
+  test.map = [
+    '   ',
+    ' P ',
+    '   ',
+  ];
+
+  // GAME OVER
+
+  test.game.pacman.direction = 'right';
+  test.game.finishGame();
+  test.game.pressKey({ key: 'ArrowDown' });
+  test.check(
+    'arrow key does nothing when game is already over',
+    'right',
+    test.game.pacman.direction
+  );
+});
