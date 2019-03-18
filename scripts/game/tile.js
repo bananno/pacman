@@ -71,60 +71,7 @@ class Tile {
         connections[direction] = otherTile && otherTile.wall;
       });
 
-      if (connections.up && connections.down && !connections.left && !connections.right) {
-        this.$.addClass('wall-vertical');
-        return;
-      }
-
-      if (connections.up && connections.down && (connections.left != connections.right)) {
-        this.$.addClass('wall-vertical');
-        return;
-      }
-
-      if (!connections.up && !connections.down && connections.left && connections.right) {
-        this.$.addClass('wall-horizontal');
-        return;
-      }
-
-      if (!connections.up && !connections.down && !connections.left && connections.right) {
-        this.$.addClass('wall-horizontal');
-        return;
-      }
-
-      if (!connections.up && !connections.down && connections.left && !connections.right) {
-        this.$.addClass('wall-horizontal');
-        return;
-      }
-
-      if (!connections.up && connections.down && connections.left && connections.right) {
-        this.$.addClass('wall-horizontal');
-        return;
-      }
-
-      if (connections.up && !connections.down && connections.left && connections.right) {
-        this.$.addClass('wall-horizontal');
-        return;
-      }
-
-      if (!connections.up && connections.down && !connections.left && connections.right) {
-        this.$.addClass('wall-corner top-left');
-        return;
-      }
-
-      if (!connections.up && connections.down && connections.left && !connections.right) {
-        this.$.addClass('wall-corner top-right');
-        return;
-      }
-
-      if (connections.up && !connections.down && !connections.left && connections.right) {
-        this.$.addClass('wall-corner bottom-left');
-        return;
-      }
-
-      if (connections.up && !connections.down && connections.left && !connections.right) {
-        this.$.addClass('wall-corner bottom-right');
-        return;
-      }
+      this.$.addClass(getWallClasses(connections));
 
       return;
     }
@@ -176,3 +123,49 @@ Tile.prototype.isPassable = function(creature) {
 
   return !this.house || targetTileIsInHouse;
 };
+
+function getWallClasses(connections) {
+  if (connections.up && connections.down && !connections.left && !connections.right) {
+    return 'wall-vertical';
+  }
+
+  if (connections.up && connections.down && (connections.left != connections.right)) {
+    return 'wall-vertical';
+  }
+
+  if (!connections.up && !connections.down && connections.left && connections.right) {
+    return 'wall-horizontal';
+  }
+
+  if (!connections.up && !connections.down && !connections.left && connections.right) {
+    return 'wall-horizontal';
+  }
+
+  if (!connections.up && !connections.down && connections.left && !connections.right) {
+    return 'wall-horizontal';
+  }
+
+  if (!connections.up && connections.down && connections.left && connections.right) {
+    return 'wall-horizontal';
+  }
+
+  if (connections.up && !connections.down && connections.left && connections.right) {
+    return 'wall-horizontal';
+  }
+
+  if (!connections.up && connections.down && !connections.left && connections.right) {
+    return 'wall-corner top-left';
+  }
+
+  if (!connections.up && connections.down && connections.left && !connections.right) {
+    return 'wall-corner top-right';
+  }
+
+  if (connections.up && !connections.down && !connections.left && connections.right) {
+    return 'wall-corner bottom-left';
+  }
+
+  if (connections.up && !connections.down && connections.left && !connections.right) {
+    return 'wall-corner bottom-right';
+  }
+}
