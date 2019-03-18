@@ -1,11 +1,23 @@
 
-addTest('Score', test => {
+addTest('Food', test => {
   test.map = [
-    'P.',
+    'P...',
   ];
+
+  test.check(
+    'food attribute keeps track of how many food tiles remaing',
+    3,
+    test.game.foodLeft
+  );
 
   test.game.pacman.direction = 'right';
   test.game.pacman.move();
+
+  test.check(
+    'food attribute is reduced when pacman eats one food',
+    2,
+    test.game.foodLeft
+  );
 
   test.check(
     'score increases by 10 when pacman moves into a tile with food',
@@ -20,7 +32,28 @@ addTest('Score', test => {
   );
 });
 
-addTest('Score', test => {
+addTest('Food', test => {
+  test.map = [
+    'P..'
+  ];
+
+  test.game.pacman.direction = 'right';
+  test.game.pacman.move();
+  test.check(
+    'game is not won when there is food remaining',
+    false,
+    test.game.isWon
+  );
+
+  test.game.pacman.move();
+  test.check(
+    'game is won when pacman eats last food',
+    true,
+    test.game.isWon
+  );
+});
+
+addTest('Token', test => {
   test.map = [
     'P+',
   ];
@@ -41,7 +74,7 @@ addTest('Score', test => {
   );
 });
 
-addTest('Score', test => {
+addTest('Token', test => {
   test.map = [
     'P    ',
   ];
