@@ -17,8 +17,8 @@ function addTestButtons(game) {
 
   addButton('blue', eatToken, true);
   addButton('stop', clearAllIntervals);
-  addButton('lose', () => game.loseGame());
-  addButton('win', () => game.winGame());
+  addButton('lose', () => { game.loseGame(); });
+  addButton('win', () => { game.winGame(); });
 
   addButton('move pacman', movePacman, true);
   addButton('move ghost left', moveGhostLeft);
