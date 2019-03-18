@@ -46,8 +46,10 @@ class Tile {
     this._food = value;
     if (value) {
       this.$.addClass('food');
+      this.game.foodLeft += 1;
     } else {
       this.$.removeClass('food');
+      this.game.foodLeft -= 1;
     }
   }
 

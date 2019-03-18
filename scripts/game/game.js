@@ -42,8 +42,9 @@ class Game {
     this.modeCount = 0;
     this.lives = 3;
     this.isLost = false;
-    this.isWin = false;
+    this.isWon = false;
     this.score = 0;
+    this.foodLeft = 0;
 
     for (let i = 0; i < 4; i++) {
       this.ghosts.push(new Ghost(this, i));
@@ -121,6 +122,7 @@ class Game {
   }
 
   winGame() {
+    this.isWon = true;
   }
 
   clearAllIntervals() {
