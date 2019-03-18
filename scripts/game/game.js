@@ -87,6 +87,20 @@ class Game {
     this.toggleMode();
   }
 
+  set lives(value) {
+    this._lives = value;
+
+    $('#lives').html('');
+
+    for (let i = 0; i < value; i++) {
+      $('#lives').append('<div class="show-life"></div>');
+    }
+  }
+
+  get lives() {
+    return this._lives;
+  }
+
   loseLife() {
     this.lives -= 1;
 

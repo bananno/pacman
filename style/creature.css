@@ -1,13 +1,21 @@
 
-.creature {
-  position: absolute;
+.creature, .show-life {
   height: 28px;
   width: 28px;
   background-size: 28px;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.creature {
+  position: absolute;
   margin-top: -5px;
   margin-left: -5px;
+}
+
+.show-life {
+  display: inline-block;
+  background-image: url(../images/pacman.gif);
 }
 
 .creature.pacman {
