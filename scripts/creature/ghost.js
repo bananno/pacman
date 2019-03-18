@@ -78,6 +78,7 @@ class Ghost extends Creature {
   }
 
   catchBlue() {
+    this.game.score += 200;
     this.mode = 'eyes';
     clearInterval(this.blueInterval);
     this.speed = 75;
