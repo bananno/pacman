@@ -1,5 +1,6 @@
 
-td {
+.board-cell {
+  display: inline-block;
   height: 20px;
   width: 20px;
   color: white;
@@ -9,14 +10,14 @@ td {
   padding: 0px;
 }
 
-td.food {
+.board-cell.food {
   background-image: url(../images/dot.png);
   background-size: 4px;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-td.token {
+.board-cell.token {
   background-image: url(../images/dot-flash.gif);
   background-size: 11px;
   background-position: center;

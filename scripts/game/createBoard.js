@@ -34,7 +34,7 @@ Game.prototype.createBoard = function() {
       }
     });
 
-    $row.append($('<td class="board-cell test-coordinates">').text(r));
+    $row.append($('<div class="board-cell test-coordinates">').text(r));
 
     $boardRows.push($row);
   });
@@ -43,7 +43,7 @@ Game.prototype.createBoard = function() {
     tile.decideDoorway();
   });
 
-  $boardRows.push($numberedRow);
+  $boardRows.push($numberedRow.clone());
 
   if (!this.isTest) {
     $('#board').html('');
@@ -56,15 +56,15 @@ Game.prototype.createBoard = function() {
 function createNumberedRow(mapTemplate) {
   const numColumns = mapTemplate[0].split('').length;
 
-  const $row = $('<tr>');
+  const $row = $('<div class="board-row">');
 
-  $row.append('<td class="test-coordinates">');
+  $row.append('<div class="board-cell test-coordinates">');
 
   for (let c = 0; c < numColumns; c++) {
-    $row.append($('<td class="test-coordinates">').text(c));
+    $row.append($('<div class="board-cell test-coordinates">').text(c));
   }
 
-  $row.append('<td class="test-coordinates">');
+  $row.append('<div class="board-cell test-coordinates">');
 
   return $row;
 }
