@@ -66,7 +66,7 @@ class Tile {
     if (this.wall) {
       const connections = {};
 
-      DIRECTIONS.forEach(direction => {
+      [...DIRECTIONS, 'upLeft', 'upRight', 'downLeft', 'downLeft'].forEach(direction => {
         const otherTile = this.neighbor(direction, false);
         connections[direction] = otherTile == null ? -1 : otherTile.wall ? 1 : 0;
       });
@@ -125,6 +125,22 @@ Tile.prototype.isPassable = function(creature) {
 };
 
 function getWallClasses(connections) {
+  if (connections.up == 1 && connections.down == 1 && connections.left == 1 && connections.right == 1) {
+    if (connections.downLeft < 1) {
+      return 'wall-corner top-right';
+    }
+    if (connections.downRight < 1) {
+      return 'wall-corner top-left';
+    }
+    if (connections.upRight < 1) {
+      return 'wall-corner bottom-left';
+    }
+    if (connections.upLeft < 1) {
+      return 'wall-corner bottom-right';
+    }
+    console.log(connections)
+  }
+
   if (connections.up == -1 && connections.down == 1 && connections.left == 1 && connections.right == 1) {
     return 'wall-corner top-right';
   }
