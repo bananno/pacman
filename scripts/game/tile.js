@@ -38,13 +38,34 @@ class Tile {
         this.house = true;
       } else if (this.corner) {
         this.food = true;
-        this.$.addClass('food');
-      } else if (this.food) {
-        this.$.addClass('food');
-      } else if (this.token) {
-        this.$.addClass('token');
       }
     }
+  }
+
+  set food(value) {
+    this._food = value;
+    if (value) {
+      this.$.addClass('food');
+    } else {
+      this.$.removeClass('food');
+    }
+  }
+
+  get food() {
+    return this._food;
+  }
+
+  set token(value) {
+    this._token = value;
+    if (value) {
+      this.$.addClass('token');
+    } else {
+      this.$.removeClass('token');
+    }
+  }
+
+  get token() {
+    return this._token;
   }
 
   get position() {
