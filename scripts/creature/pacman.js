@@ -10,6 +10,7 @@ class Pacman extends Creature {
   eat(tile) {
     if (tile.food) {
       tile.food = false;
+      this.game.eatFood();
       this.game.score += 10;
       return;
     }

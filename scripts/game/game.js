@@ -131,6 +131,12 @@ class Game {
     });
   }
 
+  eatFood() {
+    if (this.foodLeft == 0) {
+      this.winGame();
+    }
+  }
+
   eatToken() {
     this.ghosts.forEach(ghost => {
       ghost.turnBlue();
