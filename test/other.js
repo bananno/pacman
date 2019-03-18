@@ -33,6 +33,18 @@ addTest('Assorted class attributes', test => {
   ];
 
   test.check(
+    'creature position is null before being set',
+    null,
+    test.game.pacman.position
+  );
+});
+
+addTest('game.isLost', test => {
+  test.map = [
+    ' '
+  ];
+
+  test.check(
     'lost game attribute is false before game is lost',
     false,
     test.game.isLost
@@ -46,15 +58,22 @@ addTest('Assorted class attributes', test => {
   );
 });
 
-addTest('Assorted class attributes', test => {
+addTest('game.isWon', test => {
   test.map = [
     ' '
   ];
 
   test.check(
-    'creature position is null before being set',
-    null,
-    test.game.pacman.position
+    'won game attribute is false before game is won',
+    false,
+    test.game.isWon
+  );
+
+  test.game.winGame();
+  test.check(
+    'won game attribute is true after game is lost',
+    true,
+    test.game.isWon
   );
 });
 

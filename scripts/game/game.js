@@ -42,6 +42,7 @@ class Game {
     this.modeCount = 0;
     this.lives = 3;
     this.isLost = false;
+    this.isWin = false;
     this.score = 0;
 
     for (let i = 0; i < 4; i++) {
@@ -117,6 +118,9 @@ class Game {
       }
       this.newGame();
     }, 250);
+  }
+
+  winGame() {
   }
 
   clearAllIntervals() {
