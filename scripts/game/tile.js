@@ -150,6 +150,26 @@ function getWallClasses(connections) {
     }
   }
 
+  if (connections.up && connections.down && !connections.left && connections.right) {
+    if (!connections.upRight) {
+      return 'wall-corner bottom-left';
+    }
+    if (!connections.downRight) {
+      return 'wall-corner top-left';
+    }
+    return 'wall-vertical';
+  }
+
+  if (connections.up && connections.down && connections.left && !connections.right) {
+    if (!connections.upLeft) {
+      return 'wall-corner bottom-right';
+    }
+    if (!connections.downLeft) {
+      return 'wall-corner top-right';
+    }
+    return 'wall-vertical';
+  }
+
   if (!connections.up && connections.down && !connections.left && connections.right) {
     return 'wall-corner top-left';
   }
@@ -167,10 +187,6 @@ function getWallClasses(connections) {
   }
 
   if (connections.up && connections.down && !connections.left && !connections.right) {
-    return 'wall-vertical';
-  }
-
-  if (connections.up && connections.down && (connections.left != connections.right)) {
     return 'wall-vertical';
   }
 
