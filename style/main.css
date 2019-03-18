@@ -47,6 +47,7 @@ td {
 */
 
 td .walls {
+  position: absolute;
   height: 2px;
   width: 2px;
   border: 0px solid blue;
@@ -61,6 +62,7 @@ td .walls.vertical {
 td .walls.horizontal {
   width: 20px;
   border-top-width: 5px;
+  margin-top: -3px;
 }
 
 td .walls.bottom-left,
@@ -68,7 +70,7 @@ td .walls.top-left,
 td .walls.top-right,
 td .walls.bottom-right {
   width: 8px;
-  height: 10px;
+  height: 6px;
 }
 
 td .walls.top-left {
@@ -92,6 +94,8 @@ td .walls.bottom-left {
 }
 
 td .walls.bottom-right {
+  margin-top: -6px;
+  margin-left: -1px;
   border-bottom-width: 5px;
   border-right-width: 5px;
   border-bottom-right-radius: 10px;
