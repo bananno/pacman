@@ -137,11 +137,11 @@ function getWallClasses(connections) {
     return 'wall-corner top-right';
   }
 
-  if (connections.up == 1 && connections.down < 0 && connections.left < 0 && connections.right == 1) {
+  if (connections.up == 1 && connections.down < 1 && connections.left < 1 && connections.right == 1) {
     return 'wall-corner bottom-left';
   }
 
-  if (connections.up == 1 && connections.down < 0 && connections.left == 1 && connections.right < 0) {
+  if (connections.up == 1 && connections.down < 1 && connections.left == 1 && connections.right < 1) {
     return 'wall-corner bottom-right';
   }
 
