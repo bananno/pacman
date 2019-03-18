@@ -69,11 +69,21 @@ function moveElement($element, $target, direction, interval, skipStagger) {
   let newMarginLeft = initialMarginLeft;
 
   let incrementTop = 0;
-  let incrementLeft = marginIncrements;
+  let incrementLeft = 0;
 
-  helper();
+  if (direction == 'up') {
+    newMarginTop = -marginIncrements;
+  } else if (direction == 'down') {
+    newMarginTop = marginIncrements;
+  } else if (direction == 'left') {
+    incrementLeft = -marginIncrements;
+  } else if (direction == 'right') {
+    incrementLeft = marginIncrements;
+  }
 
-  function helper() {
+  stagger();
+
+  function stagger() {
     count += 1;
 
     newMarginTop += incrementTop;
@@ -83,7 +93,7 @@ function moveElement($element, $target, direction, interval, skipStagger) {
     $element.css('margin-left', newMarginLeft + 'px');
 
     if (count < numberOfSteps) {
-      setTimeout(helper, (interval/numberOfSteps));
+      setTimeout(stagger, (interval/numberOfSteps));
     } else {
       resetMargins();
       finish();
