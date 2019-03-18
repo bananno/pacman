@@ -30,34 +30,34 @@ Game.prototype.createBoard = function() {
   });
 
   if (!this.isTest) {
-    const $boardRows = [];
-
-    const $numberedRow = createNumberedRow(this.mapTemplate);
-
-    $boardRows.push($numberedRow);
-
-    this.board.forEach((row, r) => {
-      const $row = $('<div class="board-row">');
-      $row.append($('<div class="board-cell test-coordinates">').text(r));
-      row.forEach((tile, c) => {
-        $row.append(tile.$);
-      });
-      $row.append($('<div class="board-cell test-coordinates">').text(r));
-      $boardRows.push($row);
-    });
-
-    $boardRows.push($numberedRow.clone());
-
-    printBoardOnScreen($boardRows);
+    printBoardOnScreen(this.mapTemplate, this.board);
   }
 };
 
-function printBoardOnScreen($boardRows) {
+function printBoardOnScreen(mapTemplate, board) {
   $('#board').html('');
 
-  $boardRows.forEach($row => {
+  const $boardRows = [];
+
+  const $numberedRow = createNumberedRow(mapTemplate);
+
+  $('#board').append($numberedRow);
+
+  board.forEach((row, r) => {
+    const $row = $('<div class="board-row">');
+
+    $row.append($('<div class="board-cell test-coordinates">').text(r));
+
+    row.forEach((tile, c) => {
+      $row.append(tile.$);
+    });
+
+    $row.append($('<div class="board-cell test-coordinates">').text(r));
+
     $('#board').append($row);
   });
+
+  $('#board').append($numberedRow.clone());
 }
 
 function createNumberedRow(mapTemplate) {
