@@ -43,6 +43,7 @@ class Game {
     this.lives = 3;
     this.isLost = false;
     this.isWon = false;
+    this.isOver = false;
     this.score = 0;
 
     for (let i = 0; i < 4; i++) {
@@ -134,6 +135,8 @@ class Game {
   }
 
   finishGame(result) {
+    this.isOver = true;
+
     this.clearAllIntervals();
 
     setTimeout(() => {

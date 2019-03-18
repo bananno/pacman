@@ -77,6 +77,38 @@ addTest('game.isWon', test => {
   );
 });
 
+addTest('game.isOver', test => {
+  test.map = [
+    ' '
+  ];
+
+  test.check(
+    'won over attribute is false before game is either won or lost',
+    false,
+    test.game.isOver
+  );
+
+  test.game.loseGame();
+  test.check(
+    'won over attribute is true after game is lost',
+    true,
+    test.game.isOver
+  );
+});
+
+addTest('game.isOver', test => {
+  test.map = [
+    ' '
+  ];
+
+  test.game.winGame();
+  test.check(
+    'won over attribute is true after game is won',
+    true,
+    test.game.isOver
+  );
+});
+
 // DIRECTION NAME HELPER
 
 addTest('Get direction name between two positions', test => {
