@@ -92,7 +92,7 @@ class Game {
 
     $('#lives').html('');
 
-    for (let i = 0; i < value; i++) {
+    for (let i = 0; i < value - 1; i++) {
       $('#lives').append('<div class="show-life"></div>');
     }
   }
