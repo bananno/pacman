@@ -7,7 +7,7 @@ class Creature {
   }
 
   start() {
-    this.movementInterval = setInterval(this.move.bind(this), this._speed);
+    this.movementInterval = setInterval(this.move.bind(this), this.speed);
   }
 
   set speed(newSpeed) {
@@ -16,6 +16,10 @@ class Creature {
       clearInterval(this.movementInterval);
       this.start();
     }
+  }
+
+  get speed() {
+    return this._speed;
   }
 
   set position([r, c]) {
