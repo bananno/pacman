@@ -108,5 +108,5 @@ Tile.prototype.isPassable = function(creature) {
     return !this.house || this.doorway;
   }
 
-  return creature.inHouse || !this.house || targetTileIsInHouse;
+  return !this.house || targetTileIsInHouse;
 };
