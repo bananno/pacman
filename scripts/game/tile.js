@@ -83,7 +83,7 @@ class Tile {
     return this.game.tile(row, col);
   }
 
-  decideDoorway() {
+  decideDoorwayAndWalls() {
     if (this.wall) {
       const connections = {};
 

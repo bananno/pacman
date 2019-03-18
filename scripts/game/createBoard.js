@@ -26,7 +26,7 @@ Game.prototype.createBoard = function() {
   });
 
   this.allTiles.forEach(tile => {
-    tile.decideDoorway();
+    tile.decideDoorwayAndWalls();
   });
 
   if (!this.isTest) {
@@ -37,14 +37,10 @@ Game.prototype.createBoard = function() {
 function printBoardOnScreen(mapTemplate, board) {
   $('#board').html('');
 
-  const $boardRows = [];
-
-  const $numberedRow = createNumberedRow(mapTemplate);
-
-  $('#board').append($numberedRow);
+  const $numberedRow = createNumberedRow(mapTemplate).appendTo('#board');
 
   board.forEach((row, r) => {
-    const $row = $('<div class="board-row">');
+    const $row = $('<div class="board-row">').appendTo('#board');
 
     $row.append($('<div class="board-cell test-coordinates">').text(r));
 
@@ -53,8 +49,6 @@ function printBoardOnScreen(mapTemplate, board) {
     });
 
     $row.append($('<div class="board-cell test-coordinates">').text(r));
-
-    $('#board').append($row);
   });
 
   $('#board').append($numberedRow.clone());
