@@ -61,25 +61,32 @@ function moveElement($element, $target, direction, interval, skipStagger) {
   }
 
   let count = 0;
-  let newMargin = initialMarginTop;
+
+  let newMarginTop = initialMarginTop;
+  let newMarginLeft = initialMarginLeft;
 
   helper();
 
   function helper() {
-    newMargin += 5;
     count += 1;
-    $element.css('margin-left', newMargin + 'px');
+
+    newMarginTop += 0;
+    newMarginLeft += 5;
+
+    $element.css('margin-top', newMarginTop + 'px');
+    $element.css('margin-left', newMarginLeft + 'px');
+
     if (count < 2) {
       setTimeout(helper, (interval/3));
     } else {
-      resetMargin();
+      resetMargins();
       finish();
     }
   }
 
-  function resetMargin() {
+  function resetMargins() {
+    $element.css('margin-top', initialMarginTop + 'px');
     $element.css('margin-left', initialMarginLeft + 'px');
-
   }
 
   function finish() {
