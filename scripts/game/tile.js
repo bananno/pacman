@@ -126,91 +126,74 @@ Tile.prototype.isPassable = function(creature) {
 };
 
 function getWallClasses(connections) {
-  if (connections.up && connections.down && connections.left && connections.right) {
-    if (!connections.downLeft) {
-      return 'wall-corner top-right';
+  if (connections.up && connections.down) {
+    if (connections.left && connections.right) {
+      if (!connections.downLeft) {
+        return 'wall-corner top-right';
+      }
+      if (!connections.downRight) {
+        return 'wall-corner top-left';
+      }
+      if (!connections.upRight) {
+        return 'wall-corner bottom-left';
+      }
+      if (!connections.upLeft) {
+        return 'wall-corner bottom-right';
+      }
     }
-    if (!connections.downRight) {
-      return 'wall-corner top-left';
+
+    if (connections.left && !connections.right) {
+      if (!connections.upLeft) {
+        return 'wall-corner bottom-right';
+      }
+      if (!connections.downLeft) {
+        return 'wall-corner top-right';
+      }
+      return 'wall-vertical';
     }
-    if (!connections.upRight) {
-      return 'wall-corner bottom-left';
+
+    if (!connections.left && connections.right) {
+      if (!connections.upRight) {
+        return 'wall-corner bottom-left';
+      }
+      if (!connections.downRight) {
+        return 'wall-corner top-left';
+      }
+      return 'wall-vertical';
     }
-    if (!connections.upLeft) {
+
+    if (!connections.left && !connections.right) {
+      return 'wall-vertical';
+    }
+  }
+
+  if (connections.up && !connections.down) {
+    if (connections.left && connections.right) {
+      return 'wall-horizontal';
+    }
+    if (connections.left && !connections.right) {
       return 'wall-corner bottom-right';
     }
-  }
-
-  if (!connections.up && connections.down && connections.left && connections.right) {
-    if (!connections.downLeft) {
-      return 'wall-corner top-right';
-    }
-    if (!connections.downRight) {
-      return 'wall-corner top-left';
-    }
-  }
-
-  if (connections.up && connections.down && !connections.left && connections.right) {
-    if (!connections.upRight) {
+    if (!connections.left && connections.right) {
       return 'wall-corner bottom-left';
     }
-    if (!connections.downRight) {
-      return 'wall-corner top-left';
-    }
-    return 'wall-vertical';
   }
 
-  if (connections.up && connections.down && connections.left && !connections.right) {
-    if (!connections.upLeft) {
-      return 'wall-corner bottom-right';
+  if (!connections.up && connections.down) {
+    if (connections.left && !connections.right) {
+      return 'wall-corner top-right';
+    }
+    if (!connections.left && connections.right) {
+      return 'wall-corner top-left';
     }
     if (!connections.downLeft) {
       return 'wall-corner top-right';
     }
-    return 'wall-vertical';
-  }
-
-  if (!connections.up && connections.down && !connections.left && connections.right) {
-    return 'wall-corner top-left';
-  }
-
-  if (!connections.up && connections.down && connections.left && !connections.right) {
-    return 'wall-corner top-right';
-  }
-
-  if (connections.up && !connections.down && !connections.left && connections.right) {
-    return 'wall-corner bottom-left';
-  }
-
-  if (connections.up && !connections.down && connections.left && !connections.right) {
-    return 'wall-corner bottom-right';
-  }
-
-  if (connections.up && connections.down && !connections.left && !connections.right) {
-    return 'wall-vertical';
-  }
-
-  if (connections.up && !connections.down && connections.left && connections.right) {
+    if (!connections.downRight) {
+      return 'wall-corner top-left';
+    }
     return 'wall-horizontal';
   }
 
-  if (!connections.up && connections.down && connections.left && connections.right) {
-    return 'wall-horizontal';
-  }
-
-  if (!connections.up && connections.down && connections.left && !connections.right) {
-    return 'wall-corner top-right';
-  }
-
-  if (!connections.up && !connections.down && connections.left && connections.right) {
-    return 'wall-horizontal';
-  }
-
-  if (!connections.up && !connections.down && !connections.left && connections.right) {
-    return 'wall-horizontal';
-  }
-
-  if (!connections.up && !connections.down && connections.left && !connections.right) {
-    return 'wall-horizontal';
-  }
+  return 'wall-horizontal';
 }
