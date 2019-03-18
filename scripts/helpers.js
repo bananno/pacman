@@ -59,7 +59,7 @@ function moveElement($element, $target, direction, interval, skipStagger) {
 
   const initialMarginTop = getElementMargin($element, 'top');
   const initialMarginLeft = getElementMargin($element, 'left');
-  const numberOfSteps = 3;
+  const numberOfSteps = 4;
   const tileSize = 18;
   const marginIncrements = Math.round(tileSize / numberOfSteps);
 
@@ -72,9 +72,9 @@ function moveElement($element, $target, direction, interval, skipStagger) {
   let incrementLeft = 0;
 
   if (direction == 'up') {
-    newMarginTop = -marginIncrements;
+    incrementTop = -marginIncrements;
   } else if (direction == 'down') {
-    newMarginTop = marginIncrements;
+    incrementTop = marginIncrements;
   } else if (direction == 'left') {
     incrementLeft = -marginIncrements;
   } else if (direction == 'right') {
