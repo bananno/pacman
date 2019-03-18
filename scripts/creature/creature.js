@@ -1,7 +1,7 @@
 
 class Creature {
   constructor(game) {
-    this.$ = $('<span class="creature">');
+    this.$ = $('<div class="creature">');
     this.speed = 250;
     this.game = game;
   }
