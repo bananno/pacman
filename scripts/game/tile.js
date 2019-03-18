@@ -17,7 +17,7 @@ class Tile {
     this.$ = $('<div class="board-cell">');
 
     this.wall = false;
-    this._food = false;
+    this.food = false;
     this.token = false;
     this.house = false;
     this.doorway = false;
@@ -46,10 +46,8 @@ class Tile {
     this._food = value;
     if (value) {
       this.$.addClass('food');
-      this.game.foodLeft += 1;
     } else {
       this.$.removeClass('food');
-      this.game.foodLeft -= 1;
     }
   }
 

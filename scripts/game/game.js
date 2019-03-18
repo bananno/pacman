@@ -44,7 +44,6 @@ class Game {
     this.isLost = false;
     this.isWon = false;
     this.score = 0;
-    this.foodLeft = 0;
 
     for (let i = 0; i < 4; i++) {
       this.ghosts.push(new Ghost(this, i));
@@ -53,6 +52,8 @@ class Game {
     this.board = [];
 
     this.createBoard();
+
+    this.foodLeft = this.allTiles.filter(tile => tile.food).length;
 
     if (!this.isTest) {
       addTestButtons(this);
@@ -132,6 +133,7 @@ class Game {
   }
 
   eatFood() {
+    this.foodLeft -= 1;
     if (this.foodLeft == 0) {
       this.winGame();
     }
