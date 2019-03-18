@@ -38,11 +38,11 @@ class Tile {
         this.house = true;
       } else if (this.corner) {
         this.food = true;
-        this.$.text('.');
+        this.$.addClass('food');
       } else if (this.food) {
-        this.$.text('.');
+        this.$.addClass('food');
       } else if (this.token) {
-        this.$.text('+');
+        this.$.addClass('token');
       }
     }
   }

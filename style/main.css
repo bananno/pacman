@@ -39,6 +39,21 @@ td {
   padding: 0px;
 }
 
+td.food,
+td.token {
+  background-image: url(../images/dot.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+td.food {
+  background-size: 4px;
+}
+
+td.token {
+  background-size: 11px;
+}
+
 .wall-vertical,
 .wall-horizontal {
   background-image: url(../images/wall-straight.png);
