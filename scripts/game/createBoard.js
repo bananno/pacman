@@ -1,6 +1,5 @@
 
 Game.prototype.createBoard = function() {
-  const $newBoard = $('<div>');
   const $boardRows = [];
 
   let countGhost = 0;
@@ -10,17 +9,12 @@ Game.prototype.createBoard = function() {
   $boardRows.push($numberedRow);
 
   this.mapTemplate.forEach((row, r) => {
-    const $row = $('<div class="board-row">');
     this.board[r] = [];
 
     const tiles = row.split('');
 
-    $row.append($('<div class="board-cell test-coordinates">').text(r));
-
     tiles.forEach((tileChar, c) => {
       const tile = new Tile(this, r, c, tileChar);
-
-      $row.append(tile.$);
 
       this.board[r][c] = tile;
 
@@ -33,11 +27,19 @@ Game.prototype.createBoard = function() {
         return;
       }
     });
-
-    $row.append($('<div class="board-cell test-coordinates">').text(r));
-
-    $boardRows.push($row);
   });
+
+  if (!this.isTest) {
+    this.board.forEach((row, r) => {
+      const $row = $('<div class="board-row">');
+      $row.append($('<div class="board-cell test-coordinates">').text(r));
+      row.forEach((tile, c) => {
+        $row.append(tile.$);
+      });
+      $row.append($('<div class="board-cell test-coordinates">').text(r));
+      $boardRows.push($row);
+    });
+  }
 
   this.allTiles.forEach(tile => {
     tile.decideDoorway();
