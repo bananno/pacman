@@ -39,19 +39,18 @@ td {
   padding: 0px;
 }
 
-td.food,
-td.token {
-  background-image: url(../images/dot.png);
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
 td.food {
+  background-image: url(../images/dot.png);
   background-size: 4px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 td.token {
+  background-image: url(../images/dot-flash.gif);
   background-size: 11px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .wall-vertical,
