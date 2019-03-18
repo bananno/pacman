@@ -52,9 +52,13 @@ function doValuesMatch(value1, value2) {
   return false;
 }
 
-function moveElement($element, $target, direction, interval) {
+function moveElement($element, $target, direction, interval, skipStagger) {
   let initialMarginTop = getElementMargin($element, 'top');
   let initialMarginLeft = getElementMargin($element, 'left');
+
+  if (skipStagger) {
+    return finish();
+  }
 
   let count = 0;
   let newMargin = initialMarginTop;
@@ -68,9 +72,18 @@ function moveElement($element, $target, direction, interval) {
     if (count < 2) {
       setTimeout(helper, (interval/3));
     } else {
-      $element.css('margin-left', initialMarginLeft + 'px');
-      $target.append($element);
+      resetMargin();
+      finish();
     }
+  }
+
+  function resetMargin() {
+    $element.css('margin-left', initialMarginLeft + 'px');
+
+  }
+
+  function finish() {
+    $target.append($element);
   }
 }
 

@@ -28,11 +28,8 @@ class Creature {
     }
     this._position = [r, c];
 
-    if (animate && !this.game.isTest) {
-      moveElement(this.$, this.game.tile(r, c).$, this.direction, this.speed);
-    } else {
-      this.game.tile(r, c).$.append(this.$);
-    }
+    moveElement(this.$, this.game.tile(r, c).$, this.direction, this.speed,
+      !animate || this.game.isTest);
 
     this.direction = this.direction || getRandomDirection();
   }
