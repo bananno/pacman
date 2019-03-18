@@ -18,6 +18,13 @@ body {
   background-color: black;
 }
 
+#score {
+  width: 555px;
+  margin: 10px auto;
+  color: white;
+  font-size: 30px;
+}
+
 table {
   margin: auto;
 }
@@ -31,17 +38,20 @@ td {
   cursor: default;
 }
 
-td.board-path {
-
-}
-
-td.board-wall {
+td .walls {
+  margin: auto;
   background-color: blue;
+  height: 40%;
+  width: 40%;
+  /*border: 1px solid red;*/
 }
 
-#score {
-  width: 555px;
-  margin: 10px auto;
-  color: white;
-  font-size: 30px;
+td .walls.vertical {
+  height: 100%;
+  border: none;
+}
+
+td .walls.horizontal {
+  width: 100%;
+  border: none;
 }

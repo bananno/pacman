@@ -31,6 +31,7 @@ class Tile {
 
     if (this.wall) {
       this.$.addClass('board-wall');
+      this.$.append('<div class="walls">');
     } else {
       this.$.addClass('board-path');
 
@@ -63,6 +64,52 @@ class Tile {
   }
 
   decideDoorway() {
+    if (this.wall) {
+      const connections = {};
+
+      DIRECTIONS.forEach(direction => {
+        const otherTile = this.neighbor(direction, false);
+        connections[direction] = otherTile && otherTile.wall;
+      });
+
+      if (connections.up && connections.down && !connections.left && !connections.right) {
+        this.$.find('div').addClass('vertical');
+        return;
+      }
+
+      if (connections.up && connections.down && (connections.left != connections.right)) {
+        this.$.find('div').addClass('vertical');
+        return;
+      }
+
+      if (!connections.up && !connections.down && connections.left && connections.right) {
+        this.$.find('div').addClass('horizontal');
+        return;
+      }
+
+      if (!connections.up && !connections.down && !connections.left && connections.right) {
+        this.$.find('div').addClass('horizontal');
+        return;
+      }
+
+      if (!connections.up && !connections.down && connections.left && !connections.right) {
+        this.$.find('div').addClass('horizontal');
+        return;
+      }
+
+      if (!connections.up && connections.down && connections.left && connections.right) {
+        this.$.find('div').addClass('horizontal');
+        return;
+      }
+
+      if (connections.up && !connections.down && connections.left && connections.right) {
+        this.$.find('div').addClass('horizontal');
+        return;
+      }
+
+      return;
+    }
+
     if (!this.house) {
       return;
     }
