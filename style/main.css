@@ -43,7 +43,7 @@ td {
 .wall-horizontal {
   background-image: url(../images/wall-straight.png);
   background-position: center;
-  background-size: 20px;
+  background-size: 100%;
 }
 
 .wall-horizontal {
@@ -53,7 +53,7 @@ td {
 
 .wall-corner {
   background-image: url(../images/wall-corner.png);
-  background-size: 20px;
+  background-size: 100%;
 }
 
 .wall-corner.top-right {
