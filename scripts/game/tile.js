@@ -98,14 +98,15 @@ Tile.prototype.isPassable = function(creature) {
   }
 
   const targetTile = this.game.tile(targetPosition);
+  const targetTileIsInHouse = targetTile ? targetTile.house : false;
 
   if (creature.inHouse) {
-    if (targetTile.house) {
+    if (targetTileIsInHouse) {
       return this.house && !this.doorway;
     }
 
     return !this.house || this.doorway;
   }
 
-  return creature.inHouse || !this.house || targetTile.house;
+  return creature.inHouse || !this.house || targetTileIsInHouse;
 };
