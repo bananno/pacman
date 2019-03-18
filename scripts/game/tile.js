@@ -31,7 +31,6 @@ class Tile {
 
     if (this.wall) {
       this.$.addClass('board-wall');
-      this.$.append('<div class="walls">');
     } else {
       this.$.addClass('board-path');
 
@@ -73,57 +72,57 @@ class Tile {
       });
 
       if (connections.up && connections.down && !connections.left && !connections.right) {
-        this.$.find('div').addClass('vertical');
+        this.$.addClass('wall-vertical');
         return;
       }
 
       if (connections.up && connections.down && (connections.left != connections.right)) {
-        this.$.find('div').addClass('vertical');
+        this.$.addClass('wall-vertical');
         return;
       }
 
       if (!connections.up && !connections.down && connections.left && connections.right) {
-        this.$.find('div').addClass('horizontal');
+        this.$.addClass('wall-horizontal');
         return;
       }
 
       if (!connections.up && !connections.down && !connections.left && connections.right) {
-        this.$.find('div').addClass('horizontal');
+        this.$.addClass('wall-horizontal');
         return;
       }
 
       if (!connections.up && !connections.down && connections.left && !connections.right) {
-        this.$.find('div').addClass('horizontal');
+        this.$.addClass('wall-horizontal');
         return;
       }
 
       if (!connections.up && connections.down && connections.left && connections.right) {
-        this.$.find('div').addClass('horizontal');
+        this.$.addClass('wall-horizontal');
         return;
       }
 
       if (connections.up && !connections.down && connections.left && connections.right) {
-        this.$.find('div').addClass('horizontal');
+        this.$.addClass('wall-horizontal');
         return;
       }
 
       if (!connections.up && connections.down && !connections.left && connections.right) {
-        this.$.find('div').addClass('top-left');
+        this.$.addClass('corner top-left');
         return;
       }
 
       if (!connections.up && connections.down && connections.left && !connections.right) {
-        this.$.find('div').addClass('top-right');
+        this.$.addClass('corner top-right');
         return;
       }
 
       if (connections.up && !connections.down && !connections.left && connections.right) {
-        this.$.find('div').addClass('bottom-left');
+        this.$.addClass('corner bottom-left');
         return;
       }
 
       if (connections.up && !connections.down && connections.left && !connections.right) {
-        this.$.find('div').addClass('bottom-right');
+        this.$.addClass('corner bottom-right');
         return;
       }
 

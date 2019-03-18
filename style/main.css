@@ -39,64 +39,53 @@ td {
   padding: 0px;
 }
 
-/*
-  border width = 8
-  margin = 6
-
-  6 + 8 + 6 = 20
-*/
-
-td .walls {
-  position: absolute;
-  height: 2px;
-  width: 2px;
-  border: 0px solid blue;
+.wall-vertical,
+.wall-horizontal {
+  background-image: url(../images/wall-straight.png);
+  background-position: center;
+  background-size: 6px;
 }
 
-td .walls.vertical {
-  height: 20px;
-  margin-left: 8px;
-  border-left-width: 6px;
+.wall-vertical {
+  background-repeat: repeat-y;
 }
 
-td .walls.horizontal {
-  width: 20px;
-  border-top-width: 5px;
+.wall-horizontal {
+  background-repeat: repeat-x;
+}
+
+/*.walls.corner {
+  height: 10px;
+  width: 10px;
+}
+
+.walls.top-left {
   margin-top: -3px;
-}
-
-td .walls.bottom-left,
-td .walls.top-left,
-td .walls.top-right,
-td .walls.bottom-right {
-  width: 8px;
-  height: 6px;
-}
-
-td .walls.top-left {
   margin-left: 8px;
-  border-top-width: 5px;
-  border-left-width: 5px;
+  border-top-width: 6px;
+  border-left-width: 6px;
   border-top-left-radius: 10px;
 }
 
-td .walls.top-right {
-  border-top-width: 5px;
-  border-right-width: 5px;
+.walls.top-right {
+  margin-top: -3px;
+  margin-left: 0;
+  border-top-width: 6px;
+  border-right-width: 6px;
   border-top-right-radius: 10px;
 }
 
-td .walls.bottom-left {
+.walls.bottom-left {
   margin-left: 8px;
-  border-bottom-width: 5px;
-  border-left-width: 5px;
+  border-bottom-width: 6px;
+  border-left-width: 6px;
   border-bottom-left-radius: 10px;
 }
 
-td .walls.bottom-right {
-  margin-top: -6px;
+.walls.bottom-right {
+  margin-top: -11px;
   margin-left: -1px;
-  border-bottom-width: 5px;
-  border-right-width: 5px;
+  border-bottom-width: 6px;
+  border-right-width: 6px;
   border-bottom-right-radius: 10px;
-}
+}*/
