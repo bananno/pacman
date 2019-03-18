@@ -111,19 +111,23 @@ class Game {
 
   loseGame() {
     this.isLost = true;
-
-    this.clearAllIntervals();
-
-    setTimeout(() => {
-      if (!this.isTest) {
-        alert('You lose!');
-      }
-      this.newGame();
-    }, 250);
+    this.finishGame('You lose!');
   }
 
   winGame() {
     this.isWon = true;
+    this.finishGame('You win!');
+  }
+
+  finishGame(result) {
+    this.clearAllIntervals();
+
+    setTimeout(() => {
+      if (!this.isTest) {
+        alert(result);
+      }
+      this.newGame();
+    }, 250);
   }
 
   clearAllIntervals() {
