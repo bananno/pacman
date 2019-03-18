@@ -15,7 +15,7 @@ Creature.prototype.move = function() {
     this.eat(newTile);
   }
 
-  this.position = [newRow, newCol];
+  this.position = [newRow, newCol, true];
 
   this.game.encounter(newRow, newCol);
 

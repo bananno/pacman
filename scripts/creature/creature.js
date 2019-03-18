@@ -22,12 +22,18 @@ class Creature {
     return this._speed;
   }
 
-  set position([r, c]) {
+  set position([r, c, animate]) {
     if (!this.origin) {
       this.origin = [r, c];
     }
     this._position = [r, c];
-    this.game.tile(r, c).$.append(this.$);
+
+    if (animate && !this.game.isTest) {
+      moveElement(this.$, this.game.tile(r, c).$, this.direction, this.speed);
+    } else {
+      this.game.tile(r, c).$.append(this.$);
+    }
+
     this.direction = this.direction || getRandomDirection();
   }
 

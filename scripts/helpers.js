@@ -51,3 +51,31 @@ function doValuesMatch(value1, value2) {
 
   return false;
 }
+
+function moveElement($element, $target, direction, interval) {
+  let initialMarginTop = getElementMargin($element, 'top');
+  let initialMarginLeft = getElementMargin($element, 'left');
+
+  let count = 0;
+  let newMargin = initialMarginTop;
+
+  helper();
+
+  function helper() {
+    newMargin += 5;
+    count += 1;
+    $element.css('margin-left', newMargin + 'px');
+    if (count < 2) {
+      setTimeout(helper, (interval/3));
+    } else {
+      $element.css('margin-left', initialMarginLeft + 'px');
+      $target.append($element);
+    }
+  }
+}
+
+function getElementMargin($element, direction) {
+  let margin = $element.css('margin-' + direction) || '0';
+  margin = margin.replace('px', '');
+  return parseInt(margin);
+}
