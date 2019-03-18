@@ -127,12 +127,29 @@ addTest('Pink ghost chase target', test => {
     [6, 2],
     test.game.ghosts[0].trueTarget
   );
+});
 
-  test.game.pacman.direction = 'up';
+addTest('Pink ghost chase target', test => {
+  test.map = [
+    '|||||||||',
+    '|gg    P|',
+    '|||||||||',
+  ];
+
+  test.game.pacman.direction = 'right';
+  test.game.ghosts[0].position = [1, 1];
+  test.game.ghosts[0].mode = 'chase';
+
   test.check(
     'pink ghost\'s actual target might not be a valid tile on the board',
-    [-2, 2],
+    [1, 11],
     test.game.ghosts[0].target
+  );
+
+  test.check(
+    'passable tile function does not break when ghost is in house and target is not on the board',
+    true,
+    test.game.isTilePassable(1, 2, test.game.ghosts[0])
   );
 });
 
