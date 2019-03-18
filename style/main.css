@@ -43,49 +43,30 @@ td {
 .wall-horizontal {
   background-image: url(../images/wall-straight.png);
   background-position: center;
-  background-size: 6px;
-}
-
-.wall-vertical {
-  background-repeat: repeat-y;
+  background-size: 20px;
 }
 
 .wall-horizontal {
-  background-repeat: repeat-x;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
-/*.walls.corner {
-  height: 10px;
-  width: 10px;
+.wall-corner {
+  background-image: url(../images/wall-corner.png);
+  background-size: 20px;
 }
 
-.walls.top-left {
-  margin-top: -3px;
-  margin-left: 8px;
-  border-top-width: 6px;
-  border-left-width: 6px;
-  border-top-left-radius: 10px;
+.wall-corner.top-right {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
-.walls.top-right {
-  margin-top: -3px;
-  margin-left: 0;
-  border-top-width: 6px;
-  border-right-width: 6px;
-  border-top-right-radius: 10px;
+.wall-corner.bottom-left {
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 
-.walls.bottom-left {
-  margin-left: 8px;
-  border-bottom-width: 6px;
-  border-left-width: 6px;
-  border-bottom-left-radius: 10px;
+.wall-corner.bottom-right {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
-
-.walls.bottom-right {
-  margin-top: -11px;
-  margin-left: -1px;
-  border-bottom-width: 6px;
-  border-right-width: 6px;
-  border-bottom-right-radius: 10px;
-}*/

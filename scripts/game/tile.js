@@ -107,22 +107,22 @@ class Tile {
       }
 
       if (!connections.up && connections.down && !connections.left && connections.right) {
-        this.$.addClass('corner top-left');
+        this.$.addClass('wall-corner top-left');
         return;
       }
 
       if (!connections.up && connections.down && connections.left && !connections.right) {
-        this.$.addClass('corner top-right');
+        this.$.addClass('wall-corner top-right');
         return;
       }
 
       if (connections.up && !connections.down && !connections.left && connections.right) {
-        this.$.addClass('corner bottom-left');
+        this.$.addClass('wall-corner bottom-left');
         return;
       }
 
       if (connections.up && !connections.down && connections.left && !connections.right) {
-        this.$.addClass('corner bottom-right');
+        this.$.addClass('wall-corner bottom-right');
         return;
       }
 
