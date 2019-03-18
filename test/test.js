@@ -79,35 +79,9 @@ class Test {
     subTestList.push({
       title: this.title,
       message: message,
-      pass: valuesMatch(expectedResult, actualResult),
+      pass: doValuesMatch(expectedResult, actualResult),
       expectedResult: expectedResult,
       actualResult: actualResult,
     });
   }
-}
-
-function valuesMatch(value1, value2) {
-  if (value1 == value2 || value1 === WILD) {
-    return true;
-  }
-
-  if (value1 == null || value2 == null) {
-    return false;
-  }
-
-  if (value1.constructor == Array) {
-    if (value2.constructor != Array || value1.length != value2.length) {
-      return false;
-    }
-
-    for (let i = 0; i < value1.length; i++) {
-      if (!valuesMatch(value1[i], value2[i])) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-  return false;
 }
