@@ -53,31 +53,37 @@ function doValuesMatch(value1, value2) {
 }
 
 function moveElement($element, $target, direction, interval, skipStagger) {
-  let initialMarginTop = getElementMargin($element, 'top');
-  let initialMarginLeft = getElementMargin($element, 'left');
-
   if (skipStagger) {
     return finish();
   }
+
+  const initialMarginTop = getElementMargin($element, 'top');
+  const initialMarginLeft = getElementMargin($element, 'left');
+  const numberOfSteps = 3;
+  const tileSize = 18;
+  const marginIncrements = Math.round(tileSize / numberOfSteps);
 
   let count = 0;
 
   let newMarginTop = initialMarginTop;
   let newMarginLeft = initialMarginLeft;
 
+  let incrementTop = 0;
+  let incrementLeft = marginIncrements;
+
   helper();
 
   function helper() {
     count += 1;
 
-    newMarginTop += 0;
-    newMarginLeft += 5;
+    newMarginTop += incrementTop;
+    newMarginLeft += incrementLeft;
 
     $element.css('margin-top', newMarginTop + 'px');
     $element.css('margin-left', newMarginLeft + 'px');
 
-    if (count < 2) {
-      setTimeout(helper, (interval/3));
+    if (count < numberOfSteps) {
+      setTimeout(helper, (interval/numberOfSteps));
     } else {
       resetMargins();
       finish();
