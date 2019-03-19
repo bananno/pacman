@@ -23,12 +23,19 @@ body {
   text-align: center;
 }
 
-#score, #lives {
+.board-end {
   width: 555px;
   margin: 10px auto;
   color: white;
   font-size: 30px;
   text-align: left;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+#restart:hover {
+  color: red;
+  cursor: pointer;
 }
 
 #board {
