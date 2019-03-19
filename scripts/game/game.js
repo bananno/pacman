@@ -35,9 +35,7 @@ class Game {
 
   newGame() {
     this.pacman = new Pacman(this);
-
     this.ghosts = [];
-
     this.scatter = false;
     this.modeCount = 0;
     this.lives = 3;
@@ -58,6 +56,7 @@ class Game {
 
     if (!this.isTest) {
       addTestButtons(this);
+      $('#restart').hide();
     }
   }
 
@@ -142,8 +141,11 @@ class Game {
     setTimeout(() => {
       if (!this.isTest) {
         alert(result);
+        $('#restart').show();
+        $('#restart').click(() => {
+          this.newGame();
+        });
       }
-      this.newGame();
     }, 250);
   }
 
