@@ -34,10 +34,11 @@ addTest('Food', test => {
 
 addTest('Food', test => {
   test.map = [
-    'P..'
+    'P.'
   ];
 
   test.game.level = 1;
+  test.game.pacman.direction = 'right';
   test.game.pacman.move();
   test.check(
     'level is won when pacman eats last food',

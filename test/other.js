@@ -63,7 +63,7 @@ addTest('game.level', test => {
     ' '
   ];
 
-  test.game.level = '3';
+  test.game.level = 3;
   test.game.winLevel();
   test.check(
     'level is incremented when level is won',
