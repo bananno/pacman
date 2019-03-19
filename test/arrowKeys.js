@@ -199,10 +199,10 @@ addTest('Arrow key events', test => {
   // GAME OVER
 
   test.game.pacman.direction = 'right';
-  test.game.finishGame();
+  test.game.loseGame();
   test.game.pressKey({ key: 'ArrowDown' });
   test.check(
-    'arrow key does nothing when game is already over',
+    'arrow key does nothing when game is already lost',
     'right',
     test.game.pacman.direction
   );

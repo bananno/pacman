@@ -37,19 +37,12 @@ addTest('Food', test => {
     'P..'
   ];
 
-  test.game.pacman.direction = 'right';
+  test.game.level = 1;
   test.game.pacman.move();
   test.check(
-    'game is not won when there is food remaining',
-    false,
-    test.game.isWon
-  );
-
-  test.game.pacman.move();
-  test.check(
-    'game is won when pacman eats last food',
-    true,
-    test.game.isWon
+    'level is won when pacman eats last food',
+    2,
+    test.game.level
   );
 });
 

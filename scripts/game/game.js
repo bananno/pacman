@@ -24,7 +24,7 @@ class Game {
   }
 
   pressKey(event) {
-    if (!this.isOver && event.key.match('Arrow')) {
+    if (!this.isLost && event.key.match('Arrow')) {
       event.preventDefault ? event.preventDefault() : null;
 
       let newDirection = event.key.toLowerCase().slice(5);
@@ -38,16 +38,15 @@ class Game {
   }
 
   newGame() {
-    this.level = 1;
+    this.level = 0;
     this.score = 0;
     this.isLost = false;
-    this.isWon = false;
-    this.isOver = false;
     this.lives = 3;
     this.newLevel();
   }
 
   newLevel() {
+    this.level += 1;
     this.pacman = new Pacman(this);
     this.ghosts = [];
     this.scatter = false;
@@ -143,23 +142,16 @@ class Game {
     }, 500);
   }
 
+  winLevel() {
+    this.newLevel();
+  }
+
   loseGame() {
     this.isLost = true;
-    this.finishGame('You lose!');
-  }
-
-  winLevel() {
-
-  }
-
-  finishGame(result) {
-    this.isOver = true;
-
     this.clearAllIntervals();
-
     setTimeout(() => {
       if (!this.isTest) {
-        alert(result);
+        alert('You lose!');
         $('#restart').show();
       }
     }, 250);
