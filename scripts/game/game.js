@@ -38,7 +38,7 @@ class Game {
   }
 
   newGame() {
-    this.level = 0;
+    this.level = 1;
     this.score = 0;
     this.isLost = false;
     this.lives = 3;
@@ -46,7 +46,6 @@ class Game {
   }
 
   newLevel() {
-    this.level += 1;
     this.pacman = new Pacman(this);
     this.ghosts = [];
     this.scatter = false;
@@ -82,7 +81,7 @@ class Game {
   set level(value) {
     this._level = value;
     if (!this.isTest) {
-      $('#level').text('lvl: ' + this._level);
+      $('#level').text('lvl: ' + value);
     }
   }
 
@@ -143,6 +142,7 @@ class Game {
   }
 
   winLevel() {
+    this.level += 1;
     this.newLevel();
   }
 
