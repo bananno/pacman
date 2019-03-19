@@ -42,6 +42,7 @@ class Game {
     this.ghosts = [];
     this.scatter = false;
     this.modeCount = 0;
+    this.level = 1;
     this.lives = 3;
     this.isLost = false;
     this.isWon = false;
@@ -68,6 +69,17 @@ class Game {
     this._score = newScore;
     if (!this.isTest) {
       $('#score').text(this._score);
+    }
+  }
+
+  get level() {
+    return this._level;
+  }
+
+  set level(value) {
+    this._level = value;
+    if (!this.isTest) {
+      $('#level').text('lvl: ' + this._level);
     }
   }
 
