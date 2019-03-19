@@ -16,6 +16,10 @@ class Game {
       $(document).keydown(event => {
         this.pressKey(event);
       });
+
+      $('#restart').click(() => {
+        this.newGame();
+      });
     }
   }
 
@@ -142,9 +146,6 @@ class Game {
       if (!this.isTest) {
         alert(result);
         $('#restart').show();
-        $('#restart').click(() => {
-          this.newGame();
-        });
       }
     }, 250);
   }
