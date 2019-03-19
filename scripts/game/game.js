@@ -148,9 +148,8 @@ class Game {
     this.finishGame('You lose!');
   }
 
-  winGame() {
-    this.isWon = true;
-    this.finishGame('You win!');
+  winLevel() {
+
   }
 
   finishGame(result) {
@@ -175,7 +174,7 @@ class Game {
   eatFood() {
     this.foodLeft -= 1;
     if (this.foodLeft == 0) {
-      this.winGame();
+      this.winLevel();
     }
   }
 

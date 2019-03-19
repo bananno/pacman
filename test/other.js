@@ -58,54 +58,17 @@ addTest('game.isLost', test => {
   );
 });
 
-addTest('game.isWon', test => {
+addTest('game.level', test => {
   test.map = [
     ' '
   ];
 
+  test.game.level = '3';
+  test.game.winLevel();
   test.check(
-    'won game attribute is false before game is won',
-    false,
-    test.game.isWon
-  );
-
-  test.game.winGame();
-  test.check(
-    'won game attribute is true after game is lost',
-    true,
-    test.game.isWon
-  );
-});
-
-addTest('game.isOver', test => {
-  test.map = [
-    ' '
-  ];
-
-  test.check(
-    'won over attribute is false before game is either won or lost',
-    false,
-    test.game.isOver
-  );
-
-  test.game.loseGame();
-  test.check(
-    'won over attribute is true after game is lost',
-    true,
-    test.game.isOver
-  );
-});
-
-addTest('game.isOver', test => {
-  test.map = [
-    ' '
-  ];
-
-  test.game.winGame();
-  test.check(
-    'won over attribute is true after game is won',
-    true,
-    test.game.isOver
+    'level is incremented when level is won',
+    4,
+    test.game.level
   );
 });
 
