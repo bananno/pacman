@@ -27,7 +27,7 @@ class Game {
     });
 
     DIRECTIONS.forEach(direction => {
-      $('#arrow-keys .' + direction).click(() => {
+      $('#arrow-keys .' + direction).on('touchend', () => {
         this.directionEvent(direction);
       });
     });
