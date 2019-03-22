@@ -60,7 +60,7 @@ function moveElement($element, $target, direction, interval, skipStagger) {
   const initialMarginTop = getElementMargin($element, 'top');
   const initialMarginLeft = getElementMargin($element, 'left');
   const numberOfSteps = 4;
-  const tileSize = 18;
+  const tileSize = parseInt($('.board-cell:first').css('width').replace('px', ''));
   const marginIncrements = Math.round(tileSize / numberOfSteps);
 
   let count = 0;
