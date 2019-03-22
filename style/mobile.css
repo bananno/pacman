@@ -17,4 +17,12 @@
     height: 12px;
     width: 12px;
   }
+
+  .creature {
+    height: 18px;
+    width: 18px;
+    background-size: 18px;
+    margin-top: -3px;
+    margin-left: -2px;
+  }
 }

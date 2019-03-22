@@ -68,10 +68,10 @@ body {
 
 #arrow-keys div {
   display: inline-block;
-  height: 60px;
-  width: 60px;
+  height: 30px;
+  width: 30px;
   background-image: url(../images/arrow.png);
-  background-size: 60px;
+  background-size: 30px;
   background-position: center;
   background-repeat: no-repeat;
   margin: 0 25px;

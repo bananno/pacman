@@ -17,6 +17,8 @@
 
 #test-buttons button {
   padding: 3px;
+  background-color: lightgray;
+  margin: 3px;
 }
 
 #tests {
