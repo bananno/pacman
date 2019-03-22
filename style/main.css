@@ -43,6 +43,10 @@ body {
 }
 
 #board {
+  text-align: center;
+}
+
+#inner-board {
   display: inline-block;
 }
 
@@ -88,14 +92,4 @@ body {
 #arrow-keys div.right {
   -webkit-transform: rotate(-90deg);
   transform: rotate(-90deg);
-}
-
-@media only screen and (max-width: 600px) {
-  #arrow-keys {
-    display: block;
-  }
-
-  #github-link {
-    display: none;
-  }
 }

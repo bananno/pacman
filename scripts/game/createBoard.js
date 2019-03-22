@@ -36,11 +36,12 @@ Game.prototype.createBoard = function() {
 
 function printBoardOnScreen(mapTemplate, board) {
   $('#board').html('');
+  const $inner = $('<div id="inner-board">').appendTo('#board');
 
   const $numberedRow = createNumberedRow(mapTemplate).appendTo('#board');
 
   board.forEach((row, r) => {
-    const $row = $('<div class="board-row">').appendTo('#board');
+    const $row = $('<div class="board-row">').appendTo($inner);
 
     $row.append($('<div class="board-cell test-coordinates">').text(r));
 
@@ -51,7 +52,7 @@ function printBoardOnScreen(mapTemplate, board) {
     $row.append($('<div class="board-cell test-coordinates">').text(r));
   });
 
-  $('#board').append($numberedRow.clone());
+  $inner.append($numberedRow.clone());
 }
 
 function createNumberedRow(mapTemplate) {
