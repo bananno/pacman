@@ -13,27 +13,39 @@ class Game {
     };
 
     if (!this.isTest) {
-      $(document).keydown(event => {
-        this.pressKey(event);
-      });
-
-      $('#restart').click(() => {
-        this.newGame();
-      });
+      this.bindEvents();
     }
+  }
+
+  bindEvents() {
+    $(document).keydown(event => {
+      this.pressKey(event);
+    });
+
+    $('#restart').click(() => {
+      this.newGame();
+    });
+
+    DIRECTIONS.forEach(direction => {
+      $('#arrow-keys .' + direction).click(() => {
+        this.directionEvent(direction);
+      });
+    });
   }
 
   pressKey(event) {
     if (!this.isLost && event.key.match('Arrow')) {
       event.preventDefault ? event.preventDefault() : null;
+      const newDirection = event.key.toLowerCase().slice(5);
+      this.directionEvent(newDirection);
+    }
+  }
 
-      let newDirection = event.key.toLowerCase().slice(5);
+  directionEvent(newDirection) {
+    this.start();
 
-      this.start();
-
-      if (this.pacman.canMove(newDirection)) {
-        this.pacman.direction = newDirection;
-      }
+    if (this.pacman.canMove(newDirection)) {
+      this.pacman.direction = newDirection;
     }
   }
 
