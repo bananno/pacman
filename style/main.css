@@ -56,3 +56,35 @@ body {
   height: 50px;
   border: none;
 }
+
+#arrow-keys {
+  text-align: center;
+}
+
+#arrow-keys div {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  background-image: url(../images/arrow.png);
+  background-size: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 15px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#arrow-keys div.up {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+#arrow-keys div.left {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+#arrow-keys div.right {
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
