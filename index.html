@@ -1,86 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width">
 
-    <title>PAC-MAN</title>
+  <title>PAC-MAN</title>
 
-    <link rel="shortcut icon" href="images/favicon.gif"/>
+  <link rel="shortcut icon" href="images/favicon.gif"/>
 
-    <link rel="stylesheet" href="style/main.css"/>
-    <link rel="stylesheet" href="style/board.css"/>
-    <link rel="stylesheet" href="style/creature.css"/>
-    <link rel="stylesheet" href="style/test.css"/>
-    <link rel="stylesheet" href="style/mobile.css"/>
+  <link rel="stylesheet" href="style/main.css"/>
+  <link rel="stylesheet" href="style/board.css"/>
+  <link rel="stylesheet" href="style/creature.css"/>
+  <link rel="stylesheet" href="style/test.css"/>
+  <link rel="stylesheet" href="style/mobile.css"/>
 
-    <script src="vendor/jquery-3.3.1.min.js"></script>
-    <script src="maps/maps.js"></script>
+  <script src="vendor/jquery-3.3.1.min.js"></script>
+  <script src="maps/maps.js"></script>
 
-    <script src="app/game/game.js"></script>
-    <script src="app/game/createBoard.js"></script>
-    <script src="app/game/direction.js"></script>
-    <script src="app/game/tile.js"></script>
+  <script src="app/game/game.js"></script>
+  <script src="app/game/createBoard.js"></script>
+  <script src="app/game/direction.js"></script>
+  <script src="app/game/tile.js"></script>
 
-    <script src="app/creature/creature.js"></script>
-    <script src="app/creature/pacman.js"></script>
-    <script src="app/creature/ghost.js"></script>
-    <script src="app/creature/movement.js"></script>
+  <script src="app/creature/creature.js"></script>
+  <script src="app/creature/pacman.js"></script>
+  <script src="app/creature/ghost.js"></script>
+  <script src="app/creature/movement.js"></script>
 
-    <script src="app/helpers.js"></script>
+  <script src="app/helpers.js"></script>
 
-    <script src="test/test.js"></script>
-    <script src="test/arrowKeys.js"></script>
-    <script src="test/direction.js"></script>
-    <script src="test/encounter.js"></script>
-    <script src="test/mode.js"></script>
-    <script src="test/moveGhost.js"></script>
-    <script src="test/moveGhostTarget.js"></script>
-    <script src="test/movePacman.js"></script>
-    <script src="test/other.js"></script>
-    <script src="test/passableTiles.js"></script>
-    <script src="test/score.js"></script>
-    <script src="test/tiles.js"></script>
-    <script src="test/visualTests.js"></script>
+  <script src="test/test.js"></script>
+  <script src="test/arrowKeys.js"></script>
+  <script src="test/direction.js"></script>
+  <script src="test/encounter.js"></script>
+  <script src="test/mode.js"></script>
+  <script src="test/moveGhost.js"></script>
+  <script src="test/moveGhostTarget.js"></script>
+  <script src="test/movePacman.js"></script>
+  <script src="test/other.js"></script>
+  <script src="test/passableTiles.js"></script>
+  <script src="test/score.js"></script>
+  <script src="test/tiles.js"></script>
+  <script src="test/visualTests.js"></script>
 
-    <script src="app/init.js"></script>
+  <script src="app/init.js"></script>
 </head>
 <body>
-    <div id="screen">
-        <div class="board-end">
-            <div id="score"> </div>
-            <div id="level"> </div>
-            <div id="restart">new game</div>
-        </div>
-        <br/>
-        <div id="board"> </div>
-        <br/>
-        <div class="board-end">
-            <div id="lives"> </div>
-        </div>
+  <div id="screen">
+    <div class="board-end">
+      <div id="score"> </div>
+      <div id="level"> </div>
+      <div id="restart">new game</div>
     </div>
-
-    <div id="arrow-keys">
-        <div class="up"> </div><br>
-        <div class="left"> </div>
-        <div class="right"> </div><br>
-        <div class="down"> </div>
+    <br/>
+    <div id="board"> </div>
+    <br/>
+    <div class="board-end">
+      <div id="lives"> </div>
     </div>
+  </div>
 
-    <div id="test-buttons"> </div>
+  <div id="arrow-keys">
+    <div class="up"> </div><br>
+    <div class="left"> </div>
+    <div class="right"> </div><br>
+    <div class="down"> </div>
+  </div>
 
-    <div id="tests">
-        <p id="test-results"></p>
-    </div>
+  <div id="test-buttons"> </div>
 
-    <p id="github-link">
-        <a href="https://github.com/bananno/pacman" target="_blank">
-            <img src="images/github.png" title="GitHub Repo">
-        </a>
-    </p>
+  <div id="tests">
+    <p id="test-results"></p>
+  </div>
 
-    <!-- <img src="https://www.belfastvibe.com/wp-content/uploads/2015/04/Pac-Man_-_Pac-Man_Collection_GBA.png"
-        style="height: 500px; margin-top: 100px; border: 1px solid white;"> -->
+  <p id="github-link">
+    <a href="https://github.com/bananno/pacman" target="_blank">
+      <img src="images/github.png" title="GitHub Repo">
+    </a>
+  </p>
 
-    <!-- http://gameinternals.com/post/2072558330/understanding-pac-man-ghost-behavior -->
+  <!-- <img src="https://www.belfastvibe.com/wp-content/uploads/2015/04/Pac-Man_-_Pac-Man_Collection_GBA.png"
+    style="height: 500px; margin-top: 100px; border: 1px solid white;"> -->
+
+  <!-- http://gameinternals.com/post/2072558330/understanding-pac-man-ghost-behavior -->
 </body>
 </html>
