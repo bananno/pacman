@@ -22,17 +22,17 @@
   background-image: url(../images/pacman.gif);
 }
 
-.creature.pacman.direction-right {
+.creature.pacman[direction="right"] {
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 
-.creature.pacman.direction-up {
+.creature.pacman[direction="up"] {
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 
-.creature.pacman.direction-down {
+.creature.pacman[direction="down"] {
   -webkit-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
@@ -53,39 +53,39 @@
   background-image: url(../images/ghost4-right.gif);
 }
 
-.creature.ghost-normal.ghost1.direction-up {
+.creature.ghost-normal.ghost1[direction="up"] {
   background-image: url(../images/ghost1-up.gif);
 }
 
-.creature.ghost-normal.ghost2.direction-up {
+.creature.ghost-normal.ghost2[direction="up"] {
   background-image: url(../images/ghost2-up.gif);
 }
 
-.creature.ghost-normal.ghost3.direction-up {
+.creature.ghost-normal.ghost3[direction="up"] {
   background-image: url(../images/ghost3-up.gif);
 }
 
-.creature.ghost-normal.ghost4.direction-up {
+.creature.ghost-normal.ghost4[direction="up"] {
   background-image: url(../images/ghost4-up.gif);
 }
 
-.creature.ghost-normal.ghost1.direction-down {
+.creature.ghost-normal.ghost1[direction="down"] {
   background-image: url(../images/ghost1-down.gif);
 }
 
-.creature.ghost-normal.ghost2.direction-down {
+.creature.ghost-normal.ghost2[direction="down"] {
   background-image: url(../images/ghost2-down.gif);
 }
 
-.creature.ghost-normal.ghost3.direction-down {
+.creature.ghost-normal.ghost3[direction="down"] {
   background-image: url(../images/ghost3-down.gif);
 }
 
-.creature.ghost-normal.ghost4.direction-down {
+.creature.ghost-normal.ghost4[direction="down"] {
   background-image: url(../images/ghost4-down.gif);
 }
 
-.creature.ghost-normal.direction-left {
+.creature.ghost-normal[direction="left"] {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }

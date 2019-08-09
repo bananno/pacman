@@ -52,8 +52,7 @@ class Creature {
   }
 
   set direction(newDirection) {
-    this.$.removeClass('direction-' + this._direction);
-    this.$.addClass('direction-' + newDirection);
+    this.$.attr('direction', newDirection);
     this._direction = newDirection;
   }
 
