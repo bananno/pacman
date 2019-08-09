@@ -7,6 +7,7 @@ class Creature {
   }
 
   start() {
+    clearInterval(this.waitingInterval);
     this.movementInterval = setInterval(this.move.bind(this), this.speed);
   }
 
@@ -73,6 +74,7 @@ class Creature {
   }
 
   clearAllIntervals() {
+    clearInterval(this.waitingInterval);
     clearInterval(this.movementInterval);
     clearInterval(this.blueInterval);
   }

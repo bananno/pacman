@@ -9,6 +9,11 @@ class Ghost extends Creature {
     this.$.addClass('ghost');
     this.$.addClass('ghost-normal');
     this.$.addClass('ghost' + (number + 1));
+
+    this.waitingEyes = Math.floor(Math.random() * 3000);
+    this.waitingInterval = setInterval(() => {
+      this.direction = getRandomDirection();
+    }, this.waitingEyes);
   }
 
   reverse() {
