@@ -20,5 +20,18 @@ const positionAdjustment = {
 const DIRECTIONS = ['up', 'left', 'right', 'down'];
 
 $(document).ready(() => {
+  preloadImages();
   new Game();
 });
+
+function preloadImages() {
+  const $div = $('<div style="display: none">').appendTo('body');
+  ['blue', 'white'].forEach(mod => {
+    $div.append('<img src="./images/ghost-' + mod + '.gif">');
+  });
+  for (let i = 1; i <= 4; i++) {
+    ['down', 'right', 'up'].forEach(dir => {
+      $div.append('<img src="./images/ghost' + i + '-' + dir + '.gif">');
+    });
+  }
+}
