@@ -2,6 +2,10 @@
 const GHOST_BLUE_TIME = 5000;
 
 class Ghost extends Creature {
+  static chooseEyesInterval() {
+    return (Math.floor(Math.random() * 10) + 1) * 500;
+  }
+
   constructor(game, number) {
     super(game);
     this.ghost = true;
@@ -10,7 +14,7 @@ class Ghost extends Creature {
     this.$.addClass('ghost-normal');
     this.$.addClass('ghost' + (number + 1));
 
-    this.waitingEyes = Math.floor(Math.random() * 3000);
+    this.waitingEyes = Ghost.chooseEyesInterval();
     this.waitingInterval = setInterval(() => {
       this.direction = getRandomDirection();
     }, this.waitingEyes);
